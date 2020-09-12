@@ -40,4 +40,22 @@ ALWAYS do this if other members pinged the slack channel for a merged PR BEFORE 
 
 - PING the Slack channel for other members to re-fetch!
 
+<<<<<<< HEAD
+💡 How a project starts is indicative of how it will end.
+
+## Teamwork
+
+The most important aspect of this project is the ability to work in a team. No matter your contribution to the project, you should understand the **FULL** codebase. This will require that you
+
+- **review** each other's code
+- **ask** questions when you don't understand
+- **comment** your code extensively. _Always go for clarity over brevity._
+
+## GitHub
+
+see the [GITHUB Document](__documentation/GITHUB.md)
+
+Credits: Jenny/Ivan/Thinh/Truong
+=======
 ---
+>>>>>>> parent/master
