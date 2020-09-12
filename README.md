@@ -1,44 +1,46 @@
-# Wearables E-Commerce Project
+# WEARABOLOGY
 
-[See the list of TEAMS](__documentation/TEAMS.md)
+## Quick Links
 
-You will make use of _everything_ that you have learned thus far in the bootcamp to build an e-commerce app that will showcase all of the provided _wearables_ items.
+Main Repo: https://github.com/g-thinh/project-m5-e-commerce
 
-The stack is React.Js, Redux, Node.Js, and styled-components.
+Trello Board: https://trello.com/b/9bGUOayt/wearabology
 
-Your node server should be RESTful and follow REST principles, at least to the extent we learned during the bootcamp.
+---
 
-## Getting Started
+## Quick Start Guide
 
-<img src="./server/assets/software-dev-path.jpg" style="width: 100%;" />
+Before you start, link your forked repo to the main one we are using above. This step should be done only ONCE.
 
-You have your assignment and your team. What should you do first? This will vary for every team, and even every team member.
+- `git remote --v` (check your current remotes)
+- `git remote add parent https://github.com/g-thinh/project-m5-e-commerce.git`
 
-**The important thing is to NOT just jump in and start coding!**
+The basic workflow should have you fetch the latest version of the main repo before starting to work on any tasks/features.
 
-There probably shouldn't be any coding until very near the end of the first day.
+### 1. Fetch and merge the latest commits from the main `parent` repo.
 
-## Meet your Product Manager!
+ALWAYS do this if other members pinged the slack channel for a merged PR BEFORE sending your PR request so that you are not behind in commits.
 
-Each team has been assigned a product manager. This person is in charge of answering questions, guiding you and basically preventing everything from falling apart!
+- `git fetch parent master`
+- `git merge parent/master`
 
-This person should be present for some of your team meetings, but not all. PMs are super busy people and have multiple projects, people to manage. 😉
+### 2. Once you are done working on a task and are ready to send a PR
 
-## Planning
+- `git add .`
+- `git commit -m "insert message here"`
+- `git push origin master`
 
-1. You will break into 3 groups (with your assigned PM.)
-2. Your PM will answer any initial questions, and give you more information, as required.
-3. Breakout into a separate meeting with just your team. _Your PM will bounce from team to team to make sure you're on track._
-4. Time to use the [Kickoff Meeting Agenda](__documentation/KICKOFF_MEETING_AGENDA.md)
+### 3. Open a PR request to the main repo.
 
-### First team meeting
+- `Go to [here](https://github.com/g-thinh/project-m5-e-commerce/pulls).
 
-It could also be a good/fun idea to give yourselves an original team name. :)
+- Create a new pull request from YOUR forked repo (head repo) to the g-thinh repo (base repo)
 
-Your first team meeting should start with the [Kickoff Meeting Agenda](__documentation/KICKOFF_MEETING_AGENDa.md).
+### 4. If your changes are minor and do not conflict with any other file, feel free to accept your own PR request in the PR tab.
 
-[Successful Software Project Delivery in 10 Steps](https://www.appnovation.com/blog/successful-software-project-delivery-10-steps).
+- PING the Slack channel for other members to re-fetch!
 
+<<<<<<< HEAD
 💡 How a project starts is indicative of how it will end.
 
 ## Teamwork
@@ -54,3 +56,6 @@ The most important aspect of this project is the ability to work in a team. No m
 see the [GITHUB Document](__documentation/GITHUB.md)
 
 Credits: Jenny/Ivan/Thinh/Truong
+=======
+---
+>>>>>>> parent/master
