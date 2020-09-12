@@ -4,9 +4,10 @@ import GlobalStyles from "../components/GlobalStyles";
 
 function App() {
   return (
-    <Layout>
+    <>
+      <Layout />
       <GlobalStyles />
-    </Layout>
+    </>
   );
 }
 

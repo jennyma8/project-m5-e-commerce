@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import styled from "styled-components";
 import HomePage from "../../containers/HomePage";
 import ProductsPage from "../../containers/ProductsPage";
 
@@ -7,7 +8,7 @@ const Layout = () => {
   return (
     <Router>
       <nav>
-        <h1>This is the Navitation Bar</h1>
+        <h1>This is the Navigation Bar</h1>
         <li>
           <a href="/">Home</a>
         </li>
@@ -35,6 +36,9 @@ const Layout = () => {
           </Route>
         </Switch>
       </nav>
+      <footer>
+        <h1>Footer Here</h1>
+      </footer>
     </Router>
   );
 };
