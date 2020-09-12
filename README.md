@@ -58,4 +58,16 @@ see the [GITHUB Document](__documentation/GITHUB.md)
 Credits: Jenny/Ivan/Thinh/Truong
 =======
 ---
+<<<<<<< HEAD
+
+## Create a new Component
+
+To create a new functional component in the `/components` folder
+
+1. On your CLI navigate to the `/client` folder.
+
+2. type `yarn nc "name of new component"`
+||||||| db7deef
+=======
 >>>>>>> parent/master
+>>>>>>> 0ef15e21fd17c153ae72cbda91377b1027bb6e39
