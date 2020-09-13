@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 
-import uiReducer from "./ui-reducer";
-import cartReducer from "./cart-reducer";
+import TOGGLERS from "./ui-reducer";
+import CART from "./cart-reducer";
+import DATA from "./data-reducer";
 
-export default combineReducers({ uiReducer, cartReducer });
+export default combineReducers({ TOGGLERS, CART, DATA });
