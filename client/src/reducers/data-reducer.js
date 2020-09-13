@@ -51,13 +51,22 @@ export default function dataReducer(state = initialState, action) {
     }
 
     case "RECEIVE_ITEMS_DATA": {
-      return produce(state, (draftState) => {
+      const data = action.items.items;
+      console.log("[DATA] received is:", data);
+      const categories = [...new Set(data.map((i) => i.category))];
+      console.log("the categories are:", categories);
+
+      const results = produce(state, (draftState) => {
         if (!draftState.data) {
           draftState.data = {};
         }
         draftState.data = action.items;
+        draftState.data.categories = categories;
         draftState.status = "idle";
       });
+
+      console.log("[NEW STATE]:", results);
+      return results;
     }
 
     case "REQUEST_ITEMS_DATA_ERROR": {
