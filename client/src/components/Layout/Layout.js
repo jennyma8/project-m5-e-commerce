@@ -13,14 +13,18 @@ const Layout = () => {
           <Route exact path="/">
             <HomePage />
           </Route>
-          <Route path="/products">
-            <ProductsPage />
-          </Route>
+
           <Route path="/careers">
             <h1>this is the careers page</h1>
           </Route>
           <Route path="/about">
             <h1>this is the careers page</h1>
+          </Route>
+          <Route path="/products/:id">
+            <h1>This is the detailed product page</h1>
+          </Route>
+          <Route path="/products">
+            <ProductsPage />
           </Route>
         </Switch>
       </Nav>
