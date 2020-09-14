@@ -6,6 +6,8 @@ Main Repo: https://github.com/g-thinh/project-m5-e-commerce
 
 Trello Board: https://trello.com/b/9bGUOayt/wearabology
 
+App Layout Draft: https://app.diagrams.net/#T5f59866e432ddd533f8d6f22%7C%24%7C5f5e8861e0f0367a9668177c
+
 ---
 
 ## Quick Start Guide
@@ -39,6 +41,12 @@ ALWAYS do this if other members pinged the slack channel for a merged PR BEFORE 
 ### 4. If your changes are minor and do not conflict with any other file, feel free to accept your own PR request in the PR tab.
 
 - PING the Slack channel for other members to re-fetch!
+
+### 5. (OPTIONAL) If you would like to update YOUR forked repo with what you currently have
+
+In case you dont want to do a PR right away to the main repo, but save some of your work through github, you can run the following command in the terminal
+
+- `git push origin`
 
 ---
 
