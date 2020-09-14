@@ -1,12 +1,16 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const Product = (props) => {
   const ITEM = props.data;
+  console.log(ITEM);
 
   return (
     <Item>
-      <Image src={ITEM.imageSrc} alt={`${ITEM.name}-${ITEM.id}`} />
+      <Link to={`/products/${ITEM._id}`}>
+        <Image src={ITEM.imageSrc} alt={`${ITEM.name}-${ITEM._id}`} />
+      </Link>
       <Footer>
         <Title>{ITEM.name}</Title>
         <Price>{ITEM.price}</Price>
