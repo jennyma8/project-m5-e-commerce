@@ -5,6 +5,6 @@ const categories = require("./categories");
 
 items.get("/", all);
 items.get("/:_id", single);
-items.get("/:category", categories);
+items.get("/category/:category", categories);
 
 module.exports = items;
