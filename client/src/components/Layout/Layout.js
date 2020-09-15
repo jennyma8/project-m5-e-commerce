@@ -19,7 +19,7 @@ const Layout = () => {
             <h1>this is the careers page</h1>
           </Route>
           <Route path="/about">
-            <h1>this is the careers page</h1>
+            <h1>this is the about us page</h1>
           </Route>
           <Route path="/items/:id">
             <ProductItemPage />
