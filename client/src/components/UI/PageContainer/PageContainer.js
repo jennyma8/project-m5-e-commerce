@@ -7,14 +7,14 @@ const Container = styled.div`
   border: 5px solid red;
   position: relative;
   margin-top: 15px;
-  margin-right: 50px;
-  margin-left: 50px;
+  margin-right: 10vw;
+  margin-left: 10vw;
 
   /* this should be removed once we have content in each page */
   /* min-height: 100%; */
   min-height: 100vh;
 
-  @media (max-width: 65rem) {
+  @media (max-width: 1440px) {
     margin-top: 15px;
     margin-right: 0px;
     margin-left: 0px;

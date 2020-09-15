@@ -6,6 +6,8 @@ Main Repo: https://github.com/g-thinh/project-m5-e-commerce
 
 Trello Board: https://trello.com/b/9bGUOayt/wearabology
 
+App Layout Draft: https://app.diagrams.net/#T5f59866e432ddd533f8d6f22%7C%24%7C5f5e8861e0f0367a9668177c
+
 ---
 
 ## Quick Start Guide
@@ -32,7 +34,7 @@ ALWAYS do this if other members pinged the slack channel for a merged PR BEFORE 
 
 ### 3. Open a PR request to the main repo.
 
-- `Go to [here](https://github.com/g-thinh/project-m5-e-commerce/pulls).
+- Go to [here](https://github.com/g-thinh/project-m5-e-commerce/pulls).
 
 - Create a new pull request from YOUR forked repo (head repo) to the g-thinh repo (base repo)
 
@@ -40,25 +42,29 @@ ALWAYS do this if other members pinged the slack channel for a merged PR BEFORE 
 
 - PING the Slack channel for other members to re-fetch!
 
-<<<<<<< HEAD
-💡 How a project starts is indicative of how it will end.
+### 5. (OPTIONAL) If you would like to update YOUR forked repo with what you currently have
 
-## Teamwork
+In case you dont want to do a PR right away to the main repo, but save some of your work through github, you can run the following command in the terminal
 
-The most important aspect of this project is the ability to work in a team. No matter your contribution to the project, you should understand the **FULL** codebase. This will require that you
+- `git push origin`
 
-- **review** each other's code
-- **ask** questions when you don't understand
-- **comment** your code extensively. _Always go for clarity over brevity._
-
-## GitHub
-
-see the [GITHUB Document](__documentation/GITHUB.md)
-
-Credits: Jenny/Ivan/Thinh/Truong
-=======
 ---
-<<<<<<< HEAD
+
+## Backend Endpoints to use
+
+### FETCH
+
+The following endpoints will return data in JSON format to be stored within the redux store using `fetch`.
+
+All items: `/items`
+
+All companies: `/companies`
+
+Single item by id: `/items/:_id`
+
+Single company by id: `/companies/:_id`
+
+---
 
 ## Create a new Component
 
@@ -67,7 +73,3 @@ To create a new functional component in the `/components` folder
 1. On your CLI navigate to the `/client` folder.
 
 2. type `yarn nc "name of new component"`
-||||||| db7deef
-=======
->>>>>>> parent/master
->>>>>>> 0ef15e21fd17c153ae72cbda91377b1027bb6e39
