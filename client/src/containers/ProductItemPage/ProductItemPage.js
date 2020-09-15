@@ -9,7 +9,7 @@ import {
   receiveProductItemError,
 } from "../../actions";
 
-const ProductDetails = () => {
+const ProductItemPage = () => {
   const dispatch = useDispatch();
 
   const PRODUCT = useSelector((state) => state.DATA.data);
@@ -43,4 +43,4 @@ const ProductDetails = () => {
   );
 };
 
-export default ProductDetails;
+export default ProductItemPage;
