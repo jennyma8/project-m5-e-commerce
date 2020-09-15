@@ -41,7 +41,7 @@ const ProductsPage = () => {
         // .then((json) => console.log(json));
         .then((json) => dispatch(receiveItems(json)));
     } catch (error) {
-      console.log(error);
+      console.log("error");
       dispatch(receiveItemsError());
     }
   }, []);
@@ -54,7 +54,7 @@ const ProductsPage = () => {
     <PageContainer>
       <ProductsHeader data={ITEMS.categories} />
       <Test>
-        <Sidebar>This is the Sidebar</Sidebar>
+        {/* <Sidebar>This is the Sidebar</Sidebar> */}
         <Products data={ITEMS} />
       </Test>
     </PageContainer>
@@ -71,7 +71,7 @@ const Sidebar = styled.h1`
 
 const Test = styled.div`
   display: flex;
-  border: 5px solid green;
+  /* border: 5px solid green; */
   justify-content: center;
 `;
 

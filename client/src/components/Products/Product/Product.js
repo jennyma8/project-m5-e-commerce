@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import Button from "../../UI/Button";
+import { THEMES } from "../../THEMES";
 
 const Product = (props) => {
   const ITEM = props.data;
-  console.log(ITEM);
 
   return (
     <Item>
@@ -15,7 +16,9 @@ const Product = (props) => {
         <Title>{ITEM.name}</Title>
         <Price>{ITEM.price}</Price>
       </Footer>
-      <button>Add to Cart</button>
+      <Button onClickHandler={(ev) => console.log("Item was added to cart")}>
+        Add to Cart
+      </Button>
     </Item>
   );
 };
@@ -23,11 +26,15 @@ const Product = (props) => {
 const Item = styled.li`
   min-width: 0;
   min-height: 200px;
-  border: 5px dashed red;
+  /* border: 5px dashed red; */
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+  border: 1px solid gainsboro;
+  border-radius: 12px;
+  box-shadow: 0px 2px 2px 1px rgba(232, 232, 232, 0.75);
+  padding: 15px;
 `;
 
 const Footer = styled.div`
@@ -41,6 +48,9 @@ const Footer = styled.div`
 
 const Price = styled.h1`
   flex: 1;
+  text-align: center;
+  font-size: 22px;
+  color: ${THEMES.Secondary};
 `;
 
 const Title = styled.h1`
@@ -54,6 +64,19 @@ const Title = styled.h1`
 const Image = styled.img`
   width: 250px;
   height: 250px;
+
+  @media (max-width: 1200px) {
+    /* ... */
+  }
+
+  @media (max-width: 1024px) {
+    /* ... */
+  }
+
+  @media (max-width: 768px) {
+    width: 200px;
+    height: 200px;
+  }
 `;
 
 export default Product;
