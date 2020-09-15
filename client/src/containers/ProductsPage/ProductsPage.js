@@ -19,7 +19,8 @@ import Spinner from "../../components/UI/Spinner";
 const ProductsPage = () => {
   const dispatch = useDispatch();
 
-  const ITEMS = useSelector((state) => state.DATA.data);
+  const ITEMS = useSelector((state) => state.DATA.allProducts);
+  const CATEGORIES = useSelector((state) => state.DATA.categories);
   const STATUS = useSelector((state) => state.DATA.status);
 
   React.useEffect(() => {
@@ -41,7 +42,7 @@ const ProductsPage = () => {
         // .then((json) => console.log(json));
         .then((json) => dispatch(receiveItems(json)));
     } catch (error) {
-      console.log(error);
+      console.log("error");
       dispatch(receiveItemsError());
     }
   }, []);
@@ -52,9 +53,9 @@ const ProductsPage = () => {
 
   return (
     <PageContainer>
-      <ProductsHeader data={ITEMS.categories} />
+      <ProductsHeader data={CATEGORIES} />
       <Test>
-        <Sidebar>This is the Sidebar</Sidebar>
+        {/* <Sidebar>This is the Sidebar</Sidebar> */}
         <Products data={ITEMS} />
       </Test>
     </PageContainer>
@@ -71,7 +72,7 @@ const Sidebar = styled.h1`
 
 const Test = styled.div`
   display: flex;
-  border: 5px solid green;
+  /* border: 5px solid green; */
   justify-content: center;
 `;
 

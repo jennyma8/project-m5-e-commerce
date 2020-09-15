@@ -4,6 +4,7 @@ import styled from "styled-components";
 import HomePage from "../../containers/HomePage";
 import ProductsPage from "../../containers/ProductsPage";
 import Nav from "../Nav";
+import ProductItemPage from "../../containers/ProductItemPage";
 
 const Layout = () => {
   return (
@@ -18,10 +19,10 @@ const Layout = () => {
             <h1>this is the careers page</h1>
           </Route>
           <Route path="/about">
-            <h1>this is the careers page</h1>
+            <h1>this is the about us page</h1>
           </Route>
-          <Route path="/products/:id">
-            <h1>This is the detailed product page</h1>
+          <Route path="/items/:id">
+            <ProductItemPage />
           </Route>
           <Route path="/products">
             <ProductsPage />
