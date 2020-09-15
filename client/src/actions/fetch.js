@@ -23,3 +23,16 @@ export const receiveItems = (items) => ({
 export const receiveItemsError = () => ({
   type: "REQUEST_ITEMS_DATA_ERROR",
 });
+
+export const requestProductItem = () => ({
+  type: "REQUEST_PRODUCT_ITEM_DATA",
+});
+
+export const receiveProductItem = (productItem) => ({
+  type: "RECEIVE_PRODUCT_ITEM_DATA",
+  productItem,
+});
+
+export const receiveProductItemError = () => ({
+  type: "REQUEST_PRODUCT_ITEM_DATA_ERROR",
+});
