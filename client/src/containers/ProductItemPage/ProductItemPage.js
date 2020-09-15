@@ -12,7 +12,7 @@ import {
 const ProductItemPage = () => {
   const dispatch = useDispatch();
 
-  const PRODUCT = useSelector((state) => state.DATA.data);
+  const PRODUCT = useSelector((state) => state.DATA.currentProduct);
   const STATUS = useSelector((state) => state.DATA.status);
 
   React.useEffect(() => {
@@ -33,7 +33,7 @@ const ProductItemPage = () => {
 
   return (
     <PageContainer>
-      <div>{PRODUCT.currentProduct.name}</div>
+      <div>{PRODUCT.name}</div>
       <div>
         <div>ProductDescription</div>
         <div>Quantity</div>

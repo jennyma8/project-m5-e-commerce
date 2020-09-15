@@ -19,7 +19,8 @@ import Spinner from "../../components/UI/Spinner";
 const ProductsPage = () => {
   const dispatch = useDispatch();
 
-  const ITEMS = useSelector((state) => state.DATA.data);
+  const ITEMS = useSelector((state) => state.DATA.allProducts);
+  const CATEGORIES = useSelector((state) => state.DATA.categories);
   const STATUS = useSelector((state) => state.DATA.status);
 
   React.useEffect(() => {
@@ -52,7 +53,7 @@ const ProductsPage = () => {
 
   return (
     <PageContainer>
-      <ProductsHeader data={ITEMS.categories} />
+      <ProductsHeader data={CATEGORIES} />
       <Test>
         {/* <Sidebar>This is the Sidebar</Sidebar> */}
         <Products data={ITEMS} />

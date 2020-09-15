@@ -16,9 +16,11 @@ const Product = (props) => {
         <Title>{ITEM.name}</Title>
         <Price>{ITEM.price}</Price>
       </Footer>
-      <Button onClickHandler={(ev) => console.log("Item was added to cart")}>
-        Add to Cart
-      </Button>
+      <BtnContainer>
+        <Button onClickHandler={(ev) => console.log("Item was added to cart")}>
+          Add to Cart
+        </Button>
+      </BtnContainer>
     </Item>
   );
 };
@@ -38,6 +40,7 @@ const Item = styled.li`
 `;
 
 const Footer = styled.div`
+  flex: 3;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -62,6 +65,7 @@ const Title = styled.h1`
 `;
 
 const Image = styled.img`
+  flex: 5;
   width: 250px;
   height: 250px;
 
@@ -77,6 +81,13 @@ const Image = styled.img`
     width: 200px;
     height: 200px;
   }
+`;
+
+const BtnContainer = styled.div`
+  flex: 2;
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-end;
 `;
 
 export default Product;

@@ -1,7 +1,9 @@
 import produce from "immer";
 
 const initialState = {
-  data: null,
+  allProducts: null,
+  currentProduct: null,
+  categories: null,
   status: "idle",
 };
 
@@ -52,16 +54,16 @@ export default function dataReducer(state = initialState, action) {
 
     case "RECEIVE_ITEMS_DATA": {
       const data = action.items.items;
-      console.log("[DATA] received is:", data);
+      // console.log("[DATA] received is:", data);
       const categories = [...new Set(data.map((i) => i.category))];
-      console.log("the categories are:", categories);
+      // console.log("the categories are:", categories);
 
       const results = produce(state, (draftState) => {
-        if (!draftState.data) {
-          draftState.data = {};
+        if (!draftState.allProducts) {
+          draftState.allProducts = {};
         }
-        draftState.data = action.items;
-        draftState.data.categories = categories;
+        draftState.allProducts = action.items;
+        draftState.categories = categories;
         draftState.status = "idle";
       });
 
@@ -85,17 +87,13 @@ export default function dataReducer(state = initialState, action) {
 
     case "RECEIVE_PRODUCT_ITEM_DATA": {
       const data = action.productItem.item;
-      console.log("[DATA] received is:", data);
-
       const results = produce(state, (draftState) => {
-        if (!draftState.data) {
-          draftState.data = {};
+        if (!draftState.currentProduct) {
+          draftState.currentProduct = {};
         }
-        draftState.data.currentProduct = data[0];
+        draftState.currentProduct = data[0];
         draftState.status = "idle";
       });
-
-      console.log("[NEW STATE]:", results);
       return results;
     }
 
