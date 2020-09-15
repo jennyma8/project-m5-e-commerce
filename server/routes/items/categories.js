@@ -2,7 +2,6 @@ const data = require("../../data/items.json");
 
 module.exports = (req, res) => {
   const items = data;
-  const categoryArr = [];
   const itemCategoryParam = req.params.category;
   const itemCategory = items.filter((item) => {
     return item.category.toLowerCase() === itemCategoryParam.toLowerCase();
