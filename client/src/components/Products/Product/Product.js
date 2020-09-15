@@ -9,7 +9,7 @@ const Product = (props) => {
 
   return (
     <Item>
-      <Link to={`/products/${ITEM._id}`}>
+      <Link to={`/items/${ITEM._id}`}>
         <Image src={ITEM.imageSrc} alt={`${ITEM.name}-${ITEM._id}`} />
       </Link>
       <Footer>

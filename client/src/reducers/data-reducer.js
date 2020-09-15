@@ -76,6 +76,36 @@ export default function dataReducer(state = initialState, action) {
       };
     }
 
+    case "REQUEST_PRODUCT_ITEM_DATA": {
+      return {
+        ...state,
+        status: "loading",
+      };
+    }
+
+    case "RECEIVE_PRODUCT_ITEM_DATA": {
+      const data = action.productItem.item;
+      console.log("[DATA] received is:", data);
+
+      const results = produce(state, (draftState) => {
+        if (!draftState.data) {
+          draftState.data = {};
+        }
+        draftState.data.currentProduct = data[0];
+        draftState.status = "idle";
+      });
+
+      console.log("[NEW STATE]:", results);
+      return results;
+    }
+
+    case "REQUEST_PRODUCT_ITEM_DATA_ERROR": {
+      return {
+        ...state,
+        status: "error",
+      };
+    }
+
     default: {
       return state;
     }
