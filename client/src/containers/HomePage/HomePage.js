@@ -1,15 +1,22 @@
 import React from "react";
 import styled from "styled-components";
 import PageContainer from "../../components/UI/PageContainer";
-import { Player } from "video-react";
+import { Video } from "../../assets";
 
 const HomePage = () => {
   return (
-    <PageContainer>
-      This is the Home Page
-      <Player src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4" />
-    </PageContainer>
+    <VideoContainer>
+      <VideoSrc loop autoPlay>
+        <source src={Video} type="video/mp4" />
+      </VideoSrc>
+    </VideoContainer>
   );
 };
+const VideoContainer = styled.div`
+  background: black;
+`;
+const VideoSrc = styled.video`
+  width: 100%;
+`;
 
 export default HomePage;
