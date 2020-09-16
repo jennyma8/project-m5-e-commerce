@@ -58,6 +58,8 @@ The following endpoints will return data in JSON format to be stored within the 
 
 All items: `/items`
 
+Items by category: `/category/:category`
+
 All companies: `/companies`
 
 Single item by id: `/items/:_id`
