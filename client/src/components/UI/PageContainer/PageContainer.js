@@ -8,6 +8,7 @@ const Container = styled.div`
   margin-top: 0px;
   margin-right: 10vw;
   margin-left: 10vw;
+  background: black;
 
   /* this should be removed once we have content in each page */
   /* min-height: 100%; */
