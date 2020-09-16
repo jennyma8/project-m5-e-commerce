@@ -4,9 +4,8 @@ import styled from "styled-components";
 const PageContainer = ({ children }) => <Container>{children}</Container>;
 
 const Container = styled.div`
-  border: 5px solid red;
   position: relative;
-  margin-top: 15px;
+  margin-top: 0px;
   margin-right: 10vw;
   margin-left: 10vw;
 
@@ -15,7 +14,7 @@ const Container = styled.div`
   min-height: 100vh;
 
   @media (max-width: 1440px) {
-    margin-top: 15px;
+    margin-top: 0px;
     margin-right: 0px;
     margin-left: 0px;
   }
