@@ -9,6 +9,8 @@ const initialState = {
 
 export default function dataReducer(state = initialState, action) {
   switch (action.type) {
+    // ####################### ALL COMPANIES #########################
+
     case "REQUEST_COMPANIES_DATA": {
       return {
         ...state,
@@ -45,6 +47,8 @@ export default function dataReducer(state = initialState, action) {
       };
     }
 
+    // ############################ ALL ITEMS ###########################
+
     case "REQUEST_ITEMS_DATA": {
       return {
         ...state,
@@ -55,7 +59,7 @@ export default function dataReducer(state = initialState, action) {
     case "RECEIVE_ITEMS_DATA": {
       const data = action.items.items;
       // console.log("[DATA] received is:", data);
-      const categories = [...new Set(data.map((i) => i.category))];
+      // const categories = [...new Set(data.map((i) => i.category))];
       // console.log("the categories are:", categories);
 
       const results = produce(state, (draftState) => {
@@ -63,7 +67,7 @@ export default function dataReducer(state = initialState, action) {
           draftState.allProducts = {};
         }
         draftState.allProducts = action.items;
-        draftState.categories = categories;
+        // draftState.categories = categories;
         draftState.status = "idle";
       });
 
@@ -77,6 +81,8 @@ export default function dataReducer(state = initialState, action) {
         status: "error",
       };
     }
+
+    // ############################ SINGLE PRODUCT #######################
 
     case "REQUEST_PRODUCT_ITEM_DATA": {
       return {
@@ -98,6 +104,36 @@ export default function dataReducer(state = initialState, action) {
     }
 
     case "REQUEST_PRODUCT_ITEM_DATA_ERROR": {
+      return {
+        ...state,
+        status: "error",
+      };
+    }
+
+    // ######################### ALL CATEGORIES #####################
+
+    case "REQUEST_CATEGORIES_DATA": {
+      return {
+        ...state,
+        status: "loading",
+      };
+    }
+
+    case "RECEIVE_CATEGORIES_DATA": {
+      const data = action.categories;
+      console.log("[RECEIVE CATEGORIES DATA]", data);
+      const results = produce(state, (draftState) => {
+        if (!draftState.categories) {
+          draftState.categories = {};
+        }
+        draftState.categories = data;
+        draftState.status = "idle";
+      });
+      console.log("[RECEIVE CATEGORIES NEW STATE]", results);
+      return results;
+    }
+
+    case "REQUEST_CATEGORIES_DATA_ERROR": {
       return {
         ...state,
         status: "error",

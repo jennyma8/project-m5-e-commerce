@@ -1,16 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 import { THEMES } from "../THEMES";
+import { Link } from "react-router-dom";
 
 const ProductsHeader = (props) => {
-  console.log(props.data);
   return (
     <Wrapper>
       <HeaderList>
         {props.data.map((cat) => {
           return (
             <Category key={cat}>
-              <span>{cat}</span>
+              <StyledLink to={`/items/category/${cat}`}>
+                <span>{cat}</span>
+              </StyledLink>
             </Category>
           );
         })}
@@ -58,6 +60,11 @@ const HeaderList = styled.ul`
   }
 `;
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+`;
+
 const Category = styled.button`
   /* flex: 1; */
   text-align: center;
@@ -76,7 +83,7 @@ const Category = styled.button`
   transition: all ease-in 0.3s;
   /* border-radius: 20px; */
 
-  & span {
+  & ${StyledLink} {
     font-size: 22px;
   }
 
@@ -85,7 +92,7 @@ const Category = styled.button`
     background-color: ${THEMES.Primary};
     border: 2px solid ${THEMES.Primary};
 
-    & span {
+    & ${StyledLink} {
       /* position: absolute; */
       color: white;
     }
