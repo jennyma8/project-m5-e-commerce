@@ -5,13 +5,11 @@ import { Video } from "../../assets";
 
 const HomePage = () => {
   return (
-    <PageContainer>
-      <VideoContainer>
-        <VideoSrc loop autoPlay>
-          <source src={Video} type="video/mp4" />
-        </VideoSrc>
-      </VideoContainer>
-    </PageContainer>
+    <VideoContainer>
+      <VideoSrc loop autoPlay>
+        <source src={Video} type="video/mp4" />
+      </VideoSrc>
+    </VideoContainer>
   );
 };
 const VideoContainer = styled.div`
