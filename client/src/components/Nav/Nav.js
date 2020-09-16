@@ -17,7 +17,7 @@ const Nav = ({ children }) => {
             <LinkName>Home</LinkName>
           </StyledLink>
 
-          <StyledLink exact to="/products">
+          <StyledLink exact to="/items">
             <LinkName>Products</LinkName>
           </StyledLink>
 
