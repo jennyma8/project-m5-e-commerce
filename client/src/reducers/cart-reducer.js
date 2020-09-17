@@ -1,7 +1,7 @@
 import produce from "immer";
 
 const initialState = {
-  currentCart: null,
+  // currentCart: [item1: {id: "6654", quantity: 1}, item2,item3]
   status: "idle",
 };
 
