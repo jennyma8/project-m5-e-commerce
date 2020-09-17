@@ -6,11 +6,9 @@ module.exports = (req, res) => {
   const items = DATA.filter((item) => {
     return item.category.toLowerCase() === itemCategoryParam.toLowerCase();
   }).map((item) => {
-    const price = Number(
-      parseFloat(
-        Math.round(parseFloat(item.price.substring(1) * 100).toFixed(2)) / 100
-      ).toFixed(2)
-    );
+    const price = parseFloat(
+      Math.round(parseFloat(item.price.substring(1) * 100).toFixed(2)) / 100
+    ).toFixed(2);
     return {
       ...item,
       price: price,

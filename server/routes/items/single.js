@@ -6,11 +6,9 @@ module.exports = (req, res) => {
   const item = items
     .filter((item) => item._id === itemId)
     .map((item) => {
-      const price = Number(
-        parseFloat(
-          Math.round(parseFloat(item.price.substring(1) * 100).toFixed(2)) / 100
-        ).toFixed(2)
-      );
+      const price = parseFloat(
+        Math.round(parseFloat(item.price.substring(1) * 100).toFixed(2)) / 100
+      ).toFixed(2);
       return { ...item, price: price };
     });
   console.log(item);
