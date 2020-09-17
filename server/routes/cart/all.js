@@ -1,6 +1,6 @@
 const CART = require("../../data/cart.json");
 
-const showCart = (req, res) => {
+const getCart = (req, res) => {
   try {
     return res.status(200).json({
       success: true,
@@ -16,4 +16,4 @@ const showCart = (req, res) => {
 
 const addToCart = (req, res) => {};
 
-module.exports = { showCart, addToCart };
+module.exports = { getCart, addToCart };
