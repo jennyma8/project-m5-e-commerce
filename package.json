@@ -1,7 +1,3 @@
 {
-  "dependencies": {
-    "morgan": "^1.10.0",
-    "react-icons": "^3.11.0",
-    "video-react": "^0.14.1"
-  }
+  "dependencies": {}
 }
