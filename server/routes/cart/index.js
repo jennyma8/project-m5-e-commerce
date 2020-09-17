@@ -1,7 +1,7 @@
 const cart = require("express").Router();
-const { showCart, emptyCart } = require("./all");
+const { showCart, addToCart } = require("./all");
 
 cart.get("/", showCart);
-cart.get("/empty", emptyCart);
+cart.post("/", addToCart);
 
 module.exports = cart;
