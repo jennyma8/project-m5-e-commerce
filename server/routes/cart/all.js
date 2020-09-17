@@ -1,11 +1,10 @@
-const data = require("../../data/companies.json");
+const CART = require("../../data/cart.json");
 
-module.exports = (req, res) => {
-  const companies = data;
+const getCart = (req, res) => {
   try {
     return res.status(200).json({
       success: true,
-      companies,
+      CART,
     });
   } catch (err) {
     return res.status(500).json({
@@ -14,3 +13,7 @@ module.exports = (req, res) => {
     });
   }
 };
+
+const addToCart = (req, res) => {};
+
+module.exports = { getCart, addToCart };
