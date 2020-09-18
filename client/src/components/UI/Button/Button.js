@@ -18,10 +18,16 @@ const Wrapper = styled.button`
   background-color: white;
   color: ${THEMES.Secondary};
   border: 2px solid ${THEMES.Secondary};
-
+  outline: none;
   & span {
     font-size: 16px;
     font-weight: 400;
+  }
+
+  &:focus {
+    border: 2px solid ${THEMES.Secondary};
+    background-color: ${THEMES.Secondary};
+    color: white;
   }
 
   &:hover {
@@ -31,15 +37,7 @@ const Wrapper = styled.button`
   }
 
   &:active {
-    outline: none;
     transform: scale(1.1);
-  }
-
-  &:focus {
-    outline: none;
-    border: 2px solid ${THEMES.Secondary};
-    background-color: ${THEMES.Secondary};
-    color: white;
   }
 `;
 
