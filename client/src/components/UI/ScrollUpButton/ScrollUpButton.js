@@ -46,7 +46,17 @@ const FadeIn = keyframes`
   }
 `;
 
+const FadeInText = keyframes`
+  0% {
+    opacity:0;
+  }
+  100%{
+    opacity: 1;
+  }
+`;
+
 const ScrollUpBtn = styled.button`
+  /* visibility: ${(props) => (props.show ? "visible" : "hidden")}; */
   position: sticky;
   z-index: 500;
   top: 90vh;
@@ -69,14 +79,15 @@ const ScrollUpBtn = styled.button`
     position: sticky;
     border-radius: 50px 50px 50px 50px;
     /* width: 10em; */
-    animation: ${OpenText} 0.3s forwards;
+    animation: ${OpenText} 0.2s forwards;
     /* & ${ScrollUpText} {
       display: inline-block;
     } */
 
     &:hover ${ScrollUpText} {
-      display: inline-block;
+      display: block;
       transition: all 0.5s ease-in;
+      animation: ${FadeInText} 1.5s forwards;
     }
 
     @media (max-width: 1200px) {
