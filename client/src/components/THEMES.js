@@ -4,4 +4,5 @@ export const THEMES = {
   // Secondary: "#994ff3",
   Secondary: "goldenrod",
   Tertiary: "#fbdd74",
+  Cart: "#B33951",
 };

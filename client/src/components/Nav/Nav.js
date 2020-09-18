@@ -1,11 +1,78 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes, css } from "styled-components";
 import { NavLink } from "react-router-dom";
 import { Logo } from "../../assets";
 import { THEMES } from "../THEMES";
 import { FiSearch, FiShoppingCart } from "react-icons/fi";
+import { useSelector, useDispatch } from "react-redux";
+import { toggleCartDrawer } from "../../actions";
+
+import CartDrawer from "../UI/CartDrawer";
+import CartSummary from "../CartSummary";
 
 const Nav = ({ children }) => {
+  const dispatch = useDispatch();
+  const ORDER = useSelector((state) => state.CART.currentCart);
+  const [reduceNav, setReduceNav] = React.useState(false);
+  const MODALSTATUS = useSelector((state) => state.CART.purchasing);
+
+  // function toggleReduce() {
+  //   if (window.scrollY > 300) {
+  //     setReduceNav(true);
+  //   } else {
+  //     setReduceNav(false);
+  //   }
+  // }
+
+  // This was to resize the nav bar when scrolling down, it has been
+  // removed because of conflicting re-renders
+  // React.useEffect(() => {
+  //   document.addEventListener("scroll", toggleReduce);
+  // }, []);
+
+  const Decrease = keyframes`
+    100% {
+      height: 80px;
+    }
+  `;
+
+  const Increase = keyframes`
+    0% {
+            height: 80px;
+    }
+    100% {
+      height: 120px;
+    }
+  `;
+
+  const Wrapper = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 900;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    background: gray;
+    text-decoration: none;
+    transition: all 1s ease-in-out;
+    /* ${reduceNav
+      ? css`
+          animation: ${Decrease} 1s forwards;
+        `
+      : css`
+          animation: ${Increase} 1s forwards;
+        `} */
+    /* -moz-transition:all 1s ease-in-out;
+    -webkit-transition:all 1s ease-in-out;
+    -o-transition:all 1s ease-in-out; */
+    &:hover {
+      background: white;
+    }
+  `;
+
   return (
     <>
       <Wrapper>
@@ -34,35 +101,23 @@ const Nav = ({ children }) => {
               <span>Search</span>
             </LinkName>
           </StyledLink>
-          <StyledLink exact to="/cart">
-            <LinkName>
-              <FiShoppingCart />
-              <span>Cart</span>
-            </LinkName>
-          </StyledLink>
+          {/* <StyledLink exact to="/cart"> */}
+
+          <CartButton onClick={() => dispatch(toggleCartDrawer())}>
+            <FiShoppingCart size={32} />
+            {ORDER.length > 1 && <CartCount>{ORDER.length}</CartCount>}
+          </CartButton>
+
+          {/* </StyledLink> */}
         </NavList>
       </Wrapper>
+      <CartDrawer show={MODALSTATUS} close={() => dispatch(toggleCartDrawer())}>
+        <CartSummary />
+      </CartDrawer>
       {children}
     </>
   );
 };
-
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 120px;
-
-  background: grey;
-  text-decoration: none;
-  transition:all 1s ease-in-out
-    -moz-transition:all 1s ease-in-out;
-    -webkit-transition:all 1s ease-in-out;
-    -o-transition:all 1s ease-in-out;
-  &:hover {
-    background: white;
-  }
-`;
 
 const LogoSrc = styled(NavLink)`
   margin-left: 20px;
@@ -77,11 +132,11 @@ const LinkName = styled.span`
   text-decoration: none;
   font-size: 20px;
   padding: 5px;
-  font: black;
+  color: black;
   font-weight: bold;
-  & span {
+  /* & span {
     padding: 5px;
-  }
+  } */
 
   &:hover {
     color: #cfba4f;
@@ -94,9 +149,38 @@ const NavList = styled.li`
   display: flex;
   flex: 1;
   justify-content: space-around;
+  align-items: center;
 `;
 
 const Icon = styled.div`
   padding: 2px;
 `;
+
+const CartButton = styled.button`
+  position: relative;
+  background: none;
+  outline: none;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    color: #cfba4f;
+  }
+`;
+
+const CartCount = styled.div`
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  top: 0;
+  right: 0;
+  width: 18px;
+  height: 18px;
+  background: ${THEMES.Cart};
+  border-radius: 100%;
+  color: white;
+`;
+
 export default Nav;
