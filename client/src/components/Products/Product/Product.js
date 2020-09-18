@@ -3,8 +3,13 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Button from "../../UI/Button";
 import { THEMES } from "../../THEMES";
+import { useSelector, useDispatch } from "react-redux";
+import { addCartItem } from "../../../actions";
 
 const Product = (props) => {
+  const dispatch = useDispatch();
+  const CART = useSelector((state) => state.CART.currentCart);
+
   const ITEM = props.data;
 
   return (
@@ -19,7 +24,11 @@ const Product = (props) => {
         </Description>
         <BtnContainer>
           <Button
-            onClickHandler={(ev) => console.log("Item was added to cart")}
+            onClickHandler={() =>
+              dispatch(
+                addCartItem({ name: ITEM.name, id: ITEM._id, quantity: 1 })
+              )
+            }
           >
             Add to Cart
           </Button>
@@ -44,6 +53,11 @@ const Item = styled.li`
 `;
 
 const Content = styled.div`
+  display: flex;
+  flex: 5;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
   @media (max-width: 800px) {
     display: flex;
     flex-flow: row nowrap;
