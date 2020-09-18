@@ -17,7 +17,7 @@ const ProductsGrid = styled.ul`
   flex-flow: wrap; */
 
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, auto);
   grid-template-rows: repeat(auto, 200px);
   row-gap: 20px;
   column-gap: 20px;
