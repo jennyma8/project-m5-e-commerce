@@ -7,75 +7,13 @@ import { FiSearch, FiShoppingCart } from "react-icons/fi";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleCartDrawer } from "../../actions";
 
-import CartDrawer from "../UI/CartDrawer";
-import CartSummary from "../CartSummary";
-
-const Nav = ({ children }) => {
+const Nav = (props) => {
   const dispatch = useDispatch();
   const ORDER = useSelector((state) => state.CART.currentCart);
-  const [reduceNav, setReduceNav] = React.useState(false);
-  const MODALSTATUS = useSelector((state) => state.CART.purchasing);
-
-  // function toggleReduce() {
-  //   if (window.scrollY > 300) {
-  //     setReduceNav(true);
-  //   } else {
-  //     setReduceNav(false);
-  //   }
-  // }
-
-  // This was to resize the nav bar when scrolling down, it has been
-  // removed because of conflicting re-renders
-  // React.useEffect(() => {
-  //   document.addEventListener("scroll", toggleReduce);
-  // }, []);
-
-  const Decrease = keyframes`
-    100% {
-      height: 80px;
-    }
-  `;
-
-  const Increase = keyframes`
-    0% {
-            height: 80px;
-    }
-    100% {
-      height: 120px;
-    }
-  `;
-
-  const Wrapper = styled.div`
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 900;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 80px;
-    background: gray;
-    text-decoration: none;
-    transition: all 1s ease-in-out;
-    /* ${reduceNav
-      ? css`
-          animation: ${Decrease} 1s forwards;
-        `
-      : css`
-          animation: ${Increase} 1s forwards;
-        `} */
-    /* -moz-transition:all 1s ease-in-out;
-    -webkit-transition:all 1s ease-in-out;
-    -o-transition:all 1s ease-in-out; */
-    &:hover {
-      background: white;
-    }
-  `;
 
   return (
     <>
-      <Wrapper>
+      <Wrapper reduceNav={props.show}>
         <LogoSrc exact to="/">
           <img src={Logo} style={{ height: 70, width: 70 }}></img>
         </LogoSrc>
@@ -105,16 +43,13 @@ const Nav = ({ children }) => {
 
           <CartButton onClick={() => dispatch(toggleCartDrawer())}>
             <FiShoppingCart size={32} />
-            {ORDER.length > 1 && <CartCount>{ORDER.length}</CartCount>}
+            {ORDER.length > 0 && <CartCount>{ORDER.length}</CartCount>}
           </CartButton>
 
           {/* </StyledLink> */}
         </NavList>
       </Wrapper>
-      <CartDrawer show={MODALSTATUS} close={() => dispatch(toggleCartDrawer())}>
-        <CartSummary />
-      </CartDrawer>
-      {children}
+      {props.children}
     </>
   );
 };
@@ -142,6 +77,53 @@ const LinkName = styled.span`
     color: #cfba4f;
     cursor: pointer;
     border-bottom: 2px solid grey;
+  }
+`;
+
+const Decrease = keyframes`
+0% {
+  height: 120px;
+}
+100% {
+  height: 80px;
+}
+`;
+
+const Increase = keyframes`
+0% {
+  height: 80px;
+}
+100% {
+  height: 120px;
+}
+`;
+
+const Wrapper = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 900;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  background: gray;
+  text-decoration: none;
+  transition: all 1s ease-in-out;
+  ${(props) =>
+    props.reduceNav
+      ? css`
+          animation: ${Decrease} 1.3s forwards;
+        `
+      : css`
+          animation: ${Increase} 1.3s forwards;
+        `}
+  /* -moz-transition:all 1s ease-in-out;
+-webkit-transition:all 1s ease-in-out;
+-o-transition:all 1s ease-in-out; */
+&:hover {
+    background: white;
   }
 `;
 
