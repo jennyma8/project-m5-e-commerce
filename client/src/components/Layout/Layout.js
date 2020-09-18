@@ -6,6 +6,7 @@ import ProductsPage from "../../containers/ProductsPage";
 import CategoryPage from "../../containers/CategoryPage";
 import Nav from "../Nav";
 import ProductItemPage from "../../containers/ProductItemPage";
+import About from "../About";
 
 const Layout = () => {
   return (
@@ -20,7 +21,7 @@ const Layout = () => {
             <h1>this is the careers page</h1>
           </Route>
           <Route path="/about">
-            <h1>this is the about us page</h1>
+            <About />
           </Route>
           <Route exact={true} path="/items/category/:category">
             <CategoryPage />
