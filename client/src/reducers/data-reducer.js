@@ -19,7 +19,7 @@ export default function dataReducer(state = initialState, action) {
     }
 
     case "RECEIVE_COMPANIES_DATA": {
-      console.log("[CURRENT STATE]", state);
+      // console.log("[CURRENT STATE]", state);
 
       //I want an array of data to be attached to the initialState
       //not another object i.e. initialState.companies.companies
@@ -35,7 +35,7 @@ export default function dataReducer(state = initialState, action) {
         draftState.data = action.companies;
         draftState.status = "idle";
       });
-      console.log("[NEW STATE]", results);
+      // console.log("[NEW STATE]", results);
 
       return results;
     }
@@ -71,7 +71,7 @@ export default function dataReducer(state = initialState, action) {
         draftState.status = "idle";
       });
 
-      console.log("[NEW STATE]:", results);
+      // console.log("[NEW STATE]:", results);
       return results;
     }
 
@@ -121,7 +121,7 @@ export default function dataReducer(state = initialState, action) {
 
     case "RECEIVE_CATEGORIES_DATA": {
       const data = action.categories;
-      console.log("[RECEIVE CATEGORIES DATA]", data);
+      // console.log("[RECEIVE CATEGORIES DATA]", data);
       const results = produce(state, (draftState) => {
         if (!draftState.categories) {
           draftState.categories = {};
@@ -129,7 +129,7 @@ export default function dataReducer(state = initialState, action) {
         draftState.categories = data;
         draftState.status = "idle";
       });
-      console.log("[RECEIVE CATEGORIES NEW STATE]", results);
+      // console.log("[RECEIVE CATEGORIES NEW STATE]", results);
       return results;
     }
 
