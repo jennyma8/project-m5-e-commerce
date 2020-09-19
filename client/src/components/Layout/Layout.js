@@ -6,9 +6,13 @@ import ProductsPage from "../../containers/ProductsPage";
 import CategoryPage from "../../containers/CategoryPage";
 import Nav from "../Nav";
 import ProductItemPage from "../../containers/ProductItemPage";
+<<<<<<< HEAD
+import About from "../About";
+=======
 import { toggleCartDrawer } from "../../actions";
 import CartDrawer from "../UI/CartDrawer";
 import CartSummary from "../CartSummary";
+>>>>>>> parent/master
 
 const Layout = () => {
   const dispatch = useDispatch();
@@ -43,7 +47,7 @@ const Layout = () => {
             <h1>this is the careers page</h1>
           </Route>
           <Route path="/about">
-            <h1>this is the about us page</h1>
+            <About />
           </Route>
           <Route exact={true} path="/items/category/:category">
             <CategoryPage />
