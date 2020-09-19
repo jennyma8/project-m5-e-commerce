@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
 import { Ivan, Thinh, Truong, Jenny } from "../../assets";
 import { FiGithub, FiTwitter } from "react-icons/fi";
 import { AiFillLinkedin } from "react-icons/ai";
