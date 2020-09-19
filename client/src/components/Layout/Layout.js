@@ -7,23 +7,13 @@ import CategoryPage from "../../containers/CategoryPage";
 import Nav from "../Nav";
 import ProductItemPage from "../../containers/ProductItemPage";
 import About from "../About";
-import { toggleCartDrawer } from "../../actions";
-import CartDrawer from "../UI/CartDrawer";
-import CartSummary from "../CartSummary";
+import CartContainer from "../../containers/CartContainer";
 
 const Layout = () => {
-  const dispatch = useDispatch();
-  const MODALSTATUS = useSelector((state) => state.CART.purchasing);
-
   return (
     <Router>
       <Nav>
-        <CartDrawer
-          show={MODALSTATUS}
-          close={() => dispatch(toggleCartDrawer())}
-        >
-          <CartSummary />
-        </CartDrawer>
+        <CartContainer />
         <Switch>
           <Route exact path="/">
             <HomePage />
