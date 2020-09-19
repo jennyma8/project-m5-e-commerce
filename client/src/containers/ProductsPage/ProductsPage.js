@@ -24,8 +24,6 @@ const ProductsPage = () => {
   const CATEGORIES = useSelector((state) => state.DATA.categories);
   const STATUS = useSelector((state) => state.DATA.status);
 
-  React.useEffect(() => {}, []);
-
   React.useEffect(() => {
     // This should be fetching "/items"
     const URL = window.location.pathname;
@@ -51,10 +49,6 @@ const ProductsPage = () => {
       console.log(error);
       dispatch(receiveCategoriesError());
     }
-
-    return () => {
-      dispatch(toggleCartDrawer());
-    };
   }, []);
 
   React.useEffect(() => {}, []);
