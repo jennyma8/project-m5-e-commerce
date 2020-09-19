@@ -11,11 +11,25 @@ const Nav = (props) => {
   const dispatch = useDispatch();
   const ORDER = useSelector((state) => state.CART.currentCart);
 
+  const [reduceNav, setReduceNav] = React.useState(false);
+  function toggleReduce() {
+    if (window.scrollY > 300) {
+      setReduceNav(true);
+    } else {
+      setReduceNav(false);
+    }
+  }
+
+  React.useEffect(() => {
+    document.addEventListener("scroll", toggleReduce);
+  }, []);
+
   return (
     <>
-      <Wrapper reduceNav={props.show}>
+      <Wrapper reduceNav={reduceNav}>
+        {/* <Wrapper> */}
         <LogoSrc exact to="/">
-          <img src={Logo} style={{ height: 70, width: 70 }}></img>
+          <img src={Logo} style={{ height: 70, width: 70 }} />
         </LogoSrc>
         <NavList>
           <StyledLink exact to="/">
@@ -122,7 +136,7 @@ const Wrapper = styled.div`
   /* -moz-transition:all 1s ease-in-out;
 -webkit-transition:all 1s ease-in-out;
 -o-transition:all 1s ease-in-out; */
-&:hover {
+  &:hover {
     background: white;
   }
 `;
