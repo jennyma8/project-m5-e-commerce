@@ -68,9 +68,9 @@ Single item by id: `/items/:_id`
 
 Single company by id: `/companies/:_id`
 
-All items from Cart at Checkout: `/cart/checkout`
-
 Cart items: `/cart`
+
+All items from Cart at Checkout: `/cart/checkout`
 
 -POST METHOD:
 
