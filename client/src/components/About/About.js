@@ -23,7 +23,7 @@ const About = () => {
               <AiFillLinkedin />
             </a>
 
-            <a href="https://twitter.com">
+            <a href="https://twitter.com/GThinhNguyen">
               <FiTwitter />
             </a>
 
@@ -82,7 +82,7 @@ const About = () => {
             </p>
           </ProfileContainer3>
           <ProfileContainer4>
-            <Pic4 src={Truong} style={{ width: 270, height: 300 }} />
+            <Pic4 src={Truong} style={{ width: 280, height: 300 }} />
             <div>Ton Truong Dao</div>
             <a href="https://github.com/tontruongdao">
               <FiGithub />
@@ -122,19 +122,26 @@ const ProfileWrapper = styled.div`
 `;
 const Pic1 = styled.img`
   border-radius: 50%;
+  box-shadow: 5px 5px 15px 5px #000000;
 `;
 const Pic2 = styled.img`
   border-radius: 50%;
+  box-shadow: 5px 5px 15px 5px #000000;
 `;
 const Pic3 = styled.img`
   border-radius: 50%;
+  box-shadow: 5px 5px 15px 5px #000000;
 `;
 const Pic4 = styled.img`
   border-radius: 50%;
+  box-shadow: 5px 5px 15px 5px #000000;
 `;
 
 const ProfileContainer1 = styled.div`
   width: 500px;
+  & div {
+    font-size: 20px;
+  }
   & a {
     text-decoration: none;
     color: black;
@@ -150,6 +157,9 @@ const ProfileContainer1 = styled.div`
 `;
 const ProfileContainer2 = styled.div`
   width: 500px;
+  & div {
+    font-size: 20px;
+  }
   & a {
     text-decoration: none;
     color: black;
@@ -165,6 +175,9 @@ const ProfileContainer2 = styled.div`
 `;
 const ProfileContainer3 = styled.div`
   width: 500px;
+  & div {
+    font-size: 20px;
+  }
   & a {
     text-decoration: none;
     color: black;
@@ -180,6 +193,9 @@ const ProfileContainer3 = styled.div`
 `;
 const ProfileContainer4 = styled.div`
   width: 500px;
+  & div {
+    font-size: 20px;
+  }
   & a {
     text-decoration: none;
     color: black;
