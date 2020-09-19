@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
 import { Ivan, Thinh, Truong, Jenny } from "../../assets";
 import { FiGithub, FiTwitter } from "react-icons/fi";
 import { AiFillLinkedin } from "react-icons/ai";
@@ -14,7 +13,7 @@ const About = () => {
         </Title>
         <ProfileWrapper>
           <ProfileContainer1>
-            <Pic1 src={Thinh} style={{ width: 270, height: 300 }} />
+            <Pic1 src={Thinh} style={{ width: 170, height: 200 }} />
             <div>Thinh Nguyen</div>
             <a href="https://github.com/g-thinh">
               <FiGithub />
@@ -36,7 +35,7 @@ const About = () => {
             </p>
           </ProfileContainer1>
           <ProfileContainer2>
-            <Pic2 src={Ivan} style={{ width: 290, height: 300 }} />
+            <Pic2 src={Ivan} style={{ width: 190, height: 200 }} />
             <div>Ivan Escalante</div>
             <a href="https://github.com/iescalante">
               <FiGithub />
@@ -61,7 +60,7 @@ const About = () => {
             </p>
           </ProfileContainer2>
           <ProfileContainer3>
-            <Pic3 src={Jenny} style={{ width: 270, height: 300 }} />
+            <Pic3 src={Jenny} style={{ width: 180, height: 200 }} />
             <div>Jenny Ma</div>
             <a href="https://github.com/jennyma8">
               <FiGithub />
@@ -82,7 +81,7 @@ const About = () => {
             </p>
           </ProfileContainer3>
           <ProfileContainer4>
-            <Pic4 src={Truong} style={{ width: 280, height: 300 }} />
+            <Pic4 src={Truong} style={{ width: 190, height: 200 }} />
             <div>Ton Truong Dao</div>
             <a href="https://github.com/tontruongdao">
               <FiGithub />
@@ -105,8 +104,9 @@ const About = () => {
 const Wrapper = styled.div`
   position: relative;
   top: 200px;
-  width: 100%;
+
   margin: 50px;
+  height: 750px;
 `;
 const Title = styled.div`
   text-align: center;
