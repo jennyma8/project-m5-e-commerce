@@ -1,14 +1,19 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes, css } from "styled-components";
 import { NavLink } from "react-router-dom";
 import { Logo } from "../../assets";
 import { THEMES } from "../THEMES";
 import { FiSearch, FiShoppingCart } from "react-icons/fi";
+import { useSelector, useDispatch } from "react-redux";
+import { toggleCartDrawer } from "../../actions";
 
-const Nav = ({ children }) => {
+const Nav = (props) => {
+  const dispatch = useDispatch();
+  const ORDER = useSelector((state) => state.CART.currentCart);
+
   return (
     <>
-      <Wrapper>
+      <Wrapper reduceNav={props.show}>
         <LogoSrc exact to="/">
           <img src={Logo} style={{ height: 70, width: 70 }}></img>
         </LogoSrc>
@@ -34,35 +39,20 @@ const Nav = ({ children }) => {
               <span>Search</span>
             </LinkName>
           </StyledLink>
-          <StyledLink exact to="/cart">
-            <LinkName>
-              <FiShoppingCart />
-              <span>Cart</span>
-            </LinkName>
-          </StyledLink>
+          {/* <StyledLink exact to="/cart"> */}
+
+          <CartButton onClick={() => dispatch(toggleCartDrawer())}>
+            <FiShoppingCart size={32} />
+            {ORDER.length > 0 && <CartCount>{ORDER.length}</CartCount>}
+          </CartButton>
+
+          {/* </StyledLink> */}
         </NavList>
       </Wrapper>
-      {children}
+      {props.children}
     </>
   );
 };
-
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 120px;
-
-  background: grey;
-  text-decoration: none;
-  transition:all 1s ease-in-out
-    -moz-transition:all 1s ease-in-out;
-    -webkit-transition:all 1s ease-in-out;
-    -o-transition:all 1s ease-in-out;
-  &:hover {
-    background: white;
-  }
-`;
 
 const LogoSrc = styled(NavLink)`
   margin-left: 20px;
@@ -77,11 +67,11 @@ const LinkName = styled.span`
   text-decoration: none;
   font-size: 20px;
   padding: 5px;
-  font: black;
+  color: black;
   font-weight: bold;
-  & span {
+  /* & span {
     padding: 5px;
-  }
+  } */
 
   &:hover {
     color: #cfba4f;
@@ -90,13 +80,89 @@ const LinkName = styled.span`
   }
 `;
 
+const Decrease = keyframes`
+0% {
+  height: 120px;
+}
+100% {
+  height: 80px;
+}
+`;
+
+const Increase = keyframes`
+0% {
+  height: 80px;
+}
+100% {
+  height: 120px;
+}
+`;
+
+const Wrapper = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 900;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  background: gray;
+  text-decoration: none;
+  transition: all 1s ease-in-out;
+  ${(props) =>
+    props.reduceNav
+      ? css`
+          animation: ${Decrease} 1.3s forwards;
+        `
+      : css`
+          animation: ${Increase} 1.3s forwards;
+        `}
+  /* -moz-transition:all 1s ease-in-out;
+-webkit-transition:all 1s ease-in-out;
+-o-transition:all 1s ease-in-out; */
+&:hover {
+    background: white;
+  }
+`;
+
 const NavList = styled.li`
   display: flex;
   flex: 1;
   justify-content: space-around;
+  align-items: center;
 `;
 
 const Icon = styled.div`
   padding: 2px;
 `;
+
+const CartButton = styled.button`
+  position: relative;
+  background: none;
+  outline: none;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    color: #cfba4f;
+  }
+`;
+
+const CartCount = styled.div`
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  top: 0;
+  right: 0;
+  width: 18px;
+  height: 18px;
+  background: ${THEMES.Cart};
+  border-radius: 100%;
+  color: white;
+`;
+
 export default Nav;

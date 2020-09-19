@@ -1,17 +1,43 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import styled from "styled-components";
+import { useSelector, useDispatch } from "react-redux";
 import HomePage from "../../containers/HomePage";
 import ProductsPage from "../../containers/ProductsPage";
 import CategoryPage from "../../containers/CategoryPage";
 import Nav from "../Nav";
 import ProductItemPage from "../../containers/ProductItemPage";
+<<<<<<< HEAD
 import About from "../About";
+=======
+import { toggleCartDrawer } from "../../actions";
+import CartDrawer from "../UI/CartDrawer";
+import CartSummary from "../CartSummary";
+>>>>>>> parent/master
 
 const Layout = () => {
+  const dispatch = useDispatch();
+  const MODALSTATUS = useSelector((state) => state.CART.purchasing);
+  const [reduceNav, setReduceNav] = React.useState(false);
+  function toggleReduce() {
+    if (window.scrollY > 300) {
+      setReduceNav(true);
+    } else {
+      setReduceNav(false);
+    }
+  }
+
+  React.useEffect(() => {
+    document.addEventListener("scroll", toggleReduce);
+  }, []);
   return (
     <Router>
-      <Nav>
+      <Nav show={reduceNav}>
+        <CartDrawer
+          show={MODALSTATUS}
+          close={() => dispatch(toggleCartDrawer())}
+        >
+          <CartSummary />
+        </CartDrawer>
         <Switch>
           <Route exact path="/">
             <HomePage />

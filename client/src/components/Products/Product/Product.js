@@ -3,24 +3,37 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Button from "../../UI/Button";
 import { THEMES } from "../../THEMES";
+import { useSelector, useDispatch } from "react-redux";
+import { addCartItem } from "../../../actions";
 
 const Product = (props) => {
+  const dispatch = useDispatch();
+  const CART = useSelector((state) => state.CART.currentCart);
+
   const ITEM = props.data;
 
   return (
     <Item>
-      <Link to={`/items/item/${ITEM._id}`}>
+      <ImageContainer to={`/items/item/${ITEM._id}`}>
         <Image src={ITEM.imageSrc} alt={`${ITEM.name}-${ITEM._id}`} />
-      </Link>
-      <Footer>
-        <Title>{ITEM.name}</Title>
-        <Price>{ITEM.price}</Price>
-      </Footer>
-      <BtnContainer>
-        <Button onClickHandler={(ev) => console.log("Item was added to cart")}>
-          Add to Cart
-        </Button>
-      </BtnContainer>
+      </ImageContainer>
+      <Content>
+        <Description>
+          <Title>{ITEM.name}</Title>
+          <Price>${ITEM.price}</Price>
+        </Description>
+        <BtnContainer>
+          <Button
+            onClickHandler={() =>
+              dispatch(
+                addCartItem({ name: ITEM.name, id: ITEM._id, quantity: 1 })
+              )
+            }
+          >
+            Add to Cart
+          </Button>
+        </BtnContainer>
+      </Content>
     </Item>
   );
 };
@@ -33,13 +46,25 @@ const Item = styled.li`
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  border: 1px solid gainsboro;
+  border: 2px solid gainsboro;
   border-radius: 12px;
-  box-shadow: 0px 2px 2px 1px rgba(232, 232, 232, 0.75);
+  box-shadow: 0px 2px 3px 2px rgba(232, 232, 232, 0.85);
   padding: 15px;
 `;
 
-const Footer = styled.div`
+const Content = styled.div`
+  display: flex;
+  flex: 5;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  @media (max-width: 800px) {
+    display: flex;
+    flex-flow: row nowrap;
+  }
+`;
+
+const Description = styled.div`
   flex: 3;
   display: flex;
   justify-content: center;
@@ -59,15 +84,40 @@ const Price = styled.h1`
 const Title = styled.h1`
   flex: 2;
   padding: 12px;
+  margin-bottom: 12px;
   @media (max-width: 800px) {
     display: none;
   }
 `;
 
+const ImageContainer = styled(Link)`
+  position: relative;
+  overflow: hidden;
+  outline: none;
+
+  &:hover img {
+    filter: brightness(100%);
+    transform: rotate(5deg) scale(0.9);
+  }
+
+  &:focus img {
+    filter: brightness(100%);
+    transform: rotate(5deg) scale(0.9);
+  }
+`;
+
 const Image = styled.img`
   flex: 5;
+  object-fit: cover;
+  transition: all 1s ease;
   width: 250px;
   height: 250px;
+  border-radius: 10px;
+
+  &:focus {
+    filter: brightness(100%);
+    transform: rotate(5deg) scale(0.9);
+  }
 
   @media (max-width: 1200px) {
     /* ... */
@@ -87,6 +137,7 @@ const BtnContainer = styled.div`
   flex: 2;
   display: flex;
   flex-flow: column;
+  align-items: center;
   justify-content: flex-end;
 `;
 
