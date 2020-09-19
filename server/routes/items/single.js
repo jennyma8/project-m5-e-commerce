@@ -1,7 +1,9 @@
 const data = require("../../data/items.json");
+const companiesData = require("../../data/companies.json");
 
 module.exports = (req, res) => {
   const items = data;
+  const COMPANIES = companiesData;
   const itemId = req.params._id * 1;
   const item = items
     .filter((item) => item._id === itemId)
@@ -11,10 +13,16 @@ module.exports = (req, res) => {
       ).toFixed(2);
       return { ...item, price: price };
     });
+
+  const company = COMPANIES.filter(
+    (company) => company._id === item[0].companyId
+  );
+  // console.log(company);
   try {
     return res.status(200).json({
       success: true,
       item,
+      company,
     });
   } catch (err) {
     return res.status(500).json({
