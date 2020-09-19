@@ -10,6 +10,7 @@ import {
   requestCategories,
   receiveCategories,
   receiveCategoriesError,
+  toggleCartDrawer,
 } from "../../actions";
 
 import { requestItems, receiveItems, receiveItemsError } from "../../actions";
@@ -23,18 +24,7 @@ const ProductsPage = () => {
   const CATEGORIES = useSelector((state) => state.DATA.categories);
   const STATUS = useSelector((state) => state.DATA.status);
 
-  React.useEffect(() => {
-    try {
-      dispatch(requestCategories());
-      fetch("/items/category")
-        .then((res) => res.json())
-        // .then((json) => console.log(json));
-        .then((json) => dispatch(receiveCategories(json)));
-    } catch (error) {
-      console.log(error);
-      dispatch(receiveCategoriesError());
-    }
-  }, []);
+  React.useEffect(() => {}, []);
 
   React.useEffect(() => {
     // This should be fetching "/items"
@@ -49,7 +39,25 @@ const ProductsPage = () => {
       console.log("error");
       dispatch(receiveItemsError());
     }
+
+    //This is to fetch the categories data
+    try {
+      dispatch(requestCategories());
+      fetch("/items/category")
+        .then((res) => res.json())
+        // .then((json) => console.log(json));
+        .then((json) => dispatch(receiveCategories(json)));
+    } catch (error) {
+      console.log(error);
+      dispatch(receiveCategoriesError());
+    }
+
+    return () => {
+      dispatch(toggleCartDrawer());
+    };
   }, []);
+
+  React.useEffect(() => {}, []);
 
   if (STATUS === "loading" || !ITEMS) {
     return <Spinner />;
@@ -59,7 +67,6 @@ const ProductsPage = () => {
     <PageContainer>
       <ProductsHeader data={CATEGORIES} />
       <Test>
-        {/* <Sidebar>This is the Sidebar</Sidebar> */}
         <Products data={ITEMS} />
       </Test>
     </PageContainer>
