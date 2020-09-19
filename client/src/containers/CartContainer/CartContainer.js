@@ -12,7 +12,7 @@ import CartSummary from "../../components/CartSummary";
 const CartContainer = () => {
   const dispatch = useDispatch();
   const STATUS = useSelector((state) => state.CART.purchasing);
-  const ORDER = useSelector((state) => state.CART.currentCart);
+  const CART = useSelector((state) => state.CART.currentCart);
 
   React.useEffect(() => {
     try {
@@ -29,7 +29,7 @@ const CartContainer = () => {
 
   return (
     <CartDrawer show={STATUS} close={() => dispatch(toggleCartDrawer())}>
-      <CartSummary />
+      <CartSummary data={CART} />
     </CartDrawer>
   );
 };

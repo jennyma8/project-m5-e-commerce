@@ -1,20 +1,20 @@
 import React from "react";
 import styled from "styled-components";
-import { useSelector, useDispatch } from "react-redux";
 import CartButton from "../UI/CartButton";
 
 const CartSummary = (props) => {
-  const ORDER = useSelector((state) => state.CART.currentCart);
+  const COUNT = props.data.length;
+  const CART = props.data;
 
   return (
     <Wrapper>
       <Header>
-        <h1>Your Cart ({ORDER.length})</h1>
+        <h1>Your Cart ({COUNT})</h1>
       </Header>
       <CartList>
-        {ORDER.length > 0 ? (
+        {COUNT > 0 ? (
           <>
-            {ORDER.map((item) => {
+            {CART.map((item) => {
               return <li>{item.name}</li>;
             })}
           </>

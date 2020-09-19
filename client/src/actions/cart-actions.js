@@ -2,13 +2,10 @@ export const toggleCartDrawer = () => ({
   type: "TOGGLE_CART_DRAWER",
 });
 
-export const addCartItem = (item) => ({
-  type: "ADD_CART_ITEM",
-  item,
-});
-export const postCartItem = () => ({
-  type: "POST_CART_ITEM",
-});
+// export const addCartItem = (item) => ({
+//   type: "ADD_CART_ITEM",
+//   item,
+// });
 
 // ################## FETCH CART ITEMS ###########################
 
@@ -23,4 +20,11 @@ export const receiveCartItems = (items) => ({
 
 export const requestCartItemsError = () => ({
   type: "REQUEST_CART_ITEMS_ERROR",
+});
+
+// ################## MODIFY CART ITEMS ###########################
+
+export const addCartItem = (item) => ({
+  type: "POST_CART_ITEM",
+  item,
 });
