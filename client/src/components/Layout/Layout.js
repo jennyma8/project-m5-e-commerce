@@ -6,6 +6,7 @@ import ProductsPage from "../../containers/ProductsPage";
 import CategoryPage from "../../containers/CategoryPage";
 import Nav from "../Nav";
 import ProductItemPage from "../../containers/ProductItemPage";
+import About from "../About";
 import { toggleCartDrawer } from "../../actions";
 import CartDrawer from "../UI/CartDrawer";
 import CartSummary from "../CartSummary";
@@ -15,39 +16,36 @@ const Layout = () => {
   const MODALSTATUS = useSelector((state) => state.CART.purchasing);
 
   return (
-    <>
-      <Router>
-        <Nav>
-          <CartDrawer
-            show={MODALSTATUS}
-            close={() => dispatch(toggleCartDrawer())}
-          >
-            <CartSummary />
-          </CartDrawer>
-          <Switch>
-            <Route exact path="/">
-              <HomePage />
-            </Route>
-
-            <Route path="/careers">
-              <h1>this is the careers page</h1>
-            </Route>
-            <Route path="/about">
-              <h1>this is the about us page</h1>
-            </Route>
-            <Route exact={true} path="/items/category/:category">
-              <CategoryPage />
-            </Route>
-            <Route exact={true} path="/items/item/:id">
-              <ProductItemPage />
-            </Route>
-            <Route path="/items">
-              <ProductsPage />
-            </Route>
-          </Switch>
-        </Nav>
-      </Router>
-    </>
+    <Router>
+      <Nav>
+        <CartDrawer
+          show={MODALSTATUS}
+          close={() => dispatch(toggleCartDrawer())}
+        >
+          <CartSummary />
+        </CartDrawer>
+        <Switch>
+          <Route exact path="/">
+            <HomePage />
+          </Route>
+          <Route path="/careers">
+            <h1>this is the careers page</h1>
+          </Route>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route exact={true} path="/items/category/:category">
+            <CategoryPage />
+          </Route>
+          <Route exact={true} path="/items/item/:id">
+            <ProductItemPage />
+          </Route>
+          <Route path="/items">
+            <ProductsPage />
+          </Route>
+        </Switch>
+      </Nav>
+    </Router>
   );
 };
 
