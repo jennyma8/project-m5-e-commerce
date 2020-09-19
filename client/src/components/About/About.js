@@ -30,7 +30,7 @@ const About = () => {
               has taught me the basics of making decisions to continually
               support my business' success. I am always motivated to learn new
               technologies. Currently learning full-stack web development at
-              Concordia's Bootcamp program.{" "}
+              Concordia's Bootcamp program. https://github.com/g-thinh
             </p>
           </ProfileContainer1>
           <ProfileContainer2>
@@ -45,18 +45,27 @@ const About = () => {
               HTML, CSS, Javascript, Node and Express for backend, React and
               Redux for front end. I will further develop my knowledge by
               learning MongoDB in order to provide Database knowledge and become
-              a full-stack web developer.{" "}
+              a full-stack web developer. https://github.com/iescalante
             </p>
           </ProfileContainer2>
           <ProfileContainer3>
             <Pic3 src={Jenny} style={{ width: 270, height: 300 }} />
             <div>Jenny Ma</div>
-            <p>Hi, I'm Jenny! I'm a Full Stack Web Developer.</p>
+            <p>
+              Hi, I'm Jenny! I'm currently studying the Concordia Full Stack Web
+              Developer Bootcamp. Having 10 years of experience in Finance, I
+              choose to explore a complete different world that has always
+              triggered my curiosity which is Coding. Hope to make this world a
+              more creative and efficient place.https://github.com/jennyma8
+            </p>
           </ProfileContainer3>
           <ProfileContainer4>
             <Pic4 src={Truong} style={{ width: 270, height: 300 }} />
             <div>Ton Truong Dao</div>
-            <p>Hi, I'm Truong! I'm a Full Stack Web Developer.</p>
+            <p>
+              Hi, I'm Truong! I'm a Full Stack Web
+              Developer.https://github.com/tontruongdao
+            </p>
           </ProfileContainer4>
         </ProfileWrapper>
       </Wrapper>
