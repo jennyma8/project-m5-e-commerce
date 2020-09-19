@@ -33,12 +33,6 @@ const ProductItemPage = () => {
     }
   }, []);
 
-  React.useEffect(() => {
-    return () => {
-      dispatch(toggleCartDrawer());
-    };
-  }, []);
-
   if (STATUS === "loading" || !PRODUCT) {
     return <Spinner />;
   }

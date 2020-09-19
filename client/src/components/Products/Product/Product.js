@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Button from "../../UI/Button";
 import { THEMES } from "../../THEMES";
 import { useSelector, useDispatch } from "react-redux";
-import { addCartItem } from "../../../actions";
+import { addCartItem, postCartItem, getCartItems } from "../../../actions";
 
 const Product = (props) => {
   const dispatch = useDispatch();
