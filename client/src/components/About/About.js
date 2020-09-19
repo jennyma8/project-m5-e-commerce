@@ -10,29 +10,28 @@ const About = () => {
         <Title>
           Meet Our <strong>Team</strong>
         </Title>
-        <ProfileContainer>
-          <Name>
-            <div>Thinh Nguyen</div>
-            <div>Ivan Escalante</div>
-            <div>Jenny Ma</div>
-            <div>Ton Truong Dao</div>
-          </Name>
-          <Pic>
-            <Pic1 src={Profile} />
+        <ProfileContainer1>
+          <Pic1 src={Profile} />
+          <div>Thinh Nguyen</div>
 
-            <Pic2 src={Profile} />
-            <Pic3 src={Profile} />
-            <Pic4 src={Profile} />
-          </Pic>
-          <Description>
-            <Desc1 className="Thinh">
-              Hi, I'm Thinh! I'm a Full Stack Web Developer.
-            </Desc1>
-            <h2>Hi, I'm Ivan! I'm a Full Stack Web Developer.</h2>
-            <h3>Hi, I'm Jenny! I'm a Full Stack Web Developer.</h3>
-            <h4>Hi, I'm Truong! I'm a Full Stack Web Developer.</h4>
-          </Description>
-        </ProfileContainer>
+          <div>Hi, I'm Thinh! I'm a Full Stack Web Developer.</div>
+        </ProfileContainer1>
+        <ProfileContainer2>
+          <Pic2 src={Profile} />
+          <div>Ivan Escalante</div>
+          <div>Hi, I'm Ivan! I'm a Full Stack Web Developer.</div>
+        </ProfileContainer2>
+
+        <ProfileContainer3>
+          <Pic3 src={Profile} />
+          <div>Jenny Ma</div>
+          <div>Hi, I'm Jenny! I'm a Full Stack Web Developer.</div>
+        </ProfileContainer3>
+        <ProfileContainer4>
+          <Pic4 src={Profile} />
+          <div>Ton Truong Dao</div>
+          <div>Hi, I'm Truong! I'm a Full Stack Web Developer.</div>
+        </ProfileContainer4>
       </Wrapper>
     </>
   );
@@ -47,35 +46,14 @@ const Title = styled.div`
   margin: 50px;
 `;
 
-const Pic = styled.div`
-  display: flex;
-  justify-content: space-around;
-  & .Pic1:hover .Thinh {
-    display: block;
-  }
-`;
-
-const Pic1 = styled.img`
-  &:hover .Thinh {
-    display: block;
-  }
-`;
+const Pic1 = styled.img``;
 const Pic2 = styled.img``;
 const Pic3 = styled.img``;
 const Pic4 = styled.img``;
 
-const Name = styled.div`
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
-`;
-
-const Description = styled.div``;
-
-const ProfileContainer = styled.div``;
-
-const Desc1 = styled.div`
-  display: none;
-`;
+const ProfileContainer1 = styled.div``;
+const ProfileContainer2 = styled.div``;
+const ProfileContainer3 = styled.div``;
+const ProfileContainer4 = styled.div``;
 
 export default About;
