@@ -12,7 +12,7 @@ const CartSummary = (props) => {
         <h1>Your Cart ({ORDER.length})</h1>
       </Header>
       <CartList>
-        {ORDER.length > 1 ? (
+        {ORDER.length > 0 ? (
           <>
             {ORDER.map((item) => {
               return <li>{item.name}</li>;
