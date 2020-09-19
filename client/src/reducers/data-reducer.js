@@ -5,6 +5,7 @@ const initialState = {
   currentProduct: null,
   categories: null,
   status: "idle",
+  companies: null,
 };
 
 export default function dataReducer(state = initialState, action) {
@@ -28,11 +29,11 @@ export default function dataReducer(state = initialState, action) {
 
       // console.log("[DATA]", data);
       const results = produce(state, (draftState) => {
-        if (!draftState.data) {
-          draftState.data = {};
+        if (!draftState.companies) {
+          draftState.companies = {};
         }
         // draftState.companies = Object.values(action.companies);
-        draftState.data = action.companies;
+        draftState.companies = action.companies.companies;
         draftState.status = "idle";
       });
       // console.log("[NEW STATE]", results);
@@ -93,11 +94,13 @@ export default function dataReducer(state = initialState, action) {
 
     case "RECEIVE_PRODUCT_ITEM_DATA": {
       const data = action.productItem.item;
+      const company = action.productItem.company;
       const results = produce(state, (draftState) => {
         if (!draftState.currentProduct) {
           draftState.currentProduct = {};
         }
         draftState.currentProduct = data[0];
+        draftState.currentProduct.company = company[0];
         draftState.status = "idle";
       });
       return results;
