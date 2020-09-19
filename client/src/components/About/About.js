@@ -22,7 +22,7 @@ const About = () => {
         </Title>
         <ProfileWrapper>
           <ProfileContainer1>
-            <Pic1 src={Thinh} style={{ width: 250, height: 400 }} />
+            <Pic1 src={Thinh} style={{ width: 270, height: 300 }} />
             <div>Thinh Nguyen</div>
 
             <p>
@@ -34,7 +34,7 @@ const About = () => {
             </p>
           </ProfileContainer1>
           <ProfileContainer2>
-            <Pic2 src={Ivan} style={{ width: 290, height: 400 }} />
+            <Pic2 src={Ivan} style={{ width: 290, height: 300 }} />
             <div>Ivan Escalante</div>
             <p>
               Hi, I'm Ivan! I am currently studying Full-stack Web Development (
@@ -49,12 +49,12 @@ const About = () => {
             </p>
           </ProfileContainer2>
           <ProfileContainer3>
-            <Pic3 src={Jenny} style={{ width: 250, height: 400 }} />
+            <Pic3 src={Jenny} style={{ width: 270, height: 300 }} />
             <div>Jenny Ma</div>
             <p>Hi, I'm Jenny! I'm a Full Stack Web Developer.</p>
           </ProfileContainer3>
           <ProfileContainer4>
-            <Pic4 src={Truong} style={{ width: 270, height: 400 }} />
+            <Pic4 src={Truong} style={{ width: 270, height: 300 }} />
             <div>Ton Truong Dao</div>
             <p>Hi, I'm Truong! I'm a Full Stack Web Developer.</p>
           </ProfileContainer4>
@@ -82,10 +82,18 @@ const ProfileWrapper = styled.div`
   justify-content: space-between;
   text-align: center;
 `;
-const Pic1 = styled.img``;
-const Pic2 = styled.img``;
-const Pic3 = styled.img``;
-const Pic4 = styled.img``;
+const Pic1 = styled.img`
+  border-radius: 50%;
+`;
+const Pic2 = styled.img`
+  border-radius: 50%;
+`;
+const Pic3 = styled.img`
+  border-radius: 50%;
+`;
+const Pic4 = styled.img`
+  border-radius: 50%;
+`;
 
 const ProfileContainer1 = styled.div`
   width: 500px;
