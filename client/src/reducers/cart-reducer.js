@@ -25,6 +25,19 @@ export default function cartReducer(state = initialState, action) {
       });
     }
 
+    case "POST_CART_ITEM": {
+      return produce(state, (draftState) => {
+        draftState.currentCart.push(action.item);
+      });
+    }
+
+    case "GET_CART_ITEM": {
+      console.log(action);
+      return produce(state, (draftState) => {
+        draftState.currentCart.push(action.item);
+      });
+    }
+
     default: {
       return state;
     }
