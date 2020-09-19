@@ -56,6 +56,8 @@ In case you dont want to do a PR right away to the main repo, but save some of y
 
 The following endpoints will return data in JSON format to be stored within the redux store using `fetch`.
 
+-GET METHOD:
+
 All items: `/items`
 
 Items by category: `/category/:category`
@@ -65,6 +67,20 @@ All companies: `/companies`
 Single item by id: `/items/:_id`
 
 Single company by id: `/companies/:_id`
+
+Cart items: `/cart`
+
+All items from Cart at Checkout: `/cart/checkout`
+
+-POST METHOD:
+
+Add a new item to the cart: `/cart`
+
+Add all items from Cart for Checkout : `/cart/checkout`
+
+-DELETE METHOD:
+
+Remove an item from the cart by id : `/cart/:id`
 
 ---
 
