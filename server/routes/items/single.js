@@ -11,7 +11,6 @@ module.exports = (req, res) => {
       ).toFixed(2);
       return { ...item, price: price };
     });
-  console.log(item);
   try {
     return res.status(200).json({
       success: true,
