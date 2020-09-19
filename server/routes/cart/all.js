@@ -1,4 +1,5 @@
 const CART = require("../../data/cart.json");
+const { v4: uuidv4 } = require("uuid");
 
 const getCart = (req, res) => {
   try {
@@ -16,7 +17,13 @@ const getCart = (req, res) => {
 
 const addToCart = (req, res) => {
   try {
-    const newItem = req.body;
+    const newItem = {
+      id: uuidv4(),
+      name: req.body.name,
+      price: req.body.price,
+      quantity: req.body.quantity,
+    };
+
     CART.push(newItem);
     return res.status(201).json({
       success: true,
@@ -40,11 +47,13 @@ const removeFromCart = (req, res) => {
       });
     }
 
-    const deletedItem = CART.find((item) => item.id === itemId);
+    const deletedItem = CART.filter((item) => item.id === itemId);
+    const index = CART.indexOf(deletedItem);
+    CART.splice(index, 1);
 
-    return res.status(201).json({
+    return res.status(200).json({
       success: true,
-      item: newItem,
+      item: deletedItem,
     });
   } catch (err) {
     return res.status(500).json({
