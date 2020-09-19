@@ -20,8 +20,8 @@ const addToCart = (req, res) => {
     const newItem = {
       id: uuidv4(),
       name: req.body.name,
-      price: req.body.price,
-      quantity: req.body.quantity,
+      price: parseFloat(req.body.price),
+      quantity: parseFloat(req.body.quantity),
     };
 
     CART.push(newItem);
