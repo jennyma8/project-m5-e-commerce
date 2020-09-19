@@ -6,6 +6,7 @@ import ProductsPage from "../../containers/ProductsPage";
 import CategoryPage from "../../containers/CategoryPage";
 import Nav from "../Nav";
 import ProductItemPage from "../../containers/ProductItemPage";
+import About from "../About";
 import { toggleCartDrawer } from "../../actions";
 import CartDrawer from "../UI/CartDrawer";
 import CartSummary from "../CartSummary";
@@ -13,21 +14,10 @@ import CartSummary from "../CartSummary";
 const Layout = () => {
   const dispatch = useDispatch();
   const MODALSTATUS = useSelector((state) => state.CART.purchasing);
-  const [reduceNav, setReduceNav] = React.useState(false);
-  function toggleReduce() {
-    if (window.scrollY > 300) {
-      setReduceNav(true);
-    } else {
-      setReduceNav(false);
-    }
-  }
 
-  React.useEffect(() => {
-    document.addEventListener("scroll", toggleReduce);
-  }, []);
   return (
     <Router>
-      <Nav show={reduceNav}>
+      <Nav>
         <CartDrawer
           show={MODALSTATUS}
           close={() => dispatch(toggleCartDrawer())}
@@ -38,12 +28,11 @@ const Layout = () => {
           <Route exact path="/">
             <HomePage />
           </Route>
-
           <Route path="/careers">
             <h1>this is the careers page</h1>
           </Route>
           <Route path="/about">
-            <h1>this is the about us page</h1>
+            <About />
           </Route>
           <Route exact={true} path="/items/category/:category">
             <CategoryPage />

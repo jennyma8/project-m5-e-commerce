@@ -10,9 +10,7 @@ import {
   requestProductItem,
   receiveProductItem,
   receiveProductItemError,
-  requestCompanies,
-  receiveCompanies,
-  receiveCompaniesError,
+  toggleCartDrawer,
 } from "../../actions";
 import { FiLink2 } from "react-icons/fi";
 
@@ -33,6 +31,12 @@ const ProductItemPage = () => {
       dispatch(receiveProductItemError());
       console.log(error);
     }
+  }, []);
+
+  React.useEffect(() => {
+    return () => {
+      dispatch(toggleCartDrawer());
+    };
   }, []);
 
   if (STATUS === "loading" || !PRODUCT) {
