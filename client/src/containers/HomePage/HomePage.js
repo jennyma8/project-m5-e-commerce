@@ -44,7 +44,7 @@ const HomePage = () => {
           <source src={Video} type="video/mp4" />
         </VideoSrc>
       </VideoContainer>
-      <Categories>Categories</Categories>
+      <Categories>Find What You Need</Categories>
       <Wrapper>
         <HeaderList>
           {CATEGORIES.map((cat) => {
