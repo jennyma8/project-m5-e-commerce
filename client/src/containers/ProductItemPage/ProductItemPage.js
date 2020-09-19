@@ -7,6 +7,7 @@ import {
   requestProductItem,
   receiveProductItem,
   receiveProductItemError,
+  toggleCartDrawer,
 } from "../../actions";
 
 const ProductItemPage = () => {
@@ -25,6 +26,12 @@ const ProductItemPage = () => {
     } catch (error) {
       console.log(error);
     }
+  }, []);
+
+  React.useEffect(() => {
+    return () => {
+      dispatch(toggleCartDrawer());
+    };
   }, []);
 
   if (STATUS === "loading" || !PRODUCT) {

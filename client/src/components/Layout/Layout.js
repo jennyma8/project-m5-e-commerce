@@ -14,21 +14,10 @@ import CartSummary from "../CartSummary";
 const Layout = () => {
   const dispatch = useDispatch();
   const MODALSTATUS = useSelector((state) => state.CART.purchasing);
-  const [reduceNav, setReduceNav] = React.useState(false);
-  function toggleReduce() {
-    if (window.scrollY > 300) {
-      setReduceNav(true);
-    } else {
-      setReduceNav(false);
-    }
-  }
 
-  React.useEffect(() => {
-    document.addEventListener("scroll", toggleReduce);
-  }, []);
   return (
     <Router>
-      <Nav show={reduceNav}>
+      <Nav>
         <CartDrawer
           show={MODALSTATUS}
           close={() => dispatch(toggleCartDrawer())}
@@ -39,7 +28,6 @@ const Layout = () => {
           <Route exact path="/">
             <HomePage />
           </Route>
-
           <Route path="/careers">
             <h1>this is the careers page</h1>
           </Route>
