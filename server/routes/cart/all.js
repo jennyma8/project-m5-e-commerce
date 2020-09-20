@@ -101,4 +101,20 @@ const removeFromCart = (req, res) => {
   }
 };
 
-module.exports = { getCart, addToCart, removeFromCart };
+const clearCart = (req, res) => {
+  try {
+    CART.splice(0, CART.length);
+
+    return res.status(200).json({
+      success: true,
+      CART,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      error: "Server Error",
+    });
+  }
+};
+
+module.exports = { getCart, addToCart, removeFromCart, clearCart };
