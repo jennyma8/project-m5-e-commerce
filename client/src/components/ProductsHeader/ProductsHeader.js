@@ -3,6 +3,14 @@ import styled from "styled-components";
 import { THEMES } from "../THEMES";
 import { Link } from "react-router-dom";
 
+import { useSelector, useDispatch } from "react-redux";
+import {
+  requestCategories,
+  receiveCategories,
+  receiveCategoriesError,
+} from "../../actions";
+import Spinner from "../UI/Spinner";
+
 const ProductsHeader = (props) => {
   return (
     <Wrapper>
