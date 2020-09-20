@@ -16,14 +16,26 @@ const getCart = (req, res) => {
 };
 
 const addToCart = (req, res) => {
-  try {
-    const newItem = {
-      id: uuidv4(),
-      name: req.body.name,
-      price: req.body.price,
-      quantity: req.body.quantity,
-    };
+  const DATA = req.body;
 
+  // THIS GETS STORED
+  const newItem = {
+    id: uuidv4(),
+    name: DATA.name,
+    price: DATA.price,
+    quantity: DATA.quantity,
+  };
+
+  // CONSOLE LOG TO REMOVE
+  console.log(newItem);
+
+  const resItem = {
+    name: req.body.name,
+    price: req.body.price,
+    quantity: req.body.quantity,
+  };
+
+  try {
     CART.push(newItem);
     return res.status(201).json({
       success: true,

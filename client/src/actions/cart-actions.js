@@ -28,3 +28,7 @@ export const addCartItem = (item) => ({
   type: "POST_CART_ITEM",
   item,
 });
+
+export const getCartItems = () => ({
+  type: "GET_CART_ITEMS",
+});

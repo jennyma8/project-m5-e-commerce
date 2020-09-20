@@ -26,8 +26,11 @@ export default function cartReducer(state = initialState, action) {
     }
 
     case "POST_CART_ITEM": {
+      console.log("[CART ITEM ADDED]", action);
+      const data = action.item;
+      console.log("[CART ITEM DATA]", data);
       return produce(state, (draftState) => {
-        draftState.currentCart.push(action.item);
+        draftState.currentCart.push(data);
       });
     }
 

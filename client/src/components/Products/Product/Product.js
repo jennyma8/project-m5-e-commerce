@@ -4,7 +4,12 @@ import { Link } from "react-router-dom";
 import Button from "../../UI/Button";
 import { THEMES } from "../../THEMES";
 import { useSelector, useDispatch } from "react-redux";
-import { addCartItem, postCartItem, getCartItems } from "../../../actions";
+import {
+  addCartItem,
+  postCartItem,
+  getCartItems,
+  receiveCartItems,
+} from "../../../actions";
 
 const Product = (props) => {
   const dispatch = useDispatch();
@@ -24,11 +29,32 @@ const Product = (props) => {
         </Description>
         <BtnContainer>
           <Button
-            onClickHandler={() =>
-              dispatch(
-                addCartItem({ name: ITEM.name, id: ITEM._id, quantity: 1 })
-              )
-            }
+            onClickHandler={() => {
+              const options = {
+                method: "POST",
+                headers: {
+                  Accept: "application/json",
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  name: ITEM.name,
+                  price: parseFloat(ITEM.price),
+                  quantity: 1,
+                }),
+              };
+
+              fetch("/cart", options)
+                .then((res) => res.json())
+                .then((json) => dispatch(addCartItem(json)))
+                .then((data) => console.log(data.item));
+              // .then(
+              //   (results) => dispatch(receiveCartItems(results.item.item))
+              //   // dispatch(receiveCartItems(results.item.item))
+              // );
+              // dispatch(
+              //   addCartItem({ name: ITEM.name, id: ITEM._id, quantity: 1 })
+              // );
+            }}
           >
             Add to Cart
           </Button>
