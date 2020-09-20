@@ -37,6 +37,7 @@ const Product = (props) => {
                   "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
+                  id: ITEM._id,
                   name: ITEM.name,
                   price: parseFloat(ITEM.price),
                   quantity: 1,
@@ -46,7 +47,8 @@ const Product = (props) => {
               fetch("/cart", options)
                 .then((res) => res.json())
                 .then((json) => dispatch(addCartItem(json)))
-                .then((data) => console.log(data.item));
+                .then((data) => console.log(data.item))
+                .catch((error) => window.alert(error));
               // .then(
               //   (results) => dispatch(receiveCartItems(results.item.item))
               //   // dispatch(receiveCartItems(results.item.item))
@@ -55,6 +57,7 @@ const Product = (props) => {
               //   addCartItem({ name: ITEM.name, id: ITEM._id, quantity: 1 })
               // );
             }}
+            disabled={ITEM.numInStock === 0}
           >
             Add to Cart
           </Button>
