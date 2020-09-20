@@ -5,3 +5,5 @@ export { default as Ivan } from "./Ivan.jpg";
 export { default as Thinh } from "./Thinh.jpg";
 export { default as Truong } from "./Truong.jpg";
 export { default as Jenny } from "./Jenny.jpg";
+
+export { default as Meeting } from "./Meeting.jpg";

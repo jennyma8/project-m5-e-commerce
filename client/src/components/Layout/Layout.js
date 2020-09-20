@@ -7,6 +7,7 @@ import CategoryPage from "../../containers/CategoryPage";
 import Nav from "../Nav";
 import ProductItemPage from "../../containers/ProductItemPage";
 import About from "../About";
+import Careers from "../Careers";
 import { toggleCartDrawer } from "../../actions";
 import CartDrawer from "../UI/CartDrawer";
 import CartSummary from "../CartSummary";
@@ -29,7 +30,7 @@ const Layout = () => {
             <HomePage />
           </Route>
           <Route path="/careers">
-            <h1>this is the careers page</h1>
+            <Careers />
           </Route>
           <Route path="/about">
             <About />
