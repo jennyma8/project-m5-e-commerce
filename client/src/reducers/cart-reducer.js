@@ -26,15 +26,27 @@ export default function cartReducer(state = initialState, action) {
     }
 
     case "POST_CART_ITEM": {
+      console.log("[CART ITEM ADDED]", action);
+      const data = action.item;
+      console.log("[CART ITEM DATA]", data);
       return produce(state, (draftState) => {
-        draftState.currentCart.push(action.item);
+        draftState.currentCart.push(data);
       });
     }
 
-    case "GET_CART_ITEM": {
-      console.log(action);
+    case "REQUEST_CART_ITEMS": {
+      return {
+        ...state,
+        status: "loading",
+      };
+    }
+
+    case "RECEIVE_CART_ITEMS": {
+      console.log("[CART ITEMS RECEIVED]", action);
+      const data = action.items.CART;
       return produce(state, (draftState) => {
-        draftState.currentCart.push(action.item);
+        draftState.currentCart = data;
+        draftState.status = "loading";
       });
     }
 

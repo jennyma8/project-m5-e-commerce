@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "watch",
+    "price": 24.99,
+    "quantity": 1
+  },
+  {
+    "id": 2,
+    "name": "box",
+    "price": 4.99,
+    "quantity": 1
+  },
+  {
+    "id": 3,
+    "name": "cereal",
+    "price": 3.99,
+    "quantity": 1
+  },
+  {
+    "id": 4,
+    "name": "milk",
+    "price": 5.69,
+    "quantity": 1
+  },
+  {
+    "id": 5,
+    "name": "tv",
+    "price": 164.99,
+    "quantity": 1
+  }
+]

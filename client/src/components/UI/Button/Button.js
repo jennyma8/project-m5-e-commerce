@@ -2,9 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import { THEMES } from "../../THEMES";
 
-const Button = ({ children, onClickHandler }) => {
+const Button = ({ children, onClickHandler, disabled }) => {
   return (
-    <Wrapper onClick={onClickHandler}>
+    <Wrapper onClick={onClickHandler} disabled={disabled}>
       <span>{children}</span>
     </Wrapper>
   );
@@ -38,6 +38,17 @@ const Wrapper = styled.button`
 
   &:active {
     transform: scale(1.1);
+  }
+
+  &:disabled {
+    color: white;
+    border: 2px solid gainsboro;
+    background-color: gainsboro;
+    cursor: default;
+
+    &:active {
+      transform: scale(1);
+    }
   }
 `;
 
