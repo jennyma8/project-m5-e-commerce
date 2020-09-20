@@ -76,8 +76,8 @@ const About = () => {
               Hi, I'm Jenny! I'm currently studying the Concordia Full Stack Web
               Developer Bootcamp. Having 10 years of experience in Finance, I
               choose to explore a complete different world that has always
-              triggered my curiosity which is Coding. Hope to make this world a
-              more creative and efficient place.
+              triggered my curiosity which is Coding. My endeavours are to make
+              this world a more creative and efficient place.
             </p>
           </ProfileContainer3>
           <ProfileContainer4>
