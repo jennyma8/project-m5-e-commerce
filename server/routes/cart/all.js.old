@@ -1,6 +1,4 @@
 const CART = require("../../data/cart.json");
-const ITEMS = require("../../data/items.json");
-
 const { v4: uuidv4 } = require("uuid");
 
 const getCart = (req, res) => {
@@ -19,15 +17,6 @@ const getCart = (req, res) => {
 
 const addToCart = (req, res) => {
   const DATA = req.body;
-  // console.log("POST DATA IS:", DATA);
-
-  // Returns the array index of the item in the items.json file that
-  // matches the POST request'
-  const Index = ITEMS.findIndex((item) => item._id === DATA.id);
-  // console.log("INDEX MATCH IS:", testIndex);
-
-  const InventoryItem = ITEMS.find((item) => item._id === DATA.id);
-  // console.log("ITEM MATCHED IS:", test);
 
   // THIS GETS STORED
   const newItem = {
@@ -38,7 +27,7 @@ const addToCart = (req, res) => {
   };
 
   // CONSOLE LOG TO REMOVE
-  // console.log(newItem);
+  console.log(newItem);
 
   const resItem = {
     name: req.body.name,
@@ -47,26 +36,11 @@ const addToCart = (req, res) => {
   };
 
   try {
-    if (ITEMS[Index].numInStock === 0) {
-      console.log("Cant sell this item anymore!");
-      return res.status(500).json({
-        success: false,
-      });
-    } else {
-      console.log("Before Purchase:", ITEMS[Index].numInStock);
-
-      ITEMS[Index].numInStock -= DATA.quantity;
-
-      console.log("After Purchase:", ITEMS[Index].numInStock);
-
-      CART.push(newItem);
-
-      return res.status(201).json({
-        success: true,
-        item: newItem,
-        items: ITEMS,
-      });
-    }
+    CART.push(newItem);
+    return res.status(201).json({
+      success: true,
+      item: newItem,
+    });
   } catch (err) {
     return res.status(500).json({
       success: false,

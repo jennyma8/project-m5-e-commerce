@@ -25,7 +25,7 @@ export default function dataReducer(state = initialState, action) {
       //I want an array of data to be attached to the initialState
       //not another object i.e. initialState.companies.companies
       // const data = Object.values(action.companies);
-      const data = action.companies;
+      // const data = action.companies;
 
       // console.log("[DATA]", data);
       const results = produce(state, (draftState) => {
@@ -58,7 +58,7 @@ export default function dataReducer(state = initialState, action) {
     }
 
     case "RECEIVE_ITEMS_DATA": {
-      const data = action.items.items;
+      // const data = action.items.items;
       // console.log("[DATA] received is:", data);
       // const categories = [...new Set(data.map((i) => i.category))];
       // console.log("the categories are:", categories);

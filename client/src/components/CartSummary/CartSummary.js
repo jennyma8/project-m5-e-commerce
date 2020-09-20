@@ -2,20 +2,43 @@ import React from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import CartButton from "../UI/CartButton";
+import CartItem from "./CartItem";
+import {
+  requestCartItems,
+  receiveCartItems,
+  requestCartItemsError,
+} from "../../actions";
 
 const CartSummary = (props) => {
-  const ORDER = useSelector((state) => state.CART.currentCart);
+  const dispatch = useDispatch();
+  const CART = useSelector((state) => state.CART.currentCart);
+
+  React.useEffect(() => {
+    try {
+      dispatch(requestCartItems());
+      fetch("/cart")
+        .then((res) => res.json())
+        // .then((json) => console.log(json));
+        .then((json) => dispatch(receiveCartItems(json)));
+    } catch (error) {
+      console.log(error);
+      dispatch(requestCartItemsError());
+    }
+  }, []);
+
+  // const COUNT = props.data.length;
+  // const CART = props.data;
 
   return (
     <Wrapper>
       <Header>
-        <h1>Your Cart ({ORDER.length})</h1>
+        <h1>Your Cart ({CART.length})</h1>
       </Header>
       <CartList>
-        {ORDER.length > 0 ? (
+        {CART.length > 0 ? (
           <>
-            {ORDER.map((item) => {
-              return <li>{item.name}</li>;
+            {CART.map((item) => {
+              return <CartItem key={item._id} data={item} />;
             })}
           </>
         ) : (
@@ -35,13 +58,20 @@ const Wrapper = styled.div`
   justify-content: center;
   flex-flow: column;
   align-items: center;
-  min-height: 100vh;
+  /* max-height: 100vh; */
+  height: 100%;
 `;
 
-const CartList = styled.div`
+const CartList = styled.ul`
   flex: 8;
   width: 95%;
-  border: 1px solid red;
+  /* border: 1px solid red; */
+  border-radius: 12px;
+  height: 100%;
+  /* overflow: hidden; */
+  padding: 10px;
+  background: hsla(0, 0%, 98%, 0.6);
+  margin-bottom: 50px;
 `;
 
 const Header = styled.div`
@@ -57,9 +87,10 @@ const Header = styled.div`
 `;
 
 const Footer = styled.div`
-  flex: 1;
+  flex: 2;
   display: flex;
   justify-content: center;
+  align-items: center;
   position: relative;
   width: 100%;
 `;
