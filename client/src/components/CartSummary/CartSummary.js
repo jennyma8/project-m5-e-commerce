@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import CartButton from "../UI/CartButton";
+import CartItem from "./CartItem";
 import {
   requestCartItems,
   receiveCartItems,
@@ -37,7 +38,7 @@ const CartSummary = (props) => {
         {CART.length > 0 ? (
           <>
             {CART.map((item) => {
-              return <li>{item.name}</li>;
+              return <CartItem key={item._id} data={item} />;
             })}
           </>
         ) : (
@@ -57,13 +58,20 @@ const Wrapper = styled.div`
   justify-content: center;
   flex-flow: column;
   align-items: center;
-  min-height: 100vh;
+  /* max-height: 100vh; */
+  height: 100%;
 `;
 
-const CartList = styled.div`
+const CartList = styled.ul`
   flex: 8;
   width: 95%;
-  border: 1px solid red;
+  /* border: 1px solid red; */
+  border-radius: 12px;
+  height: 100%;
+  /* overflow: hidden; */
+  padding: 10px;
+  background: hsla(0, 0%, 98%, 0.6);
+  margin-bottom: 50px;
 `;
 
 const Header = styled.div`
@@ -79,9 +87,10 @@ const Header = styled.div`
 `;
 
 const Footer = styled.div`
-  flex: 1;
+  flex: 2;
   display: flex;
   justify-content: center;
+  align-items: center;
   position: relative;
   width: 100%;
 `;
