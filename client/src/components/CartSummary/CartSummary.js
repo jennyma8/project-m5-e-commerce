@@ -1,18 +1,40 @@
 import React from "react";
 import styled from "styled-components";
+import { useSelector, useDispatch } from "react-redux";
 import CartButton from "../UI/CartButton";
+import {
+  requestCartItems,
+  receiveCartItems,
+  requestCartItemsError,
+} from "../../actions";
 
 const CartSummary = (props) => {
-  const COUNT = props.data.length;
-  const CART = props.data;
+  const dispatch = useDispatch();
+  const CART = useSelector((state) => state.CART.currentCart);
+
+  React.useEffect(() => {
+    try {
+      dispatch(requestCartItems());
+      fetch("/cart")
+        .then((res) => res.json())
+        // .then((json) => console.log(json));
+        .then((json) => dispatch(receiveCartItems(json)));
+    } catch (error) {
+      console.log(error);
+      dispatch(requestCartItemsError());
+    }
+  }, []);
+
+  // const COUNT = props.data.length;
+  // const CART = props.data;
 
   return (
     <Wrapper>
       <Header>
-        <h1>Your Cart ({COUNT})</h1>
+        <h1>Your Cart ({CART.length})</h1>
       </Header>
       <CartList>
-        {COUNT > 0 ? (
+        {CART.length > 0 ? (
           <>
             {CART.map((item) => {
               return <li>{item.name}</li>;
