@@ -63,14 +63,6 @@ const ProductsPage = () => {
   );
 };
 
-const Sidebar = styled.h1`
-  width: 700px;
-  background: grey;
-  @media (max-width: 800px) {
-    display: none;
-  }
-`;
-
 const Test = styled.div`
   display: flex;
   /* border: 5px solid green; */

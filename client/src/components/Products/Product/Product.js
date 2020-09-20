@@ -3,16 +3,8 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Button from "../../UI/Button";
 import { THEMES } from "../../THEMES";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  addCartItem,
-  postCartItem,
-  getCartItems,
-  receiveCartItems,
-  requestItems,
-  receiveItems,
-  receiveItemsError,
-} from "../../../actions";
+import { useDispatch } from "react-redux";
+import { addCartItem, receiveItems } from "../../../actions";
 
 const Product = (props) => {
   const ITEM = props.data;
