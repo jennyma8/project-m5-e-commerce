@@ -9,8 +9,10 @@ import {
   receiveCartItems,
   requestCartItemsError,
   deleteAllCartItems,
+  toggleCartDrawer,
 } from "../../actions";
 import { THEMES } from "../THEMES";
+import { Link } from "react-router-dom";
 
 const CartSummary = (props) => {
   const dispatch = useDispatch();
@@ -70,7 +72,9 @@ const CartSummary = (props) => {
         <ClearAllButton onClick={() => deleteAllItems()}>
           <span>Clear All</span>
         </ClearAllButton>
-        <CartButton>Checkout</CartButton>
+        <CartButton onClickHandler={() => dispatch(toggleCartDrawer())}>
+          <Link to="/checkout">Checkout</Link>
+        </CartButton>
       </Footer>
     </Wrapper>
   );
