@@ -7,15 +7,19 @@ import { toggleScrollUpButton } from "../../../actions";
 const PageContainer = ({ children }) => {
   const dispatch = useDispatch();
 
+  const [scroll, setScroll] = React.useState(false);
+
   const ToggleScrollButton = useSelector(
     (state) => state.TOGGLERS.ScrollButton
   );
 
   function toggleVisibility() {
     if (window.scrollY > 700) {
-      dispatch(toggleScrollUpButton(true));
+      setScroll(true);
+      // dispatch(toggleScrollUpButton(true));
     } else {
-      dispatch(toggleScrollUpButton(false));
+      setScroll(false);
+      // dispatch(toggleScrollUpButton(false));
     }
   }
 
@@ -25,7 +29,7 @@ const PageContainer = ({ children }) => {
 
   return (
     <Wrapper>
-      {ToggleScrollButton && <ScrollUpButton />}
+      {scroll && <ScrollUpButton />}
       <Container>{children}</Container>
     </Wrapper>
   );
