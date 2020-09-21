@@ -93,7 +93,7 @@ const addToCart = (req, res) => {
       CART[reqId] = {
         id: cartItem._id,
         name: cartItem.name,
-        price: cartItem.price,
+        price: parseFloat(cartItem.price).toFixed(2),
         quantity: reqQuantity,
       };
     }
@@ -112,7 +112,7 @@ const addToCart = (req, res) => {
       success: true,
       CART,
       totalQuantity: totalQuantity,
-      totalPrice: totalPrice.toFixed(2),
+      totalPrice: parseFloat(totalPrice).toFixed(2),
     });
   } catch (error) {
     return res.status(500).json({
@@ -156,7 +156,7 @@ const removeFromCart = (req, res) => {
       success: true,
       CART,
       totalQuantity: totalQuantity,
-      totalPrice: totalPrice,
+      totalPrice: parseFloat(totalPrice).toFixed(2),
     });
   } catch (error) {
     return res.status(500).json({
@@ -181,7 +181,7 @@ const clearCart = (req, res) => {
       success: true,
       CART,
       totalQuantity: 0,
-      totalPrice: 0,
+      totalPrice: parseFloat(0).toFixed(2),
     });
   } catch (err) {
     return res.status(500).json({
