@@ -9,7 +9,7 @@ import { toggleCartDrawer } from "../../actions";
 
 const Nav = (props) => {
   const dispatch = useDispatch();
-  const ORDER = useSelector((state) => state.CART.currentCart);
+  const TOTAL_QUANTITY = useSelector((state) => state.CART.totalQuantity);
 
   const [reduceNav, setReduceNav] = React.useState(false);
   function toggleReduce() {
@@ -27,7 +27,6 @@ const Nav = (props) => {
   return (
     <>
       <Wrapper reduceNav={reduceNav}>
-        {/* <Wrapper> */}
         <LogoSrc exact to="/">
           <img src={Logo} style={{ height: 70, width: 70 }} />
         </LogoSrc>
@@ -53,14 +52,11 @@ const Nav = (props) => {
               <span>Search</span>
             </LinkName>
           </StyledLink>
-          {/* <StyledLink exact to="/cart"> */}
 
           <CartButton onClick={() => dispatch(toggleCartDrawer())}>
             <FiShoppingCart size={32} />
-            {ORDER.length > 0 && <CartCount>{ORDER.length}</CartCount>}
+            {TOTAL_QUANTITY > 0 && <CartCount>{TOTAL_QUANTITY}</CartCount>}
           </CartButton>
-
-          {/* </StyledLink> */}
         </NavList>
       </Wrapper>
       {props.children}
