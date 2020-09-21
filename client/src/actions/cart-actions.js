@@ -1,12 +1,6 @@
 export const toggleCartDrawer = () => ({
   type: "TOGGLE_CART_DRAWER",
 });
-
-// export const addCartItem = (item) => ({
-//   type: "ADD_CART_ITEM",
-//   item,
-// });
-
 // ################## FETCH CART ITEMS ###########################
 
 export const requestCartItems = () => ({
@@ -24,11 +18,19 @@ export const requestCartItemsError = () => ({
 
 // ################## MODIFY CART ITEMS ###########################
 
-export const addCartItem = (item) => ({
+export const postCartItem = (item) => ({
   type: "POST_CART_ITEM",
   item,
 });
 
-export const getCartItems = () => ({
-  type: "GET_CART_ITEMS",
+export const addCartItem = () => ({
+  type: "ADD_CART_ITEM",
+});
+
+export const deleteAllCartItems = () => ({
+  type: "DELETE_ALL_CART_ITEMS",
+});
+
+export const deleteCartItem = () => ({
+  type: "DELETE_CART_ITEM",
 });
