@@ -4,11 +4,32 @@ import { Link } from "react-router-dom";
 import Button from "../../UI/Button";
 import { THEMES } from "../../THEMES";
 import { useDispatch } from "react-redux";
-import { addCartItem, receiveItems } from "../../../actions";
+import { addCartItem, receiveItems, receiveCartItems } from "../../../actions";
 
 const Product = (props) => {
   const ITEM = props.data;
   const dispatch = useDispatch();
+
+  function addSingleItem() {
+    const options = {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: ITEM._id,
+        quantity: 1,
+      }),
+    };
+
+    fetch("/cart", options)
+      .then((res) => res.json())
+      .then((json) => {
+        dispatch(addCartItem());
+        dispatch(receiveCartItems(json));
+      });
+  }
 
   return (
     <Item>
@@ -22,29 +43,7 @@ const Product = (props) => {
         </Description>
         <BtnContainer>
           <Button
-            onClickHandler={() => {
-              const options = {
-                method: "POST",
-                headers: {
-                  Accept: "application/json",
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                  id: ITEM._id,
-                  name: ITEM.name,
-                  price: parseFloat(ITEM.price),
-                  quantity: 1,
-                }),
-              };
-
-              fetch("/cart", options)
-                .then((res) => res.json())
-                .then((json) => {
-                  console.log(json);
-                  dispatch(addCartItem(json));
-                  dispatch(receiveItems(json));
-                });
-            }}
+            onClickHandler={() => addSingleItem()}
             disabled={props.stock === 0}
           >
             {props.stock === 0 ? "Out of Stock" : "Add to Cart"}
