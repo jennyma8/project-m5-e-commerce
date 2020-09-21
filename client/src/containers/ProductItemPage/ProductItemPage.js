@@ -11,7 +11,7 @@ import {
   requestProductItem,
   receiveProductItem,
   receiveProductItemError,
-  toggleCartDrawer,
+  receiveCartItems,
 } from "../../actions";
 import { addCartItem, receiveItems } from "../../actions";
 import { THEMES } from "../../components/THEMES";
@@ -37,6 +37,27 @@ const ProductItemPage = () => {
 
   if (STATUS === "loading" || !PRODUCT) {
     return <Spinner />;
+  }
+
+  function addItems(q, id) {
+    const options = {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: id,
+        quantity: parseInt(q),
+      }),
+    };
+
+    fetch("/cart", options)
+      .then((res) => res.json())
+      .then((json) => {
+        dispatch(addCartItem());
+        dispatch(receiveCartItems(json));
+      });
   }
 
   return (
@@ -82,27 +103,7 @@ const ProductItemPage = () => {
           <ProductItemButton
             onClickHandler={() => {
               const quantity = document.getElementById("quantity").value;
-              const options = {
-                method: "POST",
-                headers: {
-                  Accept: "application/json",
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                  id: PRODUCT._id,
-                  name: PRODUCT.name,
-                  price: parseFloat(PRODUCT.price),
-                  quantity: quantity,
-                }),
-              };
-
-              fetch("/cart", options)
-                .then((res) => res.json())
-                .then((json) => {
-                  // console.log(json);
-                  dispatch(addCartItem(json));
-                  dispatch(receiveItems(json));
-                });
+              addItems(quantity, PRODUCT._id);
             }}
           >
             Add To Cart
