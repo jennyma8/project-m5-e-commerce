@@ -9,6 +9,27 @@ const CartItem = (props) => {
   const dispatch = useDispatch();
   const CART_ITEM = props.data;
 
+  function deleteItem(id) {
+    const options = {
+      method: "DELETE",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: id,
+      }),
+    };
+
+    fetch(`/cart/${id}`, options)
+      .then((res) => res.json())
+      .then((json) => {
+        // console.log(json);
+        dispatch(deleteCartItem());
+        dispatch(receiveCartItems(json));
+      });
+  }
+
   return (
     <Wrapper>
       <Content>
@@ -20,28 +41,7 @@ const CartItem = (props) => {
           Subtotal: <span>${CART_ITEM.price * CART_ITEM.quantity}</span>
         </h1>
       </Content>
-      <Button
-        onClick={() => {
-          const options = {
-            method: "DELETE",
-            headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              id: CART_ITEM.id,
-            }),
-          };
-
-          fetch(`/cart/${CART_ITEM.id}`, options)
-            .then((res) => res.json())
-            .then((json) => {
-              // console.log(json);
-              dispatch(deleteCartItem());
-              dispatch(receiveCartItems(json));
-            });
-        }}
-      >
+      <Button onClick={() => deleteItem(CART_ITEM.id)}>
         <DeleteIcon size={32} />
       </Button>
     </Wrapper>
