@@ -24,10 +24,9 @@ const getCart = (req, res) => {
     (sum, q) => sum + q.quantity,
     0
   );
-  const totalPrice = Object.values(CART).reduce(
-    (sum, price) => sum + price.price * price.quantity,
-    0
-  );
+  const totalPrice = Object.values(CART)
+    .reduce((sum, price) => sum + price.price * price.quantity, 0)
+    .toFixed(2);
   try {
     return res.status(200).json({
       success: true,
