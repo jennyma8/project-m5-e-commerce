@@ -10,7 +10,6 @@ import {
   requestCategories,
   receiveCategories,
   receiveCategoriesError,
-  toggleCartDrawer,
 } from "../../actions";
 
 import { requestItems, receiveItems, receiveItemsError } from "../../actions";
@@ -37,8 +36,7 @@ const ProductsPage = () => {
       console.log("error");
       dispatch(receiveItemsError());
     }
-
-    //This is to fetch the categories data
+    // This is to fetch the categories data
     try {
       dispatch(requestCategories());
       fetch("/items/category")
@@ -50,8 +48,6 @@ const ProductsPage = () => {
       dispatch(receiveCategoriesError());
     }
   }, []);
-
-  React.useEffect(() => {}, []);
 
   if (STATUS === "loading" || !ITEMS) {
     return <Spinner />;
@@ -66,14 +62,6 @@ const ProductsPage = () => {
     </PageContainer>
   );
 };
-
-const Sidebar = styled.h1`
-  width: 700px;
-  background: grey;
-  @media (max-width: 800px) {
-    display: none;
-  }
-`;
 
 const Test = styled.div`
   display: flex;

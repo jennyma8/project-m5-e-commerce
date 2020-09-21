@@ -1,30 +1,19 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import HomePage from "../../containers/HomePage";
 import ProductsPage from "../../containers/ProductsPage";
 import CategoryPage from "../../containers/CategoryPage";
 import Nav from "../Nav";
 import ProductItemPage from "../../containers/ProductItemPage";
 import About from "../About";
+import CartContainer from "../../containers/CartContainer";
 import Careers from "../Careers";
-import { toggleCartDrawer } from "../../actions";
-import CartDrawer from "../UI/CartDrawer";
-import CartSummary from "../CartSummary";
 
 const Layout = () => {
-  const dispatch = useDispatch();
-  const MODALSTATUS = useSelector((state) => state.CART.purchasing);
-
   return (
     <Router>
       <Nav>
-        <CartDrawer
-          show={MODALSTATUS}
-          close={() => dispatch(toggleCartDrawer())}
-        >
-          <CartSummary />
-        </CartDrawer>
+        <CartContainer />
         <Switch>
           <Route exact path="/">
             <HomePage />

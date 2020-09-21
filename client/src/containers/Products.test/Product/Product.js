@@ -1,35 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import Button from "../../UI/Button";
-import { THEMES } from "../../THEMES";
-import { useDispatch } from "react-redux";
-import { addCartItem, receiveItems, receiveCartItems } from "../../../actions";
+import Button from "../../../components/UI/Button";
+import { THEMES } from "../../../components/THEMES";
+import { useSelector, useDispatch } from "react-redux";
+import { addCartItem, receiveItems } from "../../../actions";
 
 const Product = (props) => {
   const ITEM = props.data;
+  const ITEMS = useSelector((state) => state.DATA.allProducts);
   const dispatch = useDispatch();
-
-  function addSingleItem() {
-    const options = {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        id: ITEM._id,
-        quantity: 1,
-      }),
-    };
-
-    fetch("/cart", options)
-      .then((res) => res.json())
-      .then((json) => {
-        dispatch(addCartItem());
-        dispatch(receiveCartItems(json));
-      });
-  }
+  // const CART = useSelector((state) => state.CART.currentCart);
+  // const DATA = useSelector((state) => state.DATA.allProducts[props.index]);
 
   return (
     <Item>
@@ -43,10 +25,41 @@ const Product = (props) => {
         </Description>
         <BtnContainer>
           <Button
-            onClickHandler={() => addSingleItem()}
+            onClickHandler={() => {
+              const options = {
+                method: "POST",
+                headers: {
+                  Accept: "application/json",
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  id: ITEM._id,
+                  name: ITEM.name,
+                  price: parseFloat(ITEM.price),
+                  quantity: 1,
+                }),
+              };
+
+              fetch("/cart", options)
+                .then((res) => res.json())
+                .then((json) => {
+                  console.log(json);
+                  dispatch(addCartItem(json));
+                  dispatch(receiveItems(json));
+                });
+              // .then((data) => console.log(data.item))
+              // dispatch(requestItems());
+              // .then(
+              //   (results) => dispatch(receiveCartItems(results.item.item))
+              //   // dispatch(receiveCartItems(results.item.item))
+              // );
+              // dispatch(
+              //   addCartItem({ name: ITEM.name, id: ITEM._id, quantity: 1 })
+              // );
+            }}
             disabled={props.stock === 0}
           >
-            {props.stock === 0 ? "Out of Stock" : "Add to Cart"}
+            Add to Cart
           </Button>
         </BtnContainer>
       </Content>

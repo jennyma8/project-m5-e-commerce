@@ -82,6 +82,8 @@ Add all items from Cart for Checkout : `/cart/checkout`
 
 Remove an item from the cart by id : `/cart/:id`
 
+Clear Cart : `/cart`
+
 ---
 
 ## Create a new Component

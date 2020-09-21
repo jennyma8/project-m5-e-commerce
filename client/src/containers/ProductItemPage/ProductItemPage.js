@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { FiLink2 } from "react-icons/fi";
 
 import PageContainer from "../../components/UI/PageContainer";
 import Spinner from "../../components/UI/Spinner";
@@ -10,9 +11,10 @@ import {
   requestProductItem,
   receiveProductItem,
   receiveProductItemError,
-  toggleCartDrawer,
+  receiveCartItems,
 } from "../../actions";
-import { FiLink2 } from "react-icons/fi";
+import { addCartItem, receiveItems } from "../../actions";
+import { THEMES } from "../../components/THEMES";
 
 const ProductItemPage = () => {
   const dispatch = useDispatch();
@@ -37,6 +39,27 @@ const ProductItemPage = () => {
     return <Spinner />;
   }
 
+  function addItems(q, id) {
+    const options = {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: id,
+        quantity: parseInt(q),
+      }),
+    };
+
+    fetch("/cart", options)
+      .then((res) => res.json())
+      .then((json) => {
+        dispatch(addCartItem());
+        dispatch(receiveCartItems(json));
+      });
+  }
+
   return (
     <PageContainer>
       <Wrapper>
@@ -52,13 +75,39 @@ const ProductItemPage = () => {
           </Category>
           <Name>{PRODUCT.name}</Name>
           <Price>${PRODUCT.price}</Price>
+          <div>
+            Available quantity:{" "}
+            <span>
+              {PRODUCT.numInStock != 0 ? PRODUCT.numInStock : "Out of Stock"}
+            </span>
+          </div>
+          <form>
+            <label for="quantity">Quantity: </label>
+            <select
+              id="quantity"
+              name="quantity"
+              disabled={PRODUCT.numInStock === 0}
+            >
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </form>
+
           <Brand>
             Brand:
-            <BrandLink href={PRODUCT.company.url}>
+            <BrandLink target="_blank" href={PRODUCT.company.url}>
               {PRODUCT.company.name}
             </BrandLink>
           </Brand>
-          <ProductItemButton>Add To Cart</ProductItemButton>
+          <ProductItemButton
+            onClickHandler={() => {
+              const quantity = document.getElementById("quantity").value;
+              addItems(quantity, PRODUCT._id);
+            }}
+          >
+            Add To Cart
+          </ProductItemButton>
         </ItemWrapper>
       </Wrapper>
     </PageContainer>
@@ -66,16 +115,32 @@ const ProductItemPage = () => {
 };
 
 const Wrapper = styled.div`
+  align-items: center;
   /* border: solid red 1px; */
   display: flex;
-  height: 80vh;
+  height: 100%;
+  justify-content: center;
   padding-top: 10vh;
-  width: 80vw;
+  position: relative;
+  width: 100%;
+
+  @media (max-width: 1200px) {
+  }
+  @media (max-width: 1024px) {
+    /* background: pink; */
+    flex-flow: column wrap;
+  }
+  @media (max-width: 768px) {
+    /* background: green; */
+    flex-flow: column wrap;
+  }
 `;
 const ImageWrapper = styled.div`
   /* border: dashed blue 1px; */
+  display: flex;
   flex: 2;
-  margin-left: 5%;
+  justify-content: center;
+  /* margin-left: 5%; */
 `;
 const ItemWrapper = styled.div`
   /* border: dotted orange 1px; */
@@ -85,29 +150,30 @@ const ItemWrapper = styled.div`
 `;
 
 const Image = styled.img`
-  width: 100%;
+  width: 500px;
 `;
 
 const Category = styled.div`
-  font-size: 0.5rem;
+  font-size: 1rem;
   font-style: italic;
 `;
 
 const StyledLink = styled(Link)`
+  color: ${THEMES.Secondary};
   text-decoration: none;
 `;
 
 const Name = styled.div`
-  font-size: 1rem;
+  font-size: 1.5rem;
 `;
 
 const Price = styled.div`
   color: lightgrey;
-  font-size: 2rem;
+  font-size: 3rem;
 `;
 
 const Brand = styled.div`
-  font-size: 0.75rem;
+  font-size: 1.5rem;
 `;
 
 const BrandLink = styled.a`

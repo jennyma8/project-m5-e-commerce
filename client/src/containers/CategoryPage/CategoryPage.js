@@ -53,6 +53,7 @@ const CategoryPage = () => {
       <Test>
         {/* <Sidebar>This is the Sidebar</Sidebar> */}
         <Products data={ITEMS} />
+        {/* <Products /> */}
       </Test>
     </PageContainer>
   );

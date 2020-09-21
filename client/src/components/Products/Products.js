@@ -6,7 +6,14 @@ const Products = (props) => {
   return (
     <ProductsGrid>
       {props.data.items.map((item) => {
-        return <Product key={item._id} data={item} />;
+        return (
+          <Product
+            key={item._id}
+            data={item}
+            index={item.index}
+            stock={item.numInStock}
+          />
+        );
       })}
     </ProductsGrid>
   );
