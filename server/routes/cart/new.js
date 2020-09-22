@@ -95,14 +95,14 @@ const addToCart = (req, res) => {
       CART[reqId].quantity += reqQuantity;
     } else {
       const quantity =
-        reqQuantity > cartItem.numInStock ? cartItem.numInStock : reqQuantity;
+        reqQuantity >= cartItem.numInStock ? cartItem.numInStock : reqQuantity;
 
       CART[reqId] = {
         id: cartItem._id,
         name: cartItem.name,
         price: parseFloat(cartItem.price).toFixed(2),
         quantity: quantity,
-        maxQty: false,
+        maxQty: reqQuantity >= cartItem.numInStock,
       };
     }
 
