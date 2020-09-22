@@ -90,14 +90,18 @@ const addToCart = (req, res) => {
       // Verify that you only add the available quantity in stock
       if (cartItem.numInStock <= CART[reqId].quantity) {
         CART[reqId].quantity = cartItem.numInStock - reqQuantity;
+        CART[reqId].maxQty = true;
       }
       CART[reqId].quantity += reqQuantity;
     } else {
+      const quantity =
+        reqQuantity > cartItem.numInStock ? cartItem.numInStock : reqQuantity;
+
       CART[reqId] = {
         id: cartItem._id,
         name: cartItem.name,
         price: parseFloat(cartItem.price).toFixed(2),
-        quantity: reqQuantity,
+        quantity: quantity,
         maxQty: false,
       };
     }
@@ -117,7 +121,9 @@ const addToCart = (req, res) => {
     if (CART[reqId].quantity == cartItem.numInStock) {
       return res.status(400).json({
         success: false,
-        maxQty: true,
+        CART,
+        totalQuantity: totalQuantity,
+        totalPrice: parseFloat(totalPrice).toFixed(2),
         error: "You have reached the limit",
       });
     }
