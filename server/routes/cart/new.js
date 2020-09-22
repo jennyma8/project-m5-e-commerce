@@ -1,6 +1,6 @@
 const CART = require("../../data/cart.json");
 const itemData = require("../../data/items.json");
-const { v4: uuidv4 } = require("uuid");
+// const { v4: uuidv4 } = require("uuid");
 
 // This is to fix the data by removing the $ to the prices
 const ITEMS = itemData.map((item) => {
@@ -24,10 +24,9 @@ const getCart = (req, res) => {
     (sum, q) => sum + q.quantity,
     0
   );
-  const totalPrice = Object.values(CART).reduce(
-    (sum, price) => sum + price.price * price.quantity,
-    0
-  );
+  const totalPrice = Object.values(CART)
+    .reduce((sum, price) => sum + price.price * price.quantity, 0)
+    .toFixed(2);
   try {
     return res.status(200).json({
       success: true,
@@ -79,7 +78,7 @@ const addToCart = (req, res) => {
 
   const cartItem = ITEMS.find((item) => item._id === reqId);
 
-  // verfiy that this new item is not already in the cart, if it is
+  // verify that this new item is not already in the cart, if it is
   // then we just update its quantity, otherwise create a new object in the
   // cart.
 
@@ -88,13 +87,22 @@ const addToCart = (req, res) => {
 
   try {
     if (alreadyHasItem) {
+      // Verify that you only add the available quantity in stock
+      if (cartItem.numInStock <= CART[reqId].quantity) {
+        CART[reqId].quantity = cartItem.numInStock - reqQuantity;
+        CART[reqId].maxQty = true;
+      }
       CART[reqId].quantity += reqQuantity;
     } else {
+      const quantity =
+        reqQuantity > cartItem.numInStock ? cartItem.numInStock : reqQuantity;
+
       CART[reqId] = {
         id: cartItem._id,
         name: cartItem.name,
         price: parseFloat(cartItem.price).toFixed(2),
-        quantity: reqQuantity,
+        quantity: quantity,
+        maxQty: false,
       };
     }
 
@@ -108,6 +116,17 @@ const addToCart = (req, res) => {
       0
     );
 
+    // Check if you have reached the limit of the numInStock, it will send you an error message
+
+    if (CART[reqId].quantity == cartItem.numInStock) {
+      return res.status(400).json({
+        success: false,
+        CART,
+        totalQuantity: totalQuantity,
+        totalPrice: parseFloat(totalPrice).toFixed(2),
+        error: "You have reached the limit",
+      });
+    }
     return res.status(200).json({
       success: true,
       CART,
