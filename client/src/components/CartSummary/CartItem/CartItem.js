@@ -37,12 +37,15 @@ const CartItem = (props) => {
         <Quantity>
           Quantity: <span>{CART_ITEM.quantity}</span>
         </Quantity>
-        <h1>
-          Subtotal:{" "}
+        {CART_ITEM.maxQty && (
+          <Warning>This is maximum amount available!</Warning>
+        )}
+        <Subtotal>
+          Subtotal:
           <span>
             ${parseFloat(CART_ITEM.price * CART_ITEM.quantity).toFixed(2)}
           </span>
-        </h1>
+        </Subtotal>
       </Content>
       <Button onClick={() => deleteItem(CART_ITEM.id)}>
         <DeleteIcon size={32} />
@@ -71,6 +74,20 @@ const Content = styled.div`
 const Quantity = styled.p`
   color: green;
   font-style: italic;
+  display: flex;
+  & span {
+    margin-left: 5px;
+  }
+`;
+
+const Warning = styled.p`
+  color: red;
+`;
+
+const Subtotal = styled.h1`
+  & span {
+    margin-left: 5px;
+  }
 `;
 
 const DeleteIcon = styled(FiXCircle)`
