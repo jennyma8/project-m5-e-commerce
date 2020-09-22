@@ -8,6 +8,9 @@ import {
   requestCategories,
   receiveCategories,
   receiveCategoriesError,
+  requestItems,
+  receiveItems,
+  receiveItemsError,
 } from "../../actions";
 import { Link } from "react-router-dom";
 import Spinner from "../../components/UI/Spinner";
@@ -15,9 +18,12 @@ import Spinner from "../../components/UI/Spinner";
 const HomePage = () => {
   const dispatch = useDispatch();
 
+  const ITEMS = useSelector((state) => state.DATA.allProducts);
   const CATEGORIES = useSelector((state) => state.DATA.categories);
   const STATUS = useSelector((state) => state.DATA.status);
-  console.log(CATEGORIES);
+  // console.log(CATEGORIES);
+  console.log(ITEMS);
+
   React.useEffect(() => {
     // This should be fetching "/items/category/:category"
     const URL = "/items/category";
@@ -31,32 +37,67 @@ const HomePage = () => {
       console.log("error");
       dispatch(receiveCategoriesError());
     }
+    // This should be fetching "/items"
+    try {
+      dispatch(requestItems());
+      fetch("/items")
+        .then((res) => res.json())
+        // .then((json) => console.log(json));
+        .then((json) => dispatch(receiveItems(json)));
+    } catch (error) {
+      console.log("error");
+      dispatch(receiveItemsError());
+    }
   }, []);
 
-  if (STATUS === "loading" || !CATEGORIES) {
+  if (STATUS === "loading" || !ITEMS || !CATEGORIES) {
     return <Spinner />;
   }
-
+  const RandomItems = [];
+  if (ITEMS.items.length > 0) {
+    for (let i = 0; i < 4; i++) {
+      RandomItems.push(
+        ITEMS.items[Math.floor(Math.random() * ITEMS.items.length)]
+      );
+    }
+    console.log("My Random Items", RandomItems);
+  }
   return (
     <>
-      <VideoContainer>
-        <VideoSrc loop autoPlay>
-          <source src={Video} type="video/mp4" />
-        </VideoSrc>
-      </VideoContainer>
-      <Categories>Find What You Need</Categories>
       <Wrapper>
-        <HeaderList>
-          {CATEGORIES.map((cat) => {
+        <VideoContainer>
+          <VideoSrc loop autoPlay>
+            <source src={Video} type="video/mp4" />
+          </VideoSrc>
+        </VideoContainer>
+        <Categories>Find What You Need</Categories>
+        <WrapperCategories>
+          <HeaderList>
+            {CATEGORIES.map((cat) => {
+              return (
+                <Category key={cat}>
+                  <StyledLink to={`/items/category/${cat}`}>
+                    <span>{cat}</span>
+                  </StyledLink>
+                </Category>
+              );
+            })}
+          </HeaderList>
+        </WrapperCategories>
+
+        <FeaturedTitle>Featured Products</FeaturedTitle>
+        <Featured>
+          {RandomItems.map((item) => {
             return (
-              <Category key={cat}>
-                <StyledLink to={`/items/category/${cat}`}>
-                  <span>{cat}</span>
+              <Product key={item._id}>
+                <StyledLink to={`/items/item/${item._id}`}>
+                  <Image src={item.imageSrc}></Image>
+                  <Name>{item.name}</Name>
                 </StyledLink>
-              </Category>
+              </Product>
             );
           })}
-        </HeaderList>
+        </Featured>
       </Wrapper>
     </>
   );
@@ -76,7 +117,7 @@ const Categories = styled.div`
   padding: 5px;
 `;
 
-const Wrapper = styled.div`
+const WrapperCategories = styled.div`
   display: flex;
   height: 30vh;
   margin-bottom: 5vh;
@@ -144,5 +185,43 @@ const Category = styled.button`
     font-size: 22px;
   }
 `;
+const FeaturedTitle = styled.div`
+  font-size: 30px;
+  text-align: center;
+  padding-bottom: 15px;
+  border-bottom: 1px solid lightgrey;
+  margin: 10px 65px 30px 65px;
+`;
+const Featured = styled.div`
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+`;
 
+const Product = styled.div`
+  width: 200px;
+  box-shadow: 5px 5px 15px 5px #000000;
+  margin-top: 30px;
+  padding: 20px;
+  transition: all ease-in 0.4s;
+  &:hover {
+    transform: scale(1.2);
+  }
+`;
+
+const Image = styled.img`
+  text-align: center;
+  width: 100px;
+  height: 100px;
+  margin-bottom: 5px;
+`;
+const Name = styled.div`
+  text-align: center;
+  align-items: center;
+  font-weight: bold;
+`;
+
+const Wrapper = styled.div`
+  margin-bottom: 20px;
+`;
 export default HomePage;

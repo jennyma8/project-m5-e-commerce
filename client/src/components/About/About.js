@@ -5,6 +5,13 @@ import { FiGithub, FiTwitter } from "react-icons/fi";
 import { AiFillLinkedin } from "react-icons/ai";
 
 const About = () => {
+  React.useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
+
   return (
     <>
       <Wrapper>

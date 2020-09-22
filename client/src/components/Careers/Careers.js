@@ -3,6 +3,13 @@ import styled from "styled-components";
 import { Meeting } from "../../assets";
 
 const Careers = () => {
+  React.useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
+
   return (
     <>
       <Wrapper>
