@@ -38,7 +38,10 @@ const CartItem = (props) => {
           Quantity: <span>{CART_ITEM.quantity}</span>
         </Quantity>
         <h1>
-          Subtotal: <span>${CART_ITEM.price * CART_ITEM.quantity}</span>
+          Subtotal:{" "}
+          <span>
+            ${parseFloat(CART_ITEM.price * CART_ITEM.quantity).toFixed(2)}
+          </span>
         </h1>
       </Content>
       <Button onClick={() => deleteItem(CART_ITEM.id)}>
