@@ -8,6 +8,7 @@ import ProductItemPage from "../../containers/ProductItemPage";
 import About from "../About";
 import CartContainer from "../../containers/CartContainer";
 import Careers from "../Careers";
+import CheckoutPage from "../../containers/CheckoutPage";
 
 const Layout = () => {
   return (
@@ -32,6 +33,9 @@ const Layout = () => {
           </Route>
           <Route path="/items">
             <ProductsPage />
+          </Route>
+          <Route path="/checkout">
+            <CheckoutPage />
           </Route>
         </Switch>
       </Nav>
