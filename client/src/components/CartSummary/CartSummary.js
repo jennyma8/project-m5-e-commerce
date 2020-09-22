@@ -72,9 +72,15 @@ const CartSummary = (props) => {
         <ClearAllButton onClick={() => deleteAllItems()}>
           <span>Clear All</span>
         </ClearAllButton>
-        <CartButton onClickHandler={() => dispatch(toggleCartDrawer())}>
-          <Link to="/checkout">Checkout</Link>
-        </CartButton>
+        <StyledLink to="/checkout">
+          <CartButton
+            onClickHandler={() => {
+              dispatch(toggleCartDrawer());
+            }}
+          >
+            Checkout
+          </CartButton>
+        </StyledLink>
       </Footer>
     </Wrapper>
   );
@@ -132,6 +138,14 @@ const Footer = styled.div`
   align-items: center;
   position: relative;
   width: 100%;
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: white;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 `;
 
 const ClearAllButton = styled.button`
