@@ -11,6 +11,7 @@ import {
 } from "../../actions";
 import { Link } from "react-router-dom";
 import Spinner from "../../components/UI/Spinner";
+import Footer from "../../components/Footer";
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -58,6 +59,7 @@ const HomePage = () => {
           })}
         </HeaderList>
       </Wrapper>
+      <Footer />
     </>
   );
 };
