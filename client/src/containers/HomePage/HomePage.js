@@ -70,6 +70,7 @@ const HomePage = () => {
           <VideoSrc loop autoPlay>
             <source src={Video} type="video/mp4" />
           </VideoSrc>
+
           <Overlay>Best Selection of Watches</Overlay>
           <Overlay2>Large Variety of Fitness Wearables</Overlay2>
           <Overlay3>Products for Pet and Animals</Overlay3>
@@ -129,6 +130,7 @@ const Slide = keyframes`
     
   }
 `;
+
 const Overlay = styled.div`
   position: absolute;
   top: 30%;

@@ -30,6 +30,7 @@ const Nav = (props) => {
         <LogoSrc exact to="/">
           <img src={Logo} style={{ height: 70, width: 70 }} />
         </LogoSrc>
+        <Title>earobology</Title>
         <NavList>
           <StyledLink exact to="/">
             <LinkName>Home</LinkName>
@@ -66,9 +67,12 @@ const Nav = (props) => {
 
 const LogoSrc = styled(NavLink)`
   margin-left: 20px;
-  margin-right: 200px;
 `;
-
+const Title = styled.div`
+  padding-top: 25px;
+  font-weight: bold;
+  margin-right: 100px;
+`;
 const StyledLink = styled(NavLink)`
   text-decoration: none;
   color: black;
