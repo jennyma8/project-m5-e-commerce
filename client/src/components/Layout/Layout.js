@@ -8,6 +8,8 @@ import ProductItemPage from "../../containers/ProductItemPage";
 import About from "../About";
 import CartContainer from "../../containers/CartContainer";
 import Careers from "../Careers";
+import CheckoutPage from "../../containers/CheckoutPage";
+import Error from "../Error";
 
 const Layout = () => {
   return (
@@ -33,6 +35,10 @@ const Layout = () => {
           <Route path="/items">
             <ProductsPage />
           </Route>
+          <Route path="/checkout">
+            <CheckoutPage />
+          </Route>
+          <Route component={Error} />
         </Switch>
       </Nav>
     </Router>

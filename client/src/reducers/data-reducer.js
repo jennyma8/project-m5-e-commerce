@@ -72,7 +72,7 @@ export default function dataReducer(state = initialState, action) {
         draftState.status = "idle";
       });
 
-      // console.log("[NEW STATE]:", results);
+      console.log("[NEW STATE]:", results);
       return results;
     }
 
