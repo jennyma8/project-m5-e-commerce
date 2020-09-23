@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { Meeting } from "../../assets";
 
+import PageContainer from "../UI/PageContainer";
+
 const Careers = () => {
   React.useEffect(() => {
     window.scrollTo({
@@ -11,7 +13,7 @@ const Careers = () => {
   }, []);
 
   return (
-    <>
+    <PageContainer>
       <Wrapper>
         <Title>
           <div>Together at Wearobology, we...</div>
@@ -38,13 +40,13 @@ const Careers = () => {
           <p>Please send your resume to info@wearobology.com.</p>
         </Resume>
       </Wrapper>
-    </>
+    </PageContainer>
   );
 };
 
 const Wrapper = styled.div`
   position: relative;
-  top: 100px;
+  margin-top: 120px;
 
   margin: 50px;
   height: 750px;

@@ -10,6 +10,7 @@ import CartContainer from "../../containers/CartContainer";
 import Careers from "../Careers";
 import CheckoutPage from "../../containers/CheckoutPage";
 import Error from "../Error";
+import Footer from "../Footer";
 
 const Layout = () => {
   return (
@@ -41,6 +42,7 @@ const Layout = () => {
           <Route component={Error} />
         </Switch>
       </Nav>
+      <Footer />
     </Router>
   );
 };
