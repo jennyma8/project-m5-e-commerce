@@ -100,7 +100,6 @@ const HomePage = () => {
           })}
         </Featured>
       </Wrapper>
-      <Footer />
     </>
   );
 };

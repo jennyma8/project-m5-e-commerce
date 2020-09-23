@@ -168,7 +168,7 @@ const Name = styled.div`
 `;
 
 const Price = styled.div`
-  color: lightgrey;
+  color: grey;
   font-size: 3rem;
 `;
 
