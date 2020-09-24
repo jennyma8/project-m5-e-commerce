@@ -1,5 +1,5 @@
 import React from "react";
-import styled, { keyframes, css } from "styled-components";
+import styled, { keyframes, css, media } from "styled-components";
 import { NavLink } from "react-router-dom";
 import { Logo } from "../../assets";
 import { THEMES } from "../THEMES";
@@ -30,6 +30,7 @@ const Nav = (props) => {
         <LogoSrc exact to="/">
           <img src={Logo} style={{ height: 70, width: 70 }} />
         </LogoSrc>
+        <Title>earobology</Title>
         <NavList>
           <StyledLink exact to="/">
             <LinkName>Home</LinkName>
@@ -66,9 +67,12 @@ const Nav = (props) => {
 
 const LogoSrc = styled(NavLink)`
   margin-left: 20px;
-  margin-right: 200px;
 `;
-
+const Title = styled.div`
+  padding-top: 25px;
+  font-weight: bold;
+  margin-right: 100px;
+`;
 const StyledLink = styled(NavLink)`
   text-decoration: none;
   color: black;
@@ -134,6 +138,17 @@ const Wrapper = styled.div`
 -o-transition:all 1s ease-in-out; */
   &:hover {
     background: white;
+  }
+
+  @media (max-width: 1200px) {
+    /* ... */
+  }
+
+  @media (max-width: 1024px) {
+    /* ... */
+  }
+
+  @media (max-width: 768px) {
   }
 `;
 
