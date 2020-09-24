@@ -13,28 +13,27 @@ const Error = () => {
   }, []);
 
   return (
-    <>
-      <Wrapper>
-        <Container>
-          <Title>404 - Page Not Found</Title>
-          <Info>
-            <p>Sorry...you won't find what you need here</p>
-            <p>You could admire this beautiful space...or</p>
-            <p>perhaps going back to our homepage will be more appropriate</p>
-          </Info>
-          <StyledLink to="/">Go back to homepage</StyledLink>
-        </Container>
-      </Wrapper>
-    </>
+    <Wrapper>
+      <Container>
+        <Title>404 - Page Not Found</Title>
+        <Info>
+          <p>Sorry...you won't find what you need here</p>
+          <p>You could admire this beautiful space...or</p>
+          <p>perhaps going back to our homepage will be more appropriate</p>
+        </Info>
+        <StyledLink to="/">Go back to homepage</StyledLink>
+      </Container>
+    </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
   position: relative;
-  margin-top: 120px;
+  margin-top: 80px;
   background-size: cover;
   background-image: url(${Space});
-  height: 1000px;
+  height: 110vh;
+  margin-bottom: -25px;
 `;
 
 const Container = styled.div`
@@ -42,7 +41,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding-top: 20vh;
+  padding-top: 100px;
 `;
 
 const Title = styled.h1`
