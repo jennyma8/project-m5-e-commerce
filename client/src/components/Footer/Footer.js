@@ -16,7 +16,7 @@ const Footer = () => {
       </TopRow>
       <BottomRow>
         <Image src={Logo} alt="Logo" />
-        <span>@ 2020 Wearabology All Rights Reserves</span>
+        <span>@ 2020 Wearabology All Rights Reserved</span>
       </BottomRow>
     </Wrapper>
   );
