@@ -1,5 +1,5 @@
 import React from "react";
-import styled, { keyframes, css } from "styled-components";
+import styled, { keyframes, css, media } from "styled-components";
 import { NavLink } from "react-router-dom";
 import { Logo } from "../../assets";
 import { THEMES } from "../THEMES";
@@ -138,6 +138,17 @@ const Wrapper = styled.div`
 -o-transition:all 1s ease-in-out; */
   &:hover {
     background: white;
+  }
+
+  @media (max-width: 1200px) {
+    /* ... */
+  }
+
+  @media (max-width: 1024px) {
+    /* ... */
+  }
+
+  @media (max-width: 768px) {
   }
 `;
 

@@ -71,10 +71,10 @@ const HomePage = () => {
             <source src={Video} type="video/mp4" />
           </VideoSrc>
 
-          <Overlay>Best Selection of Watches</Overlay>
+          {/* <Overlay>Best Selection of Watches</Overlay>
           <Overlay2>Large Variety of Fitness Wearables</Overlay2>
           <Overlay3>Products for Pet and Animals</Overlay3>
-          <Overlay4>Heart Rate Monitor</Overlay4>
+          <Overlay4>Heart Rate Monitor</Overlay4> */}
         </VideoContainer>
         <Categories>Find What You Need</Categories>
         <WrapperCategories>
@@ -119,57 +119,57 @@ const VideoSrc = styled.video`
   z-index: 0;
 `;
 
-const Slide = keyframes`
-  from {
-    transform: translateX(0px)
-    opacity: 1;
-  }
-  to {
-    transform: translateX(-500%);
-    opacity: 0;
-    
-  }
-`;
+// const Slide = keyframes`
+//   from {
+//     transform: translateX(0px)
+//     opacity: 1;
+//   }
+//   to {
+//     transform: translateX(-500%);
+//     opacity: 0;
 
-const Overlay = styled.div`
-  position: absolute;
-  top: 30%;
-  right: 0%;
-  z-index: 1;
-  color: white;
-  font-size: 30px;
-  animation: ${Slide} 12s linear infinite;
-`;
+//   }
+// `;
 
-const Overlay2 = styled.div`
-  position: absolute;
-  top: 50%;
-  right: 0%;
-  z-index: 1;
-  color: white;
-  font-size: 30px;
-  animation: ${Slide} 12s linear infinite;
-`;
+// const Overlay = styled.div`
+//   position: absolute;
+//   top: 30%;
+//   right: 0%;
+//   z-index: 1;
+//   color: white;
+//   font-size: 30px;
+//   animation: ${Slide} 12s linear infinite;
+// `;
 
-const Overlay3 = styled.div`
-  position: absolute;
-  top: 20%;
-  right: 0%;
-  z-index: 1;
-  color: white;
-  font-size: 30px;
-  animation: ${Slide} 12s linear infinite;
-`;
+// const Overlay2 = styled.div`
+//   position: absolute;
+//   top: 50%;
+//   right: 0%;
+//   z-index: 1;
+//   color: white;
+//   font-size: 30px;
+//   animation: ${Slide} 12s linear infinite;
+// `;
 
-const Overlay4 = styled.div`
-  position: absolute;
-  top: 40%;
-  right: 0%;
-  z-index: 1;
-  color: white;
-  font-size: 30px;
-  animation: ${Slide} 12s linear infinite;
-`;
+// const Overlay3 = styled.div`
+//   position: absolute;
+//   top: 20%;
+//   right: 0%;
+//   z-index: 1;
+//   color: white;
+//   font-size: 30px;
+//   animation: ${Slide} 12s linear infinite;
+// `;
+
+// const Overlay4 = styled.div`
+//   position: absolute;
+//   top: 40%;
+//   right: 0%;
+//   z-index: 1;
+//   color: white;
+//   font-size: 30px;
+//   animation: ${Slide} 12s linear infinite;
+// `;
 const Categories = styled.div`
   font-size: 30px;
   margin: 10px 65px;
