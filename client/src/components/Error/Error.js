@@ -32,7 +32,7 @@ const Wrapper = styled.div`
   margin-top: 80px;
   background-size: cover;
   background-image: url(${Space});
-  height: 130vh;
+  height: 110vh;
   margin-bottom: -25px;
 `;
 
