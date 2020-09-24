@@ -51,7 +51,7 @@ const Wrapper = styled.div`
   margin: 50px;
   height: 750px;
   & p {
-    margin: 50px;
+    margin: 15px;
     font-style: italic;
   }
 `;
