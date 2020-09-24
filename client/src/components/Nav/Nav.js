@@ -30,7 +30,7 @@ const Nav = (props) => {
         <LogoSrc exact to="/">
           <img src={Logo} style={{ height: 70, width: 70 }} />
         </LogoSrc>
-        <Title>earobology</Title>
+        <Title>earabology</Title>
         <NavList>
           <StyledLink exact to="/">
             <LinkName>Home</LinkName>
