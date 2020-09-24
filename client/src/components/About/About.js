@@ -18,8 +18,8 @@ const About = () => {
         Meet Our <strong>Team</strong>
       </Title>
       <ProfileWrapper>
-        <ProfileContainer1>
-          <Pic1 src={Thinh} style={{ width: 170, height: 200 }} />
+        <ProfileContainer>
+          <Pic src={Thinh} style={{ width: 170, height: 200 }} />
           <div>Thinh Nguyen</div>
           <a href="https://github.com/g-thinh">
             <FiGithub />
@@ -39,9 +39,9 @@ const About = () => {
             Currently learning full-stack web development at Concordia's
             Bootcamp program.
           </p>
-        </ProfileContainer1>
-        <ProfileContainer2>
-          <Pic2 src={Ivan} style={{ width: 190, height: 200 }} />
+        </ProfileContainer>
+        <ProfileContainer>
+          <Pic src={Ivan} style={{ width: 190, height: 200 }} />
           <div>Ivan Escalante</div>
           <a href="https://github.com/iescalante">
             <FiGithub />
@@ -64,9 +64,9 @@ const About = () => {
             MongoDB in order to provide Database knowledge and become a
             full-stack web developer.
           </p>
-        </ProfileContainer2>
-        <ProfileContainer3>
-          <Pic3 src={Jenny} style={{ width: 180, height: 200 }} />
+        </ProfileContainer>
+        <ProfileContainer>
+          <Pic src={Jenny} style={{ width: 180, height: 200 }} />
           <div>Jenny Ma</div>
           <a href="https://github.com/jennyma8">
             <FiGithub />
@@ -85,9 +85,9 @@ const About = () => {
             triggered my curiosity which is Coding. My endeavours are to make
             this world a more creative and efficient place.
           </p>
-        </ProfileContainer3>
-        <ProfileContainer4>
-          <Pic4 src={Truong} style={{ width: 190, height: 200 }} />
+        </ProfileContainer>
+        <ProfileContainer>
+          <Pic src={Truong} style={{ width: 190, height: 200 }} />
           <div>Ton Truong Dao</div>
           <a href="https://github.com/tontruongdao">
             <FiGithub />
@@ -100,7 +100,7 @@ const About = () => {
           </a>
 
           <p>Hi, I'm Truong! I'm a Full Stack Web Developer.</p>
-        </ProfileContainer4>
+        </ProfileContainer>
       </ProfileWrapper>
     </Wrapper>
   );
@@ -108,10 +108,8 @@ const About = () => {
 
 const Wrapper = styled.div`
   position: relative;
-  margin-top: 150px;
-
-  margin: 50px;
-  height: 100%;
+  min-height: 90vh;
+  margin: 150px 50px 0px 50px;
 `;
 const Title = styled.div`
   text-align: center;
@@ -121,88 +119,18 @@ const Title = styled.div`
 
 const ProfileWrapper = styled.div`
   width: 100%;
+  height: 100%;
   display: flex;
   justify-content: space-between;
   text-align: center;
 `;
-const Pic1 = styled.img`
-  border-radius: 50%;
-  box-shadow: 5px 5px 15px 5px #000000;
-`;
-const Pic2 = styled.img`
-  border-radius: 50%;
-  box-shadow: 5px 5px 15px 5px #000000;
-`;
-const Pic3 = styled.img`
-  border-radius: 50%;
-  box-shadow: 5px 5px 15px 5px #000000;
-`;
-const Pic4 = styled.img`
+const Pic = styled.img`
   border-radius: 50%;
   box-shadow: 5px 5px 15px 5px #000000;
 `;
 
-const ProfileContainer1 = styled.div`
-  width: 500px;
-  & div {
-    font-size: 20px;
-  }
-  & a {
-    text-decoration: none;
-    color: black;
-    padding: 10px;
-  }
-  & p {
-    /* display: none; */
-    visibility: hidden;
-  }
-  &:hover p {
-    /* display: block; */
-    text-align: left;
-    visibility: visible;
-  }
-`;
-const ProfileContainer2 = styled.div`
-  width: 500px;
-  & div {
-    font-size: 20px;
-  }
-  & a {
-    text-decoration: none;
-    color: black;
-    padding: 10px;
-  }
-  & p {
-    /* display: none; */
-    visibility: hidden;
-  }
-  &:hover p {
-    /* display: block; */
-    text-align: left;
-    visibility: visible;
-  }
-`;
-const ProfileContainer3 = styled.div`
-  width: 500px;
-  & div {
-    font-size: 20px;
-  }
-  & a {
-    text-decoration: none;
-    color: black;
-    padding: 10px;
-  }
-  & p {
-    /* display: none; */
-    visibility: hidden;
-  }
-  &:hover p {
-    /* display: block; */
-    text-align: left;
-    visibility: visible;
-  }
-`;
-const ProfileContainer4 = styled.div`
+const ProfileContainer = styled.div`
+  height: 100%;
   width: 500px;
   & div {
     font-size: 20px;
