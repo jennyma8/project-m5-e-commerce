@@ -2,11 +2,40 @@ import React from "react";
 import styled from "styled-components";
 import { THEMES } from "../../components/THEMES";
 import CheckoutButton from "../UI/CheckoutButton";
+import { useHistory } from "react-router-dom";
 
 const OrderForm = () => {
+  const history = useHistory();
+
+  const postData = () => {
+    return fetch("/cart/checkout", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        firstName: document.getElementById("fname").value,
+        lastName: document.getElementById("lname").value,
+        email: document.getElementById("email").value,
+        address: document.getElementById("address").value,
+        city: document.getElementById("city").value,
+        province: document.getElementById("province").value,
+        postalCode: document.getElementById("postalCode").value,
+        country: document.getElementById("country").value,
+      }),
+    });
+  };
+
   function SubmitOrder(ev) {
     ev.preventDefault();
-    console.log("Order was Placed!");
+
+    postData()
+      .then((res) => res.json())
+      .then((json) => {
+        console.log(json);
+        history.push(`/checkout/${json.orderID}`);
+      });
   }
 
   return (
@@ -26,8 +55,8 @@ const OrderForm = () => {
               />
               <input
                 type="text"
-                id="fname"
-                name="firstname"
+                id="lname"
+                name="lastname"
                 placeholder="Last Name"
                 required
               />
