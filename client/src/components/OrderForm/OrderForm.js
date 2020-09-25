@@ -1,66 +1,179 @@
 import React from "react";
+import styled from "styled-components";
+import { THEMES } from "../../components/THEMES";
+import CheckoutButton from "../UI/CheckoutButton";
 
 const OrderForm = () => {
+  function SubmitOrder(ev) {
+    ev.preventDefault();
+    console.log("Order was Placed!");
+  }
+
   return (
-    <form>
-      <div>
-        <h1>Personal Information</h1>
-        <input
-          type="text"
-          id="fname"
-          name="firstname"
-          placeholder="First Name"
-          required
-        />
-        <input
-          type="text"
-          id="fname"
-          name="firstname"
-          placeholder="Last Name"
-          required
-        />
-        <input
-          type="text"
-          id="email"
-          name="email"
-          placeholder="Your Email"
-          required
-        />
-      </div>
-      <div>
-        <h1>Shipping Address</h1>
-        <input
-          type="text"
-          id="address"
-          name="address"
-          placeholder="Your Address"
-          required
-        />
-        <input type="text" id="city" name="city" placeholder="City" required />
-        <input
-          type="text"
-          id="province"
-          name="province"
-          placeholder="Province"
-          required
-        />
-        <input
-          type="text"
-          id="postalCode"
-          name="postalCode"
-          placeholder="Postal Code"
-          required
-        />
-        <input
-          type="text"
-          id="country"
-          name="country"
-          placeholder="Country"
-          required
-        />
-      </div>
-    </form>
+    <PaymentSection>
+      <SectionTitle>Payment</SectionTitle>
+      <FormSection>
+        <FormContent>
+          <Info>
+            <InfoHeader>Personal Information</InfoHeader>
+            <Top>
+              <input
+                type="text"
+                id="fname"
+                name="firstname"
+                placeholder="First Name"
+                required
+              />
+              <input
+                type="text"
+                id="fname"
+                name="firstname"
+                placeholder="Last Name"
+                required
+              />
+            </Top>
+            <Bottom>
+              <input
+                type="text"
+                id="email"
+                name="email"
+                placeholder="Your Email"
+                required
+              />
+            </Bottom>
+          </Info>
+          <Address>
+            <InfoHeader>Shipping Address</InfoHeader>
+            <Bottom>
+              <input
+                type="text"
+                id="address"
+                name="address"
+                placeholder="Your Address"
+                required
+              />
+            </Bottom>
+            <Top>
+              <input
+                type="text"
+                id="city"
+                name="city"
+                placeholder="City"
+                required
+              />
+              <input
+                type="text"
+                id="province"
+                name="province"
+                placeholder="Province"
+                required
+              />
+            </Top>
+            <Top>
+              <input
+                type="text"
+                id="postalCode"
+                name="postalCode"
+                placeholder="Postal Code"
+                required
+              />
+              <input
+                type="text"
+                id="country"
+                name="country"
+                placeholder="Country"
+                required
+              />
+            </Top>
+          </Address>
+        </FormContent>
+        <FormSubmit>
+          <CheckoutButton onClickHandler={(ev) => SubmitOrder(ev)}>
+            Place Order
+          </CheckoutButton>
+        </FormSubmit>
+      </FormSection>
+    </PaymentSection>
   );
 };
+
+const PaymentSection = styled.div`
+  background: hsla(0, 0%, 98%, 1);
+  flex: 5;
+  min-height: 100vh;
+  margin-left: 10px;
+`;
+
+const SectionTitle = styled.h1`
+  font-size: 22px;
+  margin-bottom: 10px;
+`;
+
+const FormSection = styled.form`
+  display: flex;
+  flex-flow: column;
+  /* align-items: center;
+  justify-content: center; */
+  /* justify-content: space-between; */
+  /* border: 3px solid green; */
+`;
+
+const FormContent = styled.div`
+  flex: 8;
+  min-height: 50vh;
+  /* border: 2px dashed green; */
+`;
+
+const FormSubmit = styled.div`
+  flex: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  /* border: 2px dashed green; */
+  margin-top: 8vh;
+`;
+
+const Info = styled.div`
+  padding: 0 12px;
+  /* display: flex;
+  flex-flow: column nowrap; */
+`;
+
+const Top = styled.div`
+  display: flex;
+  justify-content: center;
+
+  & input {
+    margin: 10px 5px;
+    width: 220px;
+    /* flex: 1; */
+    padding: 8px;
+  }
+  /* flex-flow: column nowrap; */
+`;
+
+const Bottom = styled.div`
+  display: flex;
+  margin: 15px 0;
+  justify-content: center;
+
+  & input {
+    width: 450px;
+    /* flex: 1; */
+    padding: 8px;
+    margin: 0 5px;
+  }
+`;
+
+const InfoHeader = styled.h1`
+  padding: 8px;
+  text-align: center;
+  font-size: 18px;
+`;
+
+const Address = styled.div`
+  padding: 0 12px;
+`;
 
 export default OrderForm;

@@ -46,11 +46,12 @@ const CheckoutPage = () => {
     <PageContainer>
       <PageTitle>Checkout Summary</PageTitle>
       <Layout>
-        <OrderCart data={CART} />
+        <OrderCart data={CART} price={TOTAL_PRICE} />
+        {/* 
         <PaymentSection>
-          <SectionTitle>Payment</SectionTitle>
-          <OrderForm />
-        </PaymentSection>
+          <SectionTitle>Payment</SectionTitle> */}
+        <OrderForm />
+        {/* </PaymentSection> */}
       </Layout>
     </PageContainer>
   );
@@ -61,11 +62,10 @@ const Layout = styled.div`
   justify-content: center;
   /* position: relative; */
   margin-bottom: 10vh;
-`;
 
-const SectionTitle = styled.h1`
-  font-size: 22px;
-  margin-bottom: 10px;
+  @media (max-width: 1200px) {
+    flex-flow: column;
+  }
 `;
 
 const PageTitle = styled.div`
@@ -89,62 +89,5 @@ const PageTitle = styled.div`
   font-size: 42px;
   font-weight: 400;
 `;
-
-const CartSection = styled.div`
-  flex: 5;
-  min-height: 50vh;
-  /* border: 1px solid red; */
-`;
-
-const PaymentSection = styled.div`
-  background: hsla(0, 0%, 98%, 1);
-  flex: 5;
-  height: 100vh;
-  margin-left: 10px;
-  /* border: 1px solid blue; */
-`;
-
-// ############################ TABLE STYLING #######################
-
-const Table = styled.table`
-  /* border: 2px solid red; */
-  width: 100%;
-`;
-
-const RowHeader = styled.tr`
-  padding: 5px;
-
-  & th {
-    padding: 8px;
-  }
-`;
-
-const RowContent = styled.tr`
-  /* border: 1px solid goldenrod; */
-  /* min-height: 80px; */
-  & td {
-    padding: 12px;
-    vertical-align: middle;
-  }
-`;
-
-const CellName = styled.td`
-  text-align: left;
-`;
-
-const CellQuantity = styled.td`
-  text-align: center;
-  color: green;
-`;
-
-const CellPrice = styled.td`
-  text-align: center;
-`;
-
-const ColName = styled.th``;
-
-const ColQty = styled.th``;
-
-const ColPrice = styled.th``;
 
 export default CheckoutPage;
