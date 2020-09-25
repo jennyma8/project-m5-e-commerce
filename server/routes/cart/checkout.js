@@ -1,4 +1,5 @@
 const CART = require("../../data/cart.json");
+const ITEMS = require("../../data/items.json");
 const ORDERS = require("../../data/orders.json");
 const { v4: uuidv4 } = require("uuid");
 
@@ -38,12 +39,30 @@ const postToCheckout = (req, res) => {
   // console.log("Checkout Request Received!", BODY);
 
   const orderID = RandomNumber(5000, 1);
-  console.log("Order Number is:", orderID);
-  console.log("Current Cart", CART);
+  // console.log("Order Number is:", orderID);
+  // console.log("Current Cart", CART);
 
   try {
     ORDERS[orderID] = { items: CART, customer: FormInfo };
-    console.log("Current Orders:", ORDERS);
+    // console.log("Current Orders:", ORDERS);
+
+    // This here is to remove the quantity of inventory based on the CART
+
+    console.log(
+      "Accessing all cart items",
+      Object.keys(ORDERS[orderID].items).map(Number)
+    );
+
+    const CurrentOrderItems = Object.keys(ORDERS[orderID].items).map(Number);
+
+    CurrentOrderItems.map((order) => {
+      let orderItem = ITEMS.find((item) => item._id === order);
+      // console.log("Item Before Update", orderItem);
+      orderItem.numInStock -= CART[order].quantity;
+      // console.log("Cart Item to update", CART);
+      // console.log("Item After Update", orderItem);
+    });
+
     return res.status(201).json({
       success: true,
       orderID: orderID,
