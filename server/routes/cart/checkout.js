@@ -53,12 +53,16 @@ const postToCheckout = (req, res) => {
       Object.keys(ORDERS[orderID].items).map(Number)
     );
 
-    const CurrentOrderItems = Object.keys(ORDERS[orderID].items).map(Number);
+    // This returns all of the Cart's item IDs that will be used
+    // to update the ITEMS database
+    const CurrentOrderItems = Object.keys(CART).map(Number);
 
-    CurrentOrderItems.map((order) => {
-      let orderItem = ITEMS.find((item) => item._id === order);
+    // const CurrentOrderItems = Object.keys(ORDERS[orderID].items).map(Number);
+
+    CurrentOrderItems.map((orderID) => {
+      let orderItem = ITEMS.find((item) => item._id === orderID);
       // console.log("Item Before Update", orderItem);
-      orderItem.numInStock -= CART[order].quantity;
+      orderItem.numInStock -= CART[orderID].quantity;
       // console.log("Cart Item to update", CART);
       // console.log("Item After Update", orderItem);
     });
