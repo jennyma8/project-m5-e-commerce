@@ -3,6 +3,11 @@ import styled from "styled-components";
 
 const OrderCart = (props) => {
   const CART = props.data;
+  const PRICE = parseFloat(props.price).toFixed(2);
+  const QST = parseFloat(props.price * 0.05).toFixed(2);
+  const GST = parseFloat(props.price * 0.0975).toFixed(2);
+  const TOTALPRICE = parseFloat(PRICE + QST + GST).toFixed(2);
+
   return (
     <CartSection>
       <SectionTitle>Order Summary</SectionTitle>
@@ -24,6 +29,20 @@ const OrderCart = (props) => {
           );
         })}
       </Table>
+      <SaleSummary>
+        <Sub>
+          Subtotal: <span>${PRICE}</span>
+        </Sub>
+        <Sub>
+          QST: <span>${QST}</span>
+        </Sub>
+        <Sub>
+          GST: <span>${GST}</span>
+        </Sub>
+        <TotalPrice>
+          Total: <span>${TOTALPRICE}</span>
+        </TotalPrice>
+      </SaleSummary>
     </CartSection>
   );
 };
@@ -36,13 +55,44 @@ const SectionTitle = styled.h1`
 const CartSection = styled.div`
   flex: 5;
   min-height: 50vh;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
   /* border: 1px solid red; */
+`;
+
+const SaleSummary = styled.div`
+  flex: 3;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  padding: 0 12px;
+`;
+
+const TotalPrice = styled.h1`
+  font-size: 28px;
+  margin-top: 5vh;
+  padding: 3vh 0;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid gainsboro;
+  border-top: 1px solid gainsboro;
+`;
+
+const Sub = styled.h1`
+  margin: 3px 0;
+  display: flex;
+  font-weight: 400;
+  justify-content: space-between;
 `;
 // ############################ TABLE STYLING #######################
 
 const Table = styled.table`
+  flex: 7;
   /* border: 2px solid red; */
   width: 100%;
+  border-bottom: 1px solid gainsboro;
+  margin-bottom: 5vh;
 `;
 
 const RowHeader = styled.tr`
