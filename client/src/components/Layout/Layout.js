@@ -9,6 +9,7 @@ import About from "../About";
 import CartContainer from "../../containers/CartContainer";
 import Careers from "../Careers";
 import CheckoutPage from "../../containers/CheckoutPage";
+import OrderConfirmation from "../../containers/OrderConfirmation";
 import Error from "../Error";
 import Footer from "../Footer";
 
@@ -35,6 +36,9 @@ const Layout = () => {
           </Route>
           <Route path="/items">
             <ProductsPage />
+          </Route>
+          <Route exact={true} path="/checkout/:id">
+            <OrderConfirmation />
           </Route>
           <Route path="/checkout">
             <CheckoutPage />
