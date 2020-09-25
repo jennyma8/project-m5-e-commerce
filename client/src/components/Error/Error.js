@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Space from "../../assets/Space.jpg";
-import PageContainer from "../../components/UI/PageContainer";
+import { useSpring, animated } from "react-spring";
 
 const Error = () => {
   React.useEffect(() => {
@@ -11,6 +11,17 @@ const Error = () => {
       behavior: "smooth",
     });
   }, []);
+  const [toggled, setToggled] = React.useState(false);
+  const style = useSpring({
+    transform: toggled ? "scale(1.5)" : "scale(1)",
+    config: {
+      mass: 0.5,
+      tension: 400,
+      friction: 2,
+    },
+    backgroundColor: toggled ? "turquoise" : "magenta",
+    outline: "none",
+  });
 
   return (
     <Wrapper>
@@ -19,7 +30,12 @@ const Error = () => {
         <Info>
           <p>Sorry...you won't find what you need here</p>
           <p>You could admire this beautiful space...or</p>
-          <p>perhaps going back to our homepage will be more appropriate</p>
+          <p>Play with this button...or</p>
+          <animated.button
+            style={{ padding: "10px 20px", borderRadius: "10px", ...style }}
+            onClick={() => setToggled(!toggled)}
+          />
+          <p>Perhaps going back to our homepage will be more appropriate</p>
         </Info>
         <StyledLink to="/">Go back to homepage</StyledLink>
       </Container>
