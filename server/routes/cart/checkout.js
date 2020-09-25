@@ -3,10 +3,18 @@ const ITEMS = require("../../data/items.json");
 const ORDERS = require("../../data/orders.json");
 const { v4: uuidv4 } = require("uuid");
 
+// ################### PRELIM FUNCTIONS ###########################
+
+const QST = 0.09975;
+const GST = 0.05;
+
 //This is the shorter version of the UUID
+// there is low risk of having the same order ID ~ 0.02%
 function RandomNumber(max, min) {
   return Math.floor(Math.random() * (max - min) + min);
 }
+
+// ################################################################
 
 //This endpoint will be reached at the end of the checkout process
 //at the confirmation page. It will clear the cart from the BE
@@ -43,15 +51,31 @@ const postToCheckout = (req, res) => {
   // console.log("Current Cart", CART);
 
   try {
-    ORDERS[orderID] = { items: CART, customer: FormInfo };
-    // console.log("Current Orders:", ORDERS);
+    console.log("Current Cart:", CART);
+
+    const totalPrice = Object.values(CART)
+      .reduce((sum, price) => sum + price.price * price.quantity, 0)
+      .toFixed(2);
+
+    const totalQuantity = Object.values(CART).reduce(
+      (sum, q) => sum + q.quantity,
+      0
+    );
+
+    ORDERS[orderID] = {
+      items: CART,
+      customer: FormInfo,
+      finalPrice: parseFloat(totalPrice * (GST + QST)).toFixed(2),
+      qtyToShip: totalQuantity,
+    };
+    console.log("Current Orders:", ORDERS);
 
     // This here is to remove the quantity of inventory based on the CART
 
-    console.log(
-      "Accessing all cart items",
-      Object.keys(ORDERS[orderID].items).map(Number)
-    );
+    // console.log(
+    //   "Accessing all cart items",
+    //   Object.keys(ORDERS[orderID].items).map(Number)
+    // );
 
     // This returns all of the Cart's item IDs that will be used
     // to update the ITEMS database
