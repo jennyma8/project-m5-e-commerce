@@ -100,14 +100,16 @@ const ProductItemPage = () => {
               {PRODUCT.company.name}
             </BrandLink>
           </Brand>
-          <ProductItemButton
-            onClickHandler={() => {
-              const quantity = document.getElementById("quantity").value;
-              addItems(quantity, PRODUCT._id);
-            }}
-          >
-            Add To Cart
-          </ProductItemButton>
+          {PRODUCT.numInStock > 0 && (
+            <ProductItemButton
+              onClickHandler={() => {
+                const quantity = document.getElementById("quantity").value;
+                addItems(quantity, PRODUCT._id);
+              }}
+            >
+              Add To Cart
+            </ProductItemButton>
+          )}
         </ItemWrapper>
       </Wrapper>
     </PageContainer>
