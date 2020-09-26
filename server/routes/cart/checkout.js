@@ -50,6 +50,13 @@ const postToCheckout = (req, res) => {
   // console.log("Order Number is:", orderID);
   // console.log("Current Cart", CART);
 
+  // if (CART) {
+  //   return res.status(404).json({
+  //     success: false,
+  //     error: "No Cart Items",
+  //   });
+  // }
+
   try {
     console.log("Current Cart:", CART);
 

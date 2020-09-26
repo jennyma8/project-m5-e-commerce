@@ -161,6 +161,11 @@ const CellName = styled.td`
 const CellQuantity = styled.td`
   text-align: center;
   color: green;
+
+  & input {
+    text-align: center;
+    width: 25%;
+  }
 `;
 
 const CellPrice = styled.td`
