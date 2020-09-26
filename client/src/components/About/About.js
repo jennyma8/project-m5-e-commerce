@@ -92,7 +92,7 @@ const About = () => {
           <a href="https://github.com/tontruongdao">
             <FiGithub />
           </a>
-          <a>
+          <a href="https://www.linkedin.com">
             <AiFillLinkedin />
           </a>
           <a href="https://twitter.com">

@@ -29,7 +29,7 @@ const Nav = (props) => {
       <Wrapper reduceNav={reduceNav}>
         <LogoWrapper>
           <LogoSrc exact to="/">
-            <img src={Logo} style={{ height: 70, width: 70 }} />
+            <img src={Logo} alt="Logo" style={{ height: 70, width: 70 }} />
           </LogoSrc>
           <Title>earabology</Title>
         </LogoWrapper>
