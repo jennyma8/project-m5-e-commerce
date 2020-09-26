@@ -1,12 +1,37 @@
 import React from "react";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { receiveCartItems, updateCartItem } from "../../actions";
 
 const OrderCart = (props) => {
+  const dispatch = useDispatch();
   const CART = props.data;
   const PRICE = parseFloat(props.price).toFixed(2);
-  const QST = parseFloat(props.price * 0.05).toFixed(2);
-  const GST = parseFloat(props.price * 0.0975).toFixed(2);
-  const TOTALPRICE = parseFloat(PRICE + QST + GST).toFixed(2);
+  const QST = parseFloat(props.price * 0.09975).toFixed(2);
+  const GST = parseFloat(props.price * 0.05).toFixed(2);
+  const TOTALPRICE = parseFloat(props.price * (1 + 0.05 + 0.09975)).toFixed(2);
+
+  function updateCartItem(id, q) {
+    const newQuantity = Number(q);
+    const options = {
+      method: "PUT",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: id,
+        quantity: newQuantity,
+      }),
+    };
+
+    fetch("/cart", options)
+      .then((res) => res.json())
+      .then((json) => {
+        // dispatch(updateCartItem());
+        dispatch(receiveCartItems(json));
+      });
+  }
 
   return (
     <CartSection>
@@ -23,7 +48,16 @@ const OrderCart = (props) => {
           return (
             <RowContent>
               <CellName>{item.name}</CellName>
-              <CellQuantity>{item.quantity}</CellQuantity>
+              <CellQuantity>
+                <input
+                  type="text"
+                  id="quantity"
+                  value={item.quantity}
+                  onChange={(ev) => {
+                    updateCartItem(item.id, ev.target.value);
+                  }}
+                />
+              </CellQuantity>
               <CellPrice>${item.price}</CellPrice>
             </RowContent>
           );
