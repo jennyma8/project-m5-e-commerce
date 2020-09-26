@@ -173,6 +173,15 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
 
+    ${(props) =>
+      props.reduceNav
+        ? css`
+            animation: none;
+          `
+        : css`
+            animation: none;
+          `}
+
     & li {
       display: none;
     }
