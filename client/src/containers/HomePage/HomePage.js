@@ -175,11 +175,14 @@ const Categories = styled.div`
   margin: 10px 65px;
   border-bottom: 1px solid lightgrey;
   padding: 5px;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const WrapperCategories = styled.div`
   display: flex;
-  height: 30vh;
+  /* height: 30vh; */
   margin-bottom: 5vh;
   margin-top: 5vh;
 
@@ -191,7 +194,9 @@ const WrapperCategories = styled.div`
   }
 
   @media (max-width: 768px) {
-    height: 20vh;
+    display: flex;
+    flex-direction: column;
+    /* height: 20vh; */
   }
 `;
 
@@ -256,6 +261,11 @@ const Featured = styled.div`
   display: flex;
   justify-content: space-around;
   text-align: center;
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const Product = styled.div`

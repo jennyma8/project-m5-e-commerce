@@ -27,10 +27,12 @@ const Nav = (props) => {
   return (
     <>
       <Wrapper reduceNav={reduceNav}>
-        <LogoSrc exact to="/">
-          <img src={Logo} style={{ height: 70, width: 70 }} />
-        </LogoSrc>
-        <Title>earabology</Title>
+        <LogoWrapper>
+          <LogoSrc exact to="/">
+            <img src={Logo} style={{ height: 70, width: 70 }} />
+          </LogoSrc>
+          <Title>earabology</Title>
+        </LogoWrapper>
         <NavList>
           <StyledLink exact to="/">
             <LinkName>Home</LinkName>
@@ -69,9 +71,13 @@ const LogoSrc = styled(NavLink)`
   margin-left: 20px;
 `;
 const Title = styled.div`
-  padding-top: 25px;
+  padding-top: 40px;
   font-weight: bold;
   margin-right: 100px;
+`;
+
+const LogoWrapper = styled.div`
+  display: flex;
 `;
 const StyledLink = styled(NavLink)`
   text-decoration: none;
@@ -139,7 +145,17 @@ const Wrapper = styled.div`
   &:hover {
     background: white;
   }
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+  }
+`;
 
+const NavList = styled.li`
+  display: flex;
+  flex: 1;
+  justify-content: space-around;
+  align-items: center;
   @media (max-width: 1200px) {
     /* ... */
   }
@@ -149,14 +165,9 @@ const Wrapper = styled.div`
   }
 
   @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
   }
-`;
-
-const NavList = styled.li`
-  display: flex;
-  flex: 1;
-  justify-content: space-around;
-  align-items: center;
 `;
 
 const Icon = styled.div`
