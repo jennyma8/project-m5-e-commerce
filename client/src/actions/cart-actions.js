@@ -27,6 +27,10 @@ export const addCartItem = () => ({
   type: "ADD_CART_ITEM",
 });
 
+export const updateCartItem = () => ({
+  type: "UPDATE_CART_ITEM",
+});
+
 export const deleteAllCartItems = () => ({
   type: "DELETE_ALL_CART_ITEMS",
 });
