@@ -12,7 +12,7 @@ const OrderCart = (props) => {
   const TOTALPRICE = parseFloat(props.price * (1 + 0.05 + 0.09975)).toFixed(2);
 
   function updateCartItem(id, q) {
-    const newQuantity = Number(q);
+    const newQuantity = parseInt(q);
     const options = {
       method: "PUT",
       headers: {
@@ -28,7 +28,7 @@ const OrderCart = (props) => {
     fetch("/cart", options)
       .then((res) => res.json())
       .then((json) => {
-        // dispatch(updateCartItem());
+        dispatch(updateCartItem());
         dispatch(receiveCartItems(json));
       });
   }
@@ -47,7 +47,10 @@ const OrderCart = (props) => {
         {CART.map((item) => {
           return (
             <RowContent>
-              <CellName>{item.name}</CellName>
+              <CellName>
+                {item.name} -{" "}
+                {item.maxQty && <Warning>Max Quantity Reached!</Warning>}
+              </CellName>
               <CellQuantity>
                 <input
                   type="text"
@@ -127,6 +130,11 @@ const Table = styled.table`
   width: 100%;
   border-bottom: 1px solid gainsboro;
   margin-bottom: 5vh;
+`;
+
+const Warning = styled.span`
+  font-style: italic;
+  color: red;
 `;
 
 const RowHeader = styled.tr`
