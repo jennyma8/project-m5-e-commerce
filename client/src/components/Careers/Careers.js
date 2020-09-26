@@ -49,10 +49,13 @@ const Wrapper = styled.div`
   margin-top: 120px;
 
   margin: 50px;
-  height: 750px;
+  /* height: 750px; */
   & p {
     margin: 15px;
     font-style: italic;
+  }
+
+  @media (max-width: 768px) {
   }
 `;
 

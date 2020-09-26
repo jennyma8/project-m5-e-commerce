@@ -82,6 +82,7 @@ const LogoWrapper = styled.div`
     display: flex;
     align-items: center;
     padding-top: 10px;
+    padding-bottom: 10px;
   }
 `;
 const StyledLink = styled(NavLink)`
