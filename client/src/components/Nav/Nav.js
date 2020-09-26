@@ -147,7 +147,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 80px;
+
   background: gray;
   text-decoration: none;
   transition: all 1s ease-in-out;
@@ -172,7 +172,6 @@ const Wrapper = styled.div`
   @media (max-width: 768px) {
     display: flex;
     flex-direction: column;
-    transition: none;
 
     & li {
       display: none;
