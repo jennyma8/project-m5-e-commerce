@@ -148,6 +148,15 @@ const Wrapper = styled.div`
   @media (max-width: 768px) {
     display: flex;
     flex-direction: column;
+
+    & li {
+      display: none;
+    }
+    &:hover li {
+      display: flex;
+      width: 100%;
+      background: gray;
+    }
   }
 `;
 
