@@ -1,5 +1,5 @@
 import React from "react";
-import styled, { keyframes, css, media } from "styled-components";
+import styled, { keyframes, css } from "styled-components";
 import { NavLink } from "react-router-dom";
 import { Logo } from "../../assets";
 import { THEMES } from "../THEMES";
@@ -73,13 +73,14 @@ const LogoSrc = styled(NavLink)`
 const Title = styled.div`
   padding-top: 40px;
   font-weight: bold;
-  margin-right: 100px;
+  /* margin-right: 100px; */
 `;
 
 const LogoWrapper = styled.div`
   display: flex;
   @media (max-width: 768px) {
     display: flex;
+    justify-content: center;
     align-items: center;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -186,6 +187,7 @@ const Wrapper = styled.div`
 `;
 
 const NavList = styled.li`
+  margin-left: 100px;
   display: flex;
   flex: 1;
   justify-content: space-around;

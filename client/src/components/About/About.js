@@ -1,5 +1,5 @@
 import React from "react";
-import styled, { media } from "styled-components";
+import styled from "styled-components";
 import { Ivan, Thinh, Truong, Jenny } from "../../assets";
 import { FiGithub, FiTwitter } from "react-icons/fi";
 import { AiFillLinkedin } from "react-icons/ai";
