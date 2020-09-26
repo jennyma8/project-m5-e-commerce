@@ -44,15 +44,17 @@ const CheckoutPage = () => {
 
   return (
     <PageContainer>
-      <PageTitle>Checkout Summary</PageTitle>
-      <Layout>
-        <OrderCart data={CART} price={TOTAL_PRICE} />
-        {/* 
+      <Fixer>
+        <PageTitle>Checkout Summary</PageTitle>
+        <Layout>
+          <OrderCart data={CART} price={TOTAL_PRICE} />
+          {/* 
         <PaymentSection>
           <SectionTitle>Payment</SectionTitle> */}
-        <OrderForm />
-        {/* </PaymentSection> */}
-      </Layout>
+          <OrderForm data={CART} />
+          {/* </PaymentSection> */}
+        </Layout>
+      </Fixer>
     </PageContainer>
   );
 };
@@ -77,10 +79,10 @@ const PageTitle = styled.div`
   margin-top: 5vh;
   margin-bottom: 5vh;
 
-  display: flex;
+  /* display: flex;
   justify-content: center;
   align-items: center;
-  flex-flow: column;
+  flex-flow: column; */
 
   border-radius: 12px;
   background-color: ${THEMES.Primary};
@@ -88,6 +90,10 @@ const PageTitle = styled.div`
   color: white;
   font-size: 42px;
   font-weight: 400;
+`;
+
+const Fixer = styled.div`
+  padding-top: 2px;
 `;
 
 export default CheckoutPage;

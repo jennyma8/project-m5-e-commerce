@@ -1,10 +1,17 @@
 const cart = require("express").Router();
 // const { getCart, addToCart, removeFromCart, clearCart } = require("./all");
 const { getCheckout, postToCheckout } = require("./checkout");
-const { getCart, addToCart, removeFromCart, clearCart } = require("./new");
+const {
+  getCart,
+  addToCart,
+  updateCart,
+  removeFromCart,
+  clearCart,
+} = require("./new");
 
 cart.get("/", getCart);
 cart.post("/", addToCart);
+cart.put("/", updateCart);
 cart.delete("/:id", removeFromCart);
 cart.delete("/", clearCart);
 cart.get("/checkout/:id", getCheckout);
