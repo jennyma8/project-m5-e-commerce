@@ -169,7 +169,7 @@ const Wrapper = styled.div`
       display: flex;
       width: 100%;
       background: gray;
-      padding: 5px;
+      margin-top: -7px;
     }
   }
 `;
