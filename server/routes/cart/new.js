@@ -152,30 +152,22 @@ const updateCart = (req, res) => {
 
   const cartItem = ITEMS.find((item) => item._id === reqId);
   const cartIDs = Object.keys(CART).map(Number);
-  const alreadyHasItem = cartIDs.find((key) => key === reqId);
 
   try {
-    if (alreadyHasItem) {
-      // Verify that you only add the available quantity in stock
-      if (cartItem.numInStock <= CART[reqId].quantity) {
-        CART[reqId].quantity = cartItem.numInStock - reqQuantity;
-        CART[reqId].maxQty = true;
-      }
-      // ############# THIS IS THE ONLY THING DIFFERENT TO ADD CART ######
-      CART[reqId].quantity = reqQuantity;
-    } else {
-      const quantity =
-        reqQuantity >= cartItem.numInStock ? cartItem.numInStock : reqQuantity;
+    // console.log("Before max Quantity?", CART[reqId].maxQty);
+    const quantity =
+      reqQuantity >= cartItem.numInStock ? cartItem.numInStock : reqQuantity;
 
-      CART[reqId] = {
-        id: cartItem._id,
-        name: cartItem.name,
-        price: parseFloat(cartItem.price).toFixed(2),
-        quantity: quantity,
-        maxQty: reqQuantity >= cartItem.numInStock,
-      };
-    }
+    CART[reqId] = {
+      id: cartItem._id,
+      name: cartItem.name,
+      price: parseFloat(cartItem.price).toFixed(2),
+      quantity: quantity,
+      maxQty: reqQuantity >= cartItem.numInStock,
+    };
 
+    // console.log("After Quantity:", CART[reqId].quantity);
+    // console.log("Max Quantity?", CART[reqId].maxQty);
     // Update the total quantity of the cart items
     const totalQuantity = Object.values(CART).reduce(
       (sum, q) => sum + q.quantity,
