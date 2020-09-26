@@ -62,8 +62,8 @@ const getCart = (req, res) => {
 const addToCart = (req, res) => {
   const reqId = req.body.id;
   const reqQuantity = req.body.quantity;
-  console.log("Item Request is:", reqId);
-  console.log("Body sent is", req.body);
+  // console.log("Item Request is:", reqId);
+  // console.log("Body sent is", req.body);
 
   // Check if this id is valid
   if (!reqId) {
@@ -142,6 +142,83 @@ const addToCart = (req, res) => {
   }
 };
 
+// ###################### UPDATE CART ITEM ###################
+
+const updateCart = (req, res) => {
+  const reqId = req.body.id;
+  const reqQuantity = req.body.quantity;
+  console.log("Item Request is:", reqId);
+  console.log("Body sent is", req.body);
+
+  const cartItem = ITEMS.find((item) => item._id === reqId);
+  const cartIDs = Object.keys(CART).map(Number);
+  const alreadyHasItem = cartIDs.find((key) => key === reqId);
+
+  try {
+    if (alreadyHasItem) {
+      // Verify that you only add the available quantity in stock
+      if (cartItem.numInStock <= CART[reqId].quantity) {
+        CART[reqId].quantity = cartItem.numInStock - reqQuantity;
+        CART[reqId].maxQty = true;
+      }
+      // ############# THIS IS THE ONLY THING DIFFERENT TO ADD CART ######
+      CART[reqId].quantity = reqQuantity;
+    } else {
+      const quantity =
+        reqQuantity >= cartItem.numInStock ? cartItem.numInStock : reqQuantity;
+
+      CART[reqId] = {
+        id: cartItem._id,
+        name: cartItem.name,
+        price: parseFloat(cartItem.price).toFixed(2),
+        quantity: quantity,
+        maxQty: reqQuantity >= cartItem.numInStock,
+      };
+    }
+
+    // Update the total quantity of the cart items
+    const totalQuantity = Object.values(CART).reduce(
+      (sum, q) => sum + q.quantity,
+      0
+    );
+    const totalPrice = Object.values(CART).reduce(
+      (sum, price) => sum + price.price * price.quantity,
+      0
+    );
+
+    // Check if you have reached the limit of the numInStock, it will send you an error message
+
+    if (CART[reqId].quantity == cartItem.numInStock) {
+      return res.status(400).json({
+        success: false,
+        CART,
+        totalQuantity: totalQuantity,
+        totalPrice: parseFloat(totalPrice).toFixed(2),
+        error: "You have reached the limit",
+      });
+    }
+    return res.status(200).json({
+      success: true,
+      CART,
+      totalQuantity: totalQuantity,
+      totalPrice: parseFloat(totalPrice).toFixed(2),
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      code: error,
+      error: "Server Error",
+    });
+  }
+
+  if (!reqId) {
+    return res.status(404).json({
+      success: false,
+      error: "No item found",
+    });
+  }
+};
+
 // ################# DELETE ITEM FROM CART ###################
 
 // // the expected body of the DELETE request to "/cart/:id"
@@ -210,4 +287,4 @@ const clearCart = (req, res) => {
   }
 };
 
-module.exports = { getCart, addToCart, removeFromCart, clearCart };
+module.exports = { getCart, addToCart, updateCart, removeFromCart, clearCart };
