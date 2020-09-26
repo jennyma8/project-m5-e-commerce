@@ -39,6 +39,23 @@ time, mark, audio, video {
 	/* font-family: 'Lato',-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
   vertical-align: baseline;
   font-family: 'Roboto', sans-serif;
+  ::-webkit-scrollbar {
+        width: 20px;
+      }
+
+      ::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px white;
+        border-radius: 10px;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: white;
+        border-radius: 10px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: lightgrey;
+      }
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
