@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { receiveCartItems } from "../../actions/cart-actions";
 import { useDispatch } from "react-redux";
+import { AiOutlineCheckCircle } from "react-icons/ai";
 
 const OrderConfirmation = () => {
   const dispatch = useDispatch();
@@ -21,7 +22,14 @@ const OrderConfirmation = () => {
 
   return (
     <PageContainer>
-      <Title>Order #{id} Confirmed</Title>
+      <Title>
+        <AiOutlineCheckCircle
+          size={50}
+          style={{ color: "green", marginBottom: "20px" }}
+        />
+        <div>Thank you for your purchase!</div>
+        <div>Your order confirmation is #{id}.</div>
+      </Title>
     </PageContainer>
   );
 };
@@ -30,6 +38,7 @@ const Title = styled.h1`
   width: 100%;
   height: 80vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   font-size: 32px;

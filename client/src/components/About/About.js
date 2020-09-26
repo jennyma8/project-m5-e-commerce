@@ -1,5 +1,5 @@
 import React from "react";
-import styled, { media } from "styled-components";
+import styled from "styled-components";
 import { Ivan, Thinh, Truong, Jenny } from "../../assets";
 import { FiGithub, FiTwitter } from "react-icons/fi";
 import { AiFillLinkedin } from "react-icons/ai";
@@ -92,7 +92,7 @@ const About = () => {
           <a href="https://github.com/tontruongdao">
             <FiGithub />
           </a>
-          <a>
+          <a href="https://www.linkedin.com">
             <AiFillLinkedin />
           </a>
           <a href="https://twitter.com">
@@ -135,6 +135,8 @@ const ProfileWrapper = styled.div`
   @media (max-width: 768px) {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 `;
 

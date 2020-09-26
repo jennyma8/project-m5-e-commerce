@@ -1,5 +1,5 @@
 import React from "react";
-import styled, { keyframes, css, media } from "styled-components";
+import styled, { keyframes, css } from "styled-components";
 import { NavLink } from "react-router-dom";
 import { Logo } from "../../assets";
 import { THEMES } from "../THEMES";
@@ -29,7 +29,7 @@ const Nav = (props) => {
       <Wrapper reduceNav={reduceNav}>
         <LogoWrapper>
           <LogoSrc exact to="/">
-            <img src={Logo} style={{ height: 70, width: 70 }} />
+            <img src={Logo} alt="Logo" style={{ height: 70, width: 70 }} />
           </LogoSrc>
           <Title>earabology</Title>
         </LogoWrapper>
@@ -73,13 +73,14 @@ const LogoSrc = styled(NavLink)`
 const Title = styled.div`
   padding-top: 40px;
   font-weight: bold;
-  margin-right: 100px;
+  /* margin-right: 100px; */
 `;
 
 const LogoWrapper = styled.div`
   display: flex;
   @media (max-width: 768px) {
     display: flex;
+    justify-content: center;
     align-items: center;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -146,7 +147,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 80px;
+
   background: gray;
   text-decoration: none;
   transition: all 1s ease-in-out;
@@ -169,7 +170,6 @@ const Wrapper = styled.div`
   }
 
   @media (max-width: 768px) {
-    height: 120px;
     display: flex;
     flex-direction: column;
 
@@ -186,6 +186,7 @@ const Wrapper = styled.div`
 `;
 
 const NavList = styled.li`
+  margin-left: 100px;
   display: flex;
   flex: 1;
   justify-content: space-around;
@@ -198,6 +199,7 @@ const NavList = styled.li`
   }
 
   @media (max-width: 768px) {
+    margin-left: 0px;
     display: flex;
     flex-direction: column;
   }
