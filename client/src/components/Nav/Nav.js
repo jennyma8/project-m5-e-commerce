@@ -27,10 +27,12 @@ const Nav = (props) => {
   return (
     <>
       <Wrapper reduceNav={reduceNav}>
-        <LogoSrc exact to="/">
-          <img src={Logo} style={{ height: 70, width: 70 }} />
-        </LogoSrc>
-        <Title>earabology</Title>
+        <LogoWrapper>
+          <LogoSrc exact to="/">
+            <img src={Logo} style={{ height: 70, width: 70 }} />
+          </LogoSrc>
+          <Title>earabology</Title>
+        </LogoWrapper>
         <NavList>
           <StyledLink exact to="/">
             <LinkName>Home</LinkName>
@@ -69,13 +71,26 @@ const LogoSrc = styled(NavLink)`
   margin-left: 20px;
 `;
 const Title = styled.div`
-  padding-top: 25px;
+  padding-top: 40px;
   font-weight: bold;
   margin-right: 100px;
+`;
+
+const LogoWrapper = styled.div`
+  display: flex;
+  @media (max-width: 768px) {
+    display: flex;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
 `;
 const StyledLink = styled(NavLink)`
   text-decoration: none;
   color: black;
+  @media (max-width: 768px) {
+    padding: 5px;
+  }
 `;
 const LinkName = styled.span`
   text-decoration: none;
@@ -86,11 +101,21 @@ const LinkName = styled.span`
   /* & span {
     padding: 5px;
   } */
-
+  @media (max-width: 1024px) {
+    & span {
+      display: none;
+    }
+  }
   &:hover {
     color: #cfba4f;
     cursor: pointer;
     border-bottom: 2px solid grey;
+  }
+
+  @media (max-width: 768px) {
+    & span {
+      display: inline;
+    }
   }
 `;
 
@@ -140,15 +165,23 @@ const Wrapper = styled.div`
     background: white;
   }
 
-  @media (max-width: 1200px) {
-    /* ... */
-  }
-
   @media (max-width: 1024px) {
-    /* ... */
   }
 
   @media (max-width: 768px) {
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+
+    & li {
+      display: none;
+    }
+    &:hover li {
+      display: flex;
+      width: 100%;
+      background: gray;
+      margin-top: -7px;
+    }
   }
 `;
 
@@ -157,10 +190,17 @@ const NavList = styled.li`
   flex: 1;
   justify-content: space-around;
   align-items: center;
-`;
+  @media (max-width: 1200px) {
+    /* ... */
+  }
 
-const Icon = styled.div`
-  padding: 2px;
+  @media (max-width: 1024px) {
+  }
+
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 const CartButton = styled.button`

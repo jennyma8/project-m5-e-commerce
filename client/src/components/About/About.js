@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { media } from "styled-components";
 import { Ivan, Thinh, Truong, Jenny } from "../../assets";
 import { FiGithub, FiTwitter } from "react-icons/fi";
 import { AiFillLinkedin } from "react-icons/ai";
@@ -123,7 +123,21 @@ const ProfileWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   text-align: center;
+
+  @media (max-width: 1200px) {
+    /* ... */
+  }
+
+  @media (max-width: 1024px) {
+    /* ... */
+  }
+
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
+
 const Pic = styled.img`
   border-radius: 50%;
   box-shadow: 5px 5px 15px 5px #000000;
