@@ -87,7 +87,6 @@ const addToCart = (req, res) => {
 
   try {
     if (alreadyHasItem) {
-      console.log(cartItem.numInStock, CART[reqId].quantity);
       // Verify that you only add the available quantity in stock
       if (CART[reqId].quantity + reqQuantity >= cartItem.numInStock) {
         CART[reqId].quantity = cartItem.numInStock - reqQuantity;
