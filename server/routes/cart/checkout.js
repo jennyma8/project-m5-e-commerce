@@ -53,9 +53,10 @@ const postToCheckout = (req, res) => {
   try {
     console.log("Current Cart:", CART);
 
-    const totalPrice = Object.values(CART)
-      .reduce((sum, price) => sum + price.price * price.quantity, 0)
-      .toFixed(2);
+    const totalPrice = Object.values(CART).reduce(
+      (sum, price) => sum + price.price * price.quantity,
+      0
+    );
 
     const totalQuantity = Object.values(CART).reduce(
       (sum, q) => sum + q.quantity,
@@ -65,7 +66,7 @@ const postToCheckout = (req, res) => {
     ORDERS[orderID] = {
       items: CART,
       customer: FormInfo,
-      finalPrice: parseFloat(totalPrice * (GST + QST)).toFixed(2),
+      finalPrice: (totalPrice * (1 + GST + QST)).toFixed(2),
       qtyToShip: totalQuantity,
     };
     console.log("Current Orders:", ORDERS);
