@@ -44,6 +44,28 @@ const getCheckout = (req, res) => {
 
 const postToCheckout = (req, res) => {
   const FormInfo = req.body;
+  //FormInfo: {
+  //   firstName: req.body.firstName,
+  //   lastName: req.body.lastName,
+  //   email: req.body.email,
+  //   address: req.body.address,
+  //   city: req.body.city,
+  //   province: req.body.province,
+  //   postalCode: req.body.postalCode,
+  //   country: req.body.country,
+  // };
+
+  //Validation for inputs is done here
+  const formInputs = Object.values(FormInfo);
+  console.log("These are the inputs:", formInputs);
+  const filterForEmptyString = formInputs.filter((input) => input);
+
+  //Are there any empty string? Checking for undefined or ""; by checking length, it flags an empty input
+  const formInputsValidation =
+    formInputs.length === filterForEmptyString.length;
+
+  console.log("Is everything filled?:", formInputsValidation);
+
   // console.log("Checkout Request Received!", BODY);
 
   const orderID = RandomNumber(5000, 1);
@@ -76,7 +98,7 @@ const postToCheckout = (req, res) => {
       finalPrice: (totalPrice * (1 + GST + QST)).toFixed(2),
       qtyToShip: totalQuantity,
     };
-    console.log("Current Orders:", ORDERS);
+    console.log("Current Orders:", ORDERS[orderID]);
 
     // This here is to remove the quantity of inventory based on the CART
 
@@ -98,6 +120,13 @@ const postToCheckout = (req, res) => {
       // console.log("Cart Item to update", CART);
       // console.log("Item After Update", orderItem);
     });
+
+    if (!formInputsValidation) {
+      return res.status(400).json({
+        success: false,
+        message: "Please fill all the inputs",
+      });
+    }
 
     return res.status(201).json({
       success: true,
