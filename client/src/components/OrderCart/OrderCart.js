@@ -11,7 +11,7 @@ const OrderCart = (props) => {
   const GST = parseFloat(props.price * 0.05).toFixed(2);
   const TOTALPRICE = parseFloat(props.price * (1 + 0.05 + 0.09975)).toFixed(2);
 
-  function updateCartItem(id, q) {
+  function modifyCartItem(id, q) {
     const newQuantity = parseInt(q);
     const options = {
       method: "PUT",
@@ -57,7 +57,7 @@ const OrderCart = (props) => {
                   id="quantity"
                   value={item.quantity}
                   onChange={(ev) => {
-                    updateCartItem(item.id, ev.target.value);
+                    modifyCartItem(item.id, ev.target.value);
                   }}
                 />
               </CellQuantity>
