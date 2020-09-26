@@ -60,6 +60,10 @@ export default function cartReducer(state = initialState, action) {
       return state;
     }
 
+    case "UPDATE_CART_ITEM": {
+      return state;
+    }
+
     case "DELETE_CART_ITEM": {
       return state;
     }

@@ -4,8 +4,10 @@ import { THEMES } from "../../components/THEMES";
 import CheckoutButton from "../UI/CheckoutButton";
 import { useHistory } from "react-router-dom";
 
-const OrderForm = () => {
+const OrderForm = (props) => {
   const history = useHistory();
+  const CART = props.data;
+  const [flag, setFlag] = React.useState(false);
 
   const postData = () => {
     return fetch("/cart/checkout", {
@@ -30,17 +32,26 @@ const OrderForm = () => {
   function SubmitOrder(ev) {
     ev.preventDefault();
 
-    postData()
-      .then((res) => res.json())
-      .then((json) => {
-        console.log(json);
-        history.push(`/checkout/${json.orderID}`);
-      });
+    if (Object.keys(CART).length === 0) {
+      setFlag(true);
+      return;
+    } else {
+      postData()
+        .then((res) => res.json())
+        .then((json) => {
+          console.log(json);
+          history.push(`/checkout/${json.orderID}`);
+        })
+        .catch((error) => {
+          alert(error);
+        });
+    }
   }
 
   return (
     <PaymentSection>
       <SectionTitle>Payment</SectionTitle>
+      {/* <FormSection onsubmit={SubmitOrder} method="POST"> */}
       <FormSection>
         <FormContent>
           <Info>
@@ -116,10 +127,12 @@ const OrderForm = () => {
             </Top>
           </Address>
         </FormContent>
+        {flag && <Error>Warning You Need to Add Items</Error>}
         <FormSubmit>
           <CheckoutButton onClickHandler={(ev) => SubmitOrder(ev)}>
             Place Order
           </CheckoutButton>
+          {/* <CheckoutButton>Place Order</CheckoutButton> */}
         </FormSubmit>
       </FormSection>
     </PaymentSection>
@@ -160,13 +173,20 @@ const FormSubmit = styled.div`
   align-items: center;
   padding: 20px;
   /* border: 2px dashed green; */
-  margin-top: 8vh;
+  margin-top: 5vh;
 `;
 
 const Info = styled.div`
   padding: 0 12px;
   /* display: flex;
   flex-flow: column nowrap; */
+`;
+
+const Error = styled.span`
+  margin-top: 20px;
+  color: red;
+  font-size: 18px;
+  color: red;
 `;
 
 const Top = styled.div`

@@ -1,12 +1,37 @@
 import React from "react";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { receiveCartItems, updateCartItem } from "../../actions";
 
 const OrderCart = (props) => {
+  const dispatch = useDispatch();
   const CART = props.data;
   const PRICE = parseFloat(props.price).toFixed(2);
-  const QST = parseFloat(props.price * 0.05).toFixed(2);
-  const GST = parseFloat(props.price * 0.0975).toFixed(2);
-  const TOTALPRICE = parseFloat(PRICE + QST + GST).toFixed(2);
+  const QST = parseFloat(props.price * 0.09975).toFixed(2);
+  const GST = parseFloat(props.price * 0.05).toFixed(2);
+  const TOTALPRICE = parseFloat(props.price * (1 + 0.05 + 0.09975)).toFixed(2);
+
+  function modifyCartItem(id, q) {
+    const newQuantity = parseInt(q);
+    const options = {
+      method: "PUT",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: id,
+        quantity: newQuantity,
+      }),
+    };
+
+    fetch("/cart", options)
+      .then((res) => res.json())
+      .then((json) => {
+        dispatch(updateCartItem());
+        dispatch(receiveCartItems(json));
+      });
+  }
 
   return (
     <CartSection>
@@ -22,8 +47,20 @@ const OrderCart = (props) => {
         {CART.map((item) => {
           return (
             <RowContent>
-              <CellName>{item.name}</CellName>
-              <CellQuantity>{item.quantity}</CellQuantity>
+              <CellName>
+                {item.name} -{" "}
+                {item.maxQty && <Warning>Max Quantity Reached!</Warning>}
+              </CellName>
+              <CellQuantity>
+                <input
+                  type="text"
+                  id="quantity"
+                  value={item.quantity}
+                  onChange={(ev) => {
+                    modifyCartItem(item.id, ev.target.value);
+                  }}
+                />
+              </CellQuantity>
               <CellPrice>${item.price}</CellPrice>
             </RowContent>
           );
@@ -95,6 +132,11 @@ const Table = styled.table`
   margin-bottom: 5vh;
 `;
 
+const Warning = styled.span`
+  font-style: italic;
+  color: red;
+`;
+
 const RowHeader = styled.tr`
   padding: 5px;
 
@@ -119,6 +161,11 @@ const CellName = styled.td`
 const CellQuantity = styled.td`
   text-align: center;
   color: green;
+
+  & input {
+    text-align: center;
+    width: 25%;
+  }
 `;
 
 const CellPrice = styled.td`
