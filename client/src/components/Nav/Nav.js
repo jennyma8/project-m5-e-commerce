@@ -170,9 +170,9 @@ const Wrapper = styled.div`
   }
 
   @media (max-width: 768px) {
-    height: 120px;
     display: flex;
     flex-direction: column;
+    transition: none;
 
     & li {
       display: none;
@@ -200,6 +200,7 @@ const NavList = styled.li`
   }
 
   @media (max-width: 768px) {
+    margin-left: 0px;
     display: flex;
     flex-direction: column;
   }
