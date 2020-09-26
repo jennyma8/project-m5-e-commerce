@@ -88,6 +88,9 @@ const LogoWrapper = styled.div`
 const StyledLink = styled(NavLink)`
   text-decoration: none;
   color: black;
+  @media (max-width: 768px) {
+    padding: 5px;
+  }
 `;
 const LinkName = styled.span`
   text-decoration: none;
@@ -107,6 +110,12 @@ const LinkName = styled.span`
     color: #cfba4f;
     cursor: pointer;
     border-bottom: 2px solid grey;
+  }
+
+  @media (max-width: 768px) {
+    & span {
+      display: inline;
+    }
   }
 `;
 
@@ -160,6 +169,7 @@ const Wrapper = styled.div`
   }
 
   @media (max-width: 768px) {
+    height: 120px;
     display: flex;
     flex-direction: column;
 
