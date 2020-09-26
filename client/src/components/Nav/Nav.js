@@ -78,6 +78,11 @@ const Title = styled.div`
 
 const LogoWrapper = styled.div`
   display: flex;
+  @media (max-width: 768px) {
+    display: flex;
+    align-items: center;
+    padding-top: 10px;
+  }
 `;
 const StyledLink = styled(NavLink)`
   text-decoration: none;
@@ -92,7 +97,11 @@ const LinkName = styled.span`
   /* & span {
     padding: 5px;
   } */
-
+  @media (max-width: 1024px) {
+    & span {
+      display: none;
+    }
+  }
   &:hover {
     color: #cfba4f;
     cursor: pointer;
@@ -145,6 +154,10 @@ const Wrapper = styled.div`
   &:hover {
     background: white;
   }
+
+  @media (max-width: 1024px) {
+  }
+
   @media (max-width: 768px) {
     display: flex;
     flex-direction: column;
@@ -156,6 +169,7 @@ const Wrapper = styled.div`
       display: flex;
       width: 100%;
       background: gray;
+      padding: 5px;
     }
   }
 `;
@@ -170,17 +184,12 @@ const NavList = styled.li`
   }
 
   @media (max-width: 1024px) {
-    /* ... */
   }
 
   @media (max-width: 768px) {
     display: flex;
     flex-direction: column;
   }
-`;
-
-const Icon = styled.div`
-  padding: 2px;
 `;
 
 const CartButton = styled.button`
