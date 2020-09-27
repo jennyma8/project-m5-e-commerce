@@ -74,7 +74,7 @@ const Content = styled.div`
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  @media (max-width: 800px) {
+  @media (max-width: 768px) {
     display: flex;
     flex-flow: row nowrap;
   }
@@ -88,6 +88,10 @@ const Description = styled.div`
   margin-top: 20px;
   margin-right: 5px;
   margin-left: 5px;
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 const Price = styled.h1`
@@ -101,8 +105,7 @@ const Title = styled.h1`
   flex: 2;
   padding: 12px;
   margin-bottom: 12px;
-  @media (max-width: 800px) {
-    display: none;
+  @media (max-width: 768px) {
   }
 `;
 
