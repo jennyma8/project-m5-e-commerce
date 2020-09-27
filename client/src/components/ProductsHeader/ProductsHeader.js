@@ -35,7 +35,8 @@ const Wrapper = styled.div`
   }
 
   @media (max-width: 768px) {
-    height: 30vh;
+    max-height: 30vh;
+    margin-top: 5px;
   }
 `;
 
@@ -56,6 +57,8 @@ const HeaderList = styled.ul`
   }
 
   @media (max-width: 768px) {
+    max-height: 200px;
+    margin: 0px;
   }
 `;
 
