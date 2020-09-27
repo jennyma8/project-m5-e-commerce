@@ -8,6 +8,7 @@ const OrderForm = (props) => {
   const history = useHistory();
   const CART = props.data;
   const [flag, setFlag] = React.useState(false);
+  const [formFlag, setFormFlag] = React.useState(false);
 
   const postData = () => {
     return fetch("/cart/checkout", {
@@ -40,7 +41,11 @@ const OrderForm = (props) => {
         .then((res) => res.json())
         .then((json) => {
           console.log(json);
-          history.push(`/checkout/${json.orderID}`);
+          if (json.success) {
+            history.push(`/checkout/${json.orderID}`);
+          } else {
+            setFormFlag(true);
+          }
         })
         .catch((error) => {
           alert(error);
@@ -128,6 +133,7 @@ const OrderForm = (props) => {
           </Address>
         </FormContent>
         {flag && <Error>Warning You Need to Add Items</Error>}
+        {formFlag && <Error>Warning You Need to Fill the Form</Error>}
         <FormSubmit>
           <CheckoutButton onClickHandler={(ev) => SubmitOrder(ev)}>
             Place Order
@@ -187,6 +193,8 @@ const Error = styled.span`
   color: red;
   font-size: 18px;
   color: red;
+  text-align: center;
+  width: 100%;
 `;
 
 const Top = styled.div`
