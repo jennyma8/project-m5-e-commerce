@@ -35,7 +35,7 @@ const Wrapper = styled.div`
   }
 
   @media (max-width: 768px) {
-    height: 20vh;
+    height: 30vh;
   }
 `;
 
@@ -56,7 +56,6 @@ const HeaderList = styled.ul`
   }
 
   @media (max-width: 768px) {
-    display: none;
   }
 `;
 
@@ -102,6 +101,11 @@ const Category = styled.button`
       background-color: ${THEMES.Primary};
       color: white;
     }
+  }
+
+  @media (max-width: 768px) {
+    margin: 5px;
+    padding: 5px;
   }
 `;
 
