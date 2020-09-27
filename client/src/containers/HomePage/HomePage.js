@@ -203,6 +203,11 @@ const Featured = styled.div`
   display: flex;
   justify-content: space-around;
   text-align: center;
+
+  @media (max-width: 1024px) {
+    display: flex;
+    flex-wrap: wrap;
+  }
   @media (max-width: 768px) {
     display: flex;
     flex-direction: column;
@@ -218,6 +223,11 @@ const Product = styled.div`
   transition: all ease-in 0.4s;
   &:hover {
     transform: scale(1.2);
+  }
+
+  @media (max-width: 1024px) {
+    width: 310px;
+    margin: 50px;
   }
 `;
 

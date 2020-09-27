@@ -129,7 +129,10 @@ const ProfileWrapper = styled.div`
   }
 
   @media (max-width: 1024px) {
-    /* ... */
+    display: flex;
+    flex-direction: row;
+
+    flex-wrap: wrap;
   }
 
   @media (max-width: 768px) {
@@ -164,6 +167,9 @@ const ProfileContainer = styled.div`
     /* display: block; */
     text-align: left;
     visibility: visible;
+  }
+  @media (max-width: 1024px) {
+    width: 310px;
   }
 `;
 
