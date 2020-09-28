@@ -1,4 +1,6 @@
-const data = require("../../data/companies.json");
+//This route gives the information for the selected company by its ID
+
+data = require("../../data/companies.json");
 
 module.exports = (req, res) => {
   const companies = data;
