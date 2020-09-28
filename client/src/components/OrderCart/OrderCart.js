@@ -1,7 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { receiveCartItems, updateCartItem } from "../../actions";
+import {
+  receiveCartItems,
+  deleteCartItem,
+  updateCartItem,
+} from "../../actions";
 
 const OrderCart = (props) => {
   const dispatch = useDispatch();
@@ -10,6 +14,27 @@ const OrderCart = (props) => {
   const QST = parseFloat(props.price * 0.09975).toFixed(2);
   const GST = parseFloat(props.price * 0.05).toFixed(2);
   const TOTALPRICE = parseFloat(props.price * (1 + 0.05 + 0.09975)).toFixed(2);
+
+  function deleteItem(id) {
+    const options = {
+      method: "DELETE",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: id,
+      }),
+    };
+
+    fetch(`/cart/${id}`, options)
+      .then((res) => res.json())
+      .then((json) => {
+        // console.log(json);
+        dispatch(deleteCartItem());
+        dispatch(receiveCartItems(json));
+      });
+  }
 
   function modifyCartItem(id, q) {
     const newQuantity = parseInt(q);
@@ -54,10 +79,15 @@ const OrderCart = (props) => {
               <CellQuantity>
                 <input
                   type="text"
-                  id="quantity"
+                  id={`quantity-${item.id}`}
                   value={item.quantity}
                   onChange={(ev) => {
-                    modifyCartItem(item.id, ev.target.value);
+                    console.log(ev.target.value);
+                    if (ev.target.value == 0) {
+                      deleteItem(item.id);
+                    } else {
+                      modifyCartItem(item.id, ev.target.value);
+                    }
                   }}
                 />
               </CellQuantity>
