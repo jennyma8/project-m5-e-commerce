@@ -1,14 +1,14 @@
+//This file deals with all the routes related to the cart going from adding, updating, removing and obtaining it.
+
 const CART = require("../../data/cart.json");
 const itemData = require("../../data/items.json");
-// const { v4: uuidv4 } = require("uuid");
 
-// This is to fix the data by removing the $ to the prices
+// This is to fix the data by removing the $ to the prices and return all items with updated price values
 const ITEMS = itemData.map((item) => {
   const price = parseFloat(
     Math.round(parseFloat(item.price.substring(1) * 100).toFixed(2)) / 100
   ).toFixed(2);
 
-  // data = [{ ...items }];
   return {
     ...item,
     price: price,
@@ -62,8 +62,6 @@ const getCart = (req, res) => {
 const addToCart = (req, res) => {
   const reqId = req.body.id;
   const reqQuantity = req.body.quantity;
-  // console.log("Item Request is:", reqId);
-  // console.log("Body sent is", req.body);
 
   // Check if this id is valid
   if (!reqId) {
@@ -106,7 +104,7 @@ const addToCart = (req, res) => {
       };
     }
 
-    // Update the total quantity of the cart items
+    // Update the total quantity and price of the cart items
     const totalQuantity = Object.values(CART).reduce(
       (sum, q) => sum + q.quantity,
       0
@@ -147,14 +145,11 @@ const addToCart = (req, res) => {
 const updateCart = (req, res) => {
   const reqId = req.body.id;
   const reqQuantity = req.body.quantity;
-  console.log("Item Request is:", reqId);
-  console.log("Body sent is", req.body);
 
   const cartItem = ITEMS.find((item) => item._id === reqId);
   const cartIDs = Object.keys(CART).map(Number);
 
   try {
-    // console.log("Before max Quantity?", CART[reqId].maxQty);
     const quantity =
       reqQuantity >= cartItem.numInStock ? cartItem.numInStock : reqQuantity;
 
@@ -166,9 +161,7 @@ const updateCart = (req, res) => {
       maxQty: reqQuantity >= cartItem.numInStock,
     };
 
-    // console.log("After Quantity:", CART[reqId].quantity);
-    // console.log("Max Quantity?", CART[reqId].maxQty);
-    // Update the total quantity of the cart items
+    // Update the total quantity and price of the cart items
     const totalQuantity = Object.values(CART).reduce(
       (sum, q) => sum + q.quantity,
       0
@@ -189,6 +182,14 @@ const updateCart = (req, res) => {
         error: "You have reached the limit",
       });
     }
+
+    if (!reqId) {
+      return res.status(404).json({
+        success: false,
+        error: "No item found",
+      });
+    }
+
     return res.status(200).json({
       success: true,
       CART,
@@ -200,13 +201,6 @@ const updateCart = (req, res) => {
       success: false,
       code: error,
       error: "Server Error",
-    });
-  }
-
-  if (!reqId) {
-    return res.status(404).json({
-      success: false,
-      error: "No item found",
     });
   }
 };
@@ -230,7 +224,7 @@ const removeFromCart = (req, res) => {
     // delete the item in question from the CART database
     delete CART[reqId];
 
-    // Update the total quantity of the cart items
+    // Update the total quantity and price of the cart items
     const totalQuantity = Object.values(CART).reduce(
       (sum, q) => sum + q.quantity,
       0

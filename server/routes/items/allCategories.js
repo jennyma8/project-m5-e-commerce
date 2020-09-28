@@ -1,3 +1,5 @@
+//This route gives you all categories available in our database only
+
 const data = require("../../data/items.json");
 
 module.exports = (req, res) => {
