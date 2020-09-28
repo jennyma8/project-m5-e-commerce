@@ -75,17 +75,17 @@ export default function cartReducer(state = initialState, action) {
     // Really didnt need to use this since receiving the new cart
     // items already updates the redux store
     case "POST_CART_ITEM": {
-      console.log("[INCOMING CART ITEM]", action.item);
+      // console.log("[INCOMING CART ITEM]", action.item);
       const itemToAdd = action.item.CART;
       const newTotal = action.item.totalPrice;
       const newQuantity = action.item.totalQuantity;
-      console.log("[ITEM TO ADD]", itemToAdd);
+      // console.log("[ITEM TO ADD]", itemToAdd);
       const results = produce(state, (draftState) => {
         draftState.currentCart = itemToAdd;
         draftState.totalPrice = newTotal;
         draftState.totalQuantity = newQuantity;
       });
-      console.log("[NEW CURRENT CART]", results);
+      // console.log("[NEW CURRENT CART]", results);
       return results;
     }
 
