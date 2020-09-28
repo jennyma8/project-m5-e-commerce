@@ -20,8 +20,6 @@ const HomePage = () => {
   const ITEMS = useSelector((state) => state.DATA.allProducts);
   const CATEGORIES = useSelector((state) => state.DATA.categories);
   const STATUS = useSelector((state) => state.DATA.status);
-  // console.log(CATEGORIES);
-  console.log(ITEMS);
 
   React.useEffect(() => {
     // This should be fetching "/items/category/:category"
@@ -59,7 +57,7 @@ const HomePage = () => {
         ITEMS.items[Math.floor(Math.random() * ITEMS.items.length)]
       );
     }
-    console.log("My Random Items", RandomItems);
+    // console.log("My Random Items", RandomItems);
   }
   return (
     <>

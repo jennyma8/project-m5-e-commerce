@@ -1,17 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import ScrollUpButton from "../ScrollUpButton";
-import { useSelector, useDispatch } from "react-redux";
-import { toggleScrollUpButton } from "../../../actions";
 
 const PageContainer = ({ children }) => {
-  const dispatch = useDispatch();
-
   const [scroll, setScroll] = React.useState(false);
-
-  const ToggleScrollButton = useSelector(
-    (state) => state.TOGGLERS.ScrollButton
-  );
 
   function toggleVisibility() {
     if (window.scrollY > 700) {

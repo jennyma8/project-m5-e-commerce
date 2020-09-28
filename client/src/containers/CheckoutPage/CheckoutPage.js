@@ -17,7 +17,6 @@ const CheckoutPage = () => {
   const dispatch = useDispatch();
   const CART = useSelector((state) => state.CART.currentCart);
   const TOTAL_PRICE = useSelector((state) => state.CART.totalPrice);
-  const TOTAL_QUANTITY = useSelector((state) => state.CART.totalQuantity);
   const STATUS = useSelector((state) => state.CART.status);
 
   React.useEffect(() => {
@@ -48,11 +47,7 @@ const CheckoutPage = () => {
         <PageTitle>Checkout Summary</PageTitle>
         <Layout>
           <OrderCart data={CART} price={TOTAL_PRICE} />
-          {/* 
-        <PaymentSection>
-          <SectionTitle>Payment</SectionTitle> */}
           <OrderForm data={CART} />
-          {/* </PaymentSection> */}
         </Layout>
       </Fixer>
     </PageContainer>
