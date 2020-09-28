@@ -1,3 +1,6 @@
+//This route gives the information for the selected item as well as
+//relate the right company name with its company ID
+
 const data = require("../../data/items.json");
 const companiesData = require("../../data/companies.json");
 
@@ -17,7 +20,7 @@ module.exports = (req, res) => {
   const company = COMPANIES.filter(
     (company) => company._id === item[0].companyId
   );
-  // console.log(company);
+
   try {
     return res.status(200).json({
       success: true,
