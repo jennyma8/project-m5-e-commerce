@@ -3,7 +3,7 @@
 const CART = require("../../data/cart.json");
 const itemData = require("../../data/items.json");
 
-// This is to fix the data by removing the $ to the prices and return all items with udpated price values
+// This is to fix the data by removing the $ to the prices and return all items with updated price values
 const ITEMS = itemData.map((item) => {
   const price = parseFloat(
     Math.round(parseFloat(item.price.substring(1) * 100).toFixed(2)) / 100
