@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { THEMES } from "../../components/THEMES";
 import CheckoutButton from "../UI/CheckoutButton";
 import { useHistory } from "react-router-dom";
 

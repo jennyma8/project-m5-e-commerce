@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Button from "../../UI/Button";
 import { THEMES } from "../../THEMES";
 import { useDispatch } from "react-redux";
-import { addCartItem, receiveItems, receiveCartItems } from "../../../actions";
+import { addCartItem, receiveCartItems } from "../../../actions";
 
 const Product = (props) => {
   const ITEM = props.data;
