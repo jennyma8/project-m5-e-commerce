@@ -93,3 +93,5 @@ To create a new functional component in the `/components` folder
 1. On your CLI navigate to the `/client` folder.
 
 2. type `yarn nc "name of new component"`
+
+---
