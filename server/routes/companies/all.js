@@ -1,3 +1,5 @@
+//This route gives only the information for all companies available in the database
+
 const data = require("../../data/companies.json");
 
 module.exports = (req, res) => {

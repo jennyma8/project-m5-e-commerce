@@ -1,3 +1,6 @@
+//This route gives the data for all items available and
+//their prices have been formatted to show numbers with two decimals
+
 const data = require("../../data/items.json");
 
 module.exports = (req, res) => {

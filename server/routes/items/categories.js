@@ -1,3 +1,5 @@
+//This route filters each product by category
+
 const data = require("../../data/items.json");
 
 module.exports = (req, res) => {

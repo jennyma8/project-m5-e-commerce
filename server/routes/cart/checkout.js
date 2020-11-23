@@ -1,7 +1,8 @@
+//These routes are related for the checkout
+
 const CART = require("../../data/cart.json");
 const ITEMS = require("../../data/items.json");
 const ORDERS = require("../../data/orders.json");
-const { v4: uuidv4 } = require("uuid");
 
 // ################### PRELIM FUNCTIONS ###########################
 
@@ -64,24 +65,9 @@ const postToCheckout = (req, res) => {
   const formInputsValidation =
     formInputs.length === filterForEmptyString.length;
 
-  console.log("Is everything filled?:", formInputsValidation);
-
-  // console.log("Checkout Request Received!", BODY);
-
   const orderID = RandomNumber(5000, 1);
-  // console.log("Order Number is:", orderID);
-  // console.log("Current Cart", CART);
-
-  // if (CART) {
-  //   return res.status(404).json({
-  //     success: false,
-  //     error: "No Cart Items",
-  //   });
-  // }
 
   try {
-    console.log("Current Cart:", CART);
-
     const totalPrice = Object.values(CART).reduce(
       (sum, price) => sum + price.price * price.quantity,
       0
@@ -98,27 +84,15 @@ const postToCheckout = (req, res) => {
       finalPrice: (totalPrice * (1 + GST + QST)).toFixed(2),
       qtyToShip: totalQuantity,
     };
-    console.log("Current Orders:", ORDERS[orderID]);
-
-    // This here is to remove the quantity of inventory based on the CART
-
-    // console.log(
-    //   "Accessing all cart items",
-    //   Object.keys(ORDERS[orderID].items).map(Number)
-    // );
 
     // This returns all of the Cart's item IDs that will be used
     // to update the ITEMS database
     const CurrentOrderItems = Object.keys(CART).map(Number);
 
-    // const CurrentOrderItems = Object.keys(ORDERS[orderID].items).map(Number);
-
     CurrentOrderItems.map((orderID) => {
       let orderItem = ITEMS.find((item) => item._id === orderID);
-      // console.log("Item Before Update", orderItem);
+
       orderItem.numInStock -= CART[orderID].quantity;
-      // console.log("Cart Item to update", CART);
-      // console.log("Item After Update", orderItem);
     });
 
     if (!formInputsValidation) {

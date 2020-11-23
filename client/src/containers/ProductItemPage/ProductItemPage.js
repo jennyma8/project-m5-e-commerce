@@ -2,7 +2,6 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { FiLink2 } from "react-icons/fi";
 
 import PageContainer from "../../components/UI/PageContainer";
 import Spinner from "../../components/UI/Spinner";
@@ -13,7 +12,7 @@ import {
   receiveProductItemError,
   receiveCartItems,
 } from "../../actions";
-import { addCartItem, receiveItems } from "../../actions";
+import { addCartItem } from "../../actions";
 import { THEMES } from "../../components/THEMES";
 
 const ProductItemPage = () => {
@@ -78,7 +77,7 @@ const ProductItemPage = () => {
           <div>
             Available quantity:{" "}
             <span>
-              {PRODUCT.numInStock != 0 ? PRODUCT.numInStock : "Out of Stock"}
+              {PRODUCT.numInStock !== 0 ? PRODUCT.numInStock : "Out of Stock"}
             </span>
           </div>
           <form>
